@@ -13,9 +13,6 @@ const IndexPage = () => {
         My name is Jayden, and I'm currently learning how to create my portfolio
         with Gatsby
       </h2>
-      <p>
-        Need a designer? <Link to="/contact">Contact me here!</Link>
-      </p>
     </Layout>
   )
 }
