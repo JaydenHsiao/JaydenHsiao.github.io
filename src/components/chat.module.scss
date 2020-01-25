@@ -1,0 +1,32 @@
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 18px 0px 0px 26px;
+  background-color: transparent;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  color: #4895ea;
+  font-size: 24px;
+  letter-spacing: -1.9%;
+}
+
+.btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 360, 0;
+  stroke-dashoffset: 0;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+.btn:hover svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 152, 543;
+  stroke-dashoffset: 458;
+}

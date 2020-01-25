@@ -2,6 +2,13 @@ module.exports = {
   siteMetadata: {
     title: "Practicing Gatsby",
     author: "Jayden Hsiao",
+    social: {
+      email: `j3hsiao@edu.uwaterloo.ca`,
+      github: `JaydenHsiao`,
+      linkedin: `jthsiao57/`,
+      instagram: `jthsiao57/`,
+      dribbble: `jaydenhsiao`,
+    },
   },
   plugins: [
     "gatsby-plugin-react-helmet",
@@ -36,5 +43,13 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `img`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
+    "gatsby-transformer-sharp",
   ],
 }

@@ -1,0 +1,23 @@
+.slide-container {
+  opacity: 0.2;
+  width: 37vw;
+  position: absolute;
+  top: 14vh;
+  right: 28vw;
+  z-index: -5;
+}
+
+.each-fade {
+  width: 37vw;
+  height: 77vh;
+  display: flex;
+}
+
+.each-fade .image-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.each-fade .image-container img {
+  width: 100%;
+}

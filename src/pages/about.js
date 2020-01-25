@@ -10,7 +10,7 @@ const AboutPage = () => {
       <h1>About Me</h1>
       <p>
         I am currently 17 years old and I am attending the University of
-        Waterloo as a Systems Design Engineer
+        Waterloo as a Systems Design Engineer!
       </p>
       <p>
         <Link to="/contact">Interested? Contact me!</Link>
