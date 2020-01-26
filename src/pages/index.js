@@ -3,6 +3,7 @@ import React from "react"
 import Typing from "react-typing-animation"
 import Slideshow from "../components/slideshow"
 import ProjectPage from "../components/project"
+import AdditionalProjectPage from "../components/addproject"
 
 import Layout from "../components/layout"
 import Head from "../components/head"
@@ -40,8 +41,8 @@ const IndexPage = () => {
         Previously a Product Designer at Ontario Digital Service.{" "}
       </h3>
       <Chat />
-      <h1 style={{ marginTop: "22vh" }}>Portfolio</h1>
       <ProjectPage />
+      <AdditionalProjectPage />
     </Layout>
   )
 }
