@@ -7,6 +7,7 @@ import AdditionalProjectPage from "../components/addproject"
 
 import Layout from "../components/layout"
 import Head from "../components/head"
+import Description from "../components/description"
 import Chat from "../components/chat"
 
 const IndexPage = () => {
@@ -36,10 +37,7 @@ const IndexPage = () => {
         </Typing>
         <Slideshow />
       </h1>
-      <h3 style={{ marginBottom: "5vh" }}>
-        Systems Design Engineering student at the University of Waterloo. <br />
-        Previously a Product Designer at Ontario Digital Service.{" "}
-      </h3>
+      <Description />
       <Chat />
       <ProjectPage />
       <AdditionalProjectPage />
