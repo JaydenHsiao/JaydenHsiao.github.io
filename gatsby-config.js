@@ -51,5 +51,11 @@ module.exports = {
       },
     },
     "gatsby-transformer-sharp",
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ["CONTENTFUL_SPACE_ID", "CONTENTFUL_ACCESS_TOKEN"],
+      },
+    },
   ],
 }

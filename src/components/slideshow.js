@@ -2,13 +2,19 @@ import React from "react"
 import { Fade } from "react-slideshow-image"
 import slideshowStyles from "./slideshow.module.scss"
 
-import profile from "../images/profile.jpg"
-import photographer from "../images/pianist.png"
+import productDesigner from "../images/profile.jpg"
+import photographer from "../images/photographer.jpg"
 import pianist from "../images/pianist.png"
-import acapella_enthusiast from "../images/pianist.png"
-import friend from "../images/pianist.png"
+import acapellaEnthusiast from "../images/acapella_enthusiast.jpg"
+import friend from "../images/friend.jpg"
 
-const fadeImages = [profile, photographer, pianist, acapella_enthusiast, friend]
+const fadeImages = [
+  productDesigner,
+  photographer,
+  pianist,
+  acapellaEnthusiast,
+  friend,
+]
 
 const fadeProperties = {
   duration: 3000,
