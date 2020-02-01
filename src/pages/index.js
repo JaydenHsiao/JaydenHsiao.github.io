@@ -15,7 +15,7 @@ const IndexPage = () => {
     <Layout>
       <Head title="Home" />
       <h1 style={{ margin: "25vh 0 5vh 0" }}>
-        Hello, I'm Jayden - a <br />
+        Hello, I'm Jayden Hsiao - a <br />
         <Typing loop={true}>
           <div style={{ color: "#4895EA" }}>
             <span>Product Designer</span>
