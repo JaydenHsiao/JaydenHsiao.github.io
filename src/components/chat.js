@@ -1,6 +1,6 @@
 import React from "react"
 
-import { useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 
 import chatStyles from "./chat.module.scss"
 

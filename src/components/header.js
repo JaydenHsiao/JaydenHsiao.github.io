@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import Resume from "../assets/resume.pdf"
 
 import headerStyles from "./header.module.scss"
 
@@ -23,19 +24,21 @@ const Header = () => {
             <Link
               className={headerStyles.navItem}
               activeClassName={headerStyles.activeNavItem}
-              to="/blog"
+              to="/about"
             >
               About
             </Link>
           </li>
           <li>
-            <Link
+            <a
               className={headerStyles.navItem}
               activeClassName={headerStyles.activeNavItem}
-              to="/about"
+              href={Resume}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Resume
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>
