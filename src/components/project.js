@@ -40,9 +40,9 @@ const ProjectPage = () => {
     <div style={{ marginBottom: "22vh" }}>
       <h1
         style={{ marginTop: "22vh" }}
-        data-aos="fade-up"
-        data-aos-offset="275"
-        data-aos-once="false"
+        // data-aos="fade-up"
+        // data-aos-offset="275"
+        // data-aos-once="false"
       >
         Portfolio
       </h1>
@@ -53,9 +53,9 @@ const ProjectPage = () => {
             return (
               <li
                 className={projectStyles.post}
-                data-aos="fade-up"
-                data-aos-offset="275"
-                data-aos-once="false"
+                // data-aos="fade-up"
+                // data-aos-offset="275"
+                // data-aos-once="false"
               >
                 <Link
                   to={`/${edge.node.slug}`}
@@ -84,9 +84,9 @@ const ProjectPage = () => {
               <li
                 className={projectStyles.post}
                 style={{ textAlign: "right" }}
-                data-aos="fade-up"
-                data-aos-offset="275"
-                data-aos-once="false"
+                // data-aos="fade-up"
+                // data-aos-offset="275"
+                // data-aos-once="false"
               >
                 <Link
                   to={`/${edge.node.slug}`}

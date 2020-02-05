@@ -31,8 +31,8 @@ const Footer = () => {
   return (
     <footer
       className={footerStyles.footer}
-      data-aos="fade-in"
-      data-aos-once="false"
+      // data-aos="fade-in"
+      // data-aos-once="false"
     >
       <h2 style={{ lineHeight: "1", marginBottom: "3vh" }}>
         Like what you see?

@@ -36,7 +36,11 @@ const AdditionalProjectPage = () => {
 
   return (
     <div>
-      <h1 data-aos="fade-up" data-aos-offset="275" data-aos-once="false">
+      <h1
+      // data-aos="fade-up"
+      // data-aos-offset="275"
+      // data-aos-once="false"
+      >
         Additional Projects
       </h1>
       <div>
@@ -47,9 +51,9 @@ const AdditionalProjectPage = () => {
               return (
                 <li
                   className={addProjectStyles.post}
-                  data-aos="fade-up"
-                  data-aos-offset="225"
-                  data-aos-once="false"
+                  // data-aos="fade-up"
+                  // data-aos-offset="225"
+                  // data-aos-once="false"
                 >
                   <Link to={`/${edge.node.slug}`}>
                     <img
@@ -71,9 +75,9 @@ const AdditionalProjectPage = () => {
               return (
                 <li
                   className={addProjectStyles.post}
-                  data-aos="fade-up"
-                  data-aos-offset="225"
-                  data-aos-once="false"
+                  // data-aos="fade-up"
+                  // data-aos-offset="225"
+                  // data-aos-once="false"
                   style={{ float: "right", margin: "-18vh 0 15vh 0" }}
                 >
                   <Link to={`/${edge.node.slug}`}>
