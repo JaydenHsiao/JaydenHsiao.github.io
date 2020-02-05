@@ -32,7 +32,7 @@ const AdditionalProjectPage = () => {
     }
   `)
 
-  let num = 0
+  let num = 1
 
   return (
     <div>
@@ -74,7 +74,7 @@ const AdditionalProjectPage = () => {
                   data-aos="fade-up"
                   data-aos-offset="225"
                   data-aos-once="false"
-                  style={{ float: "right", marginTop: "-106vh" }}
+                  style={{ float: "right", margin: "-18vh 0 15vh 0" }}
                 >
                   <Link to={`/${edge.node.slug}`}>
                     <img

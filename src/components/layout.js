@@ -4,10 +4,10 @@ import Footer from "./footer"
 import "../styles/index.scss"
 import layoutStyles from "./layout.module.scss"
 
-import AOS from "aos"
-import "aos/dist/aos.css"
+// import AOS from "aos"
+// import "aos/dist/aos.css"
 
-AOS.init()
+// AOS.init()
 
 const Layout = props => {
   return (

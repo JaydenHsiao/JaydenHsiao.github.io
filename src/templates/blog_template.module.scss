@@ -1,6 +1,128 @@
-img {
+.image-container {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
   display: block;
+  padding: 15px 15px 0 15px;
+  box-shadow: 0px 0px 15px 0px #e9e9e9;
+}
+
+.caption-container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.post {
+  //project title
+  h1 {
+    font-size: 2rem;
+  }
+
+  //section header
+  h2 {
+    font-size: 2rem;
+  }
+
+  //section header
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  //author quote
+  h4 {
+    margin-top: -10vh;
+    text-align: right;
+  }
+
+  //spacing between sections
+  h5 {
+    margin: 4rem 0 4rem 0;
+    opacity: 0;
+  }
+
+  //spacing between sub-sections
+  h6 {
+    margin: 2rem 0 2rem 0;
+    opacity: 0;
+  }
+
+  //rest of the text
+  p {
+    font-size: 1rem;
+  }
+
+  .caption {
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: -1rem;
+    padding-bottom: 1rem;
+  }
+
+  //quote formatting
+
+  .quote-div {
+    position: relative;
+    width: 50%;
+    display: block;
+    margin: 5% auto 10% auto;
+  }
+
+  .mb-style-2 {
+    blockquote {
+      padding-top: 150px;
+
+      p {
+        background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+        box-shadow: 0 -6px 0 rgba(72, 149, 234, 0.2);
+        color: rgba(72, 149, 234, 0.8);
+        display: inline;
+        font-family: Baskerville, Georgia, serif;
+        font-style: italic;
+        font-size: 1.6rem;
+        line-height: 46px;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+
+        i {
+          font-size: 20px;
+          position: absolute;
+          right: 0;
+          box-shadow: 0 -6px 0 rgba(255, 255, 255, 1);
+          font-style: normal;
+          color: grey;
+        }
+      }
+
+      &:after {
+        background: none repeat scroll 0 0 rgba(72, 149, 234, 0.8);
+        border-radius: 50% 50% 50% 50%;
+        color: rgba(255, 255, 255, 0.5);
+        content: "❞";
+        font-family: "icons";
+        font-size: 70px;
+        height: 110px;
+        width: 110px;
+        left: 50%;
+        line-height: 130px;
+        margin-left: -65px;
+        position: absolute;
+        text-align: center;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
+        top: 0;
+      }
+
+      &:before {
+        border-left: 5px solid rgba(72, 149, 234, 0.1);
+        border-radius: 50% 50% 50% 50%;
+        content: "";
+        height: 120%;
+        left: -40px;
+        position: absolute;
+        top: 0;
+        width: 20%;
+        z-index: -1;
+      }
+    }
+  }
 }

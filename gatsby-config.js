@@ -1,6 +1,10 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: "Practicing Gatsby",
+    title: "Jayden Hsiao",
     author: "Jayden Hsiao",
     social: {
       email: `j3hsiao@edu.uwaterloo.ca`,

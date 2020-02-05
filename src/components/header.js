@@ -11,7 +11,11 @@ const Header = () => {
     <div style={{ margin: "1rem 0 1.75rem 0" }}>
       <Link to="/">
         {" "}
-        <img style={{ width: "2.25rem", float: "left" }} src={Icon} />
+        <img
+          style={{ width: "2.25rem", float: "left" }}
+          src={Icon}
+          alt="The icon for my portfolio"
+        />
       </Link>
       <header className={headerStyles.header}>
         <nav>
