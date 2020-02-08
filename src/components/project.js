@@ -51,7 +51,7 @@ const ProjectPage = () => {
           if (num === 0) {
             num++
             return (
-              <li
+              <div
                 className={projectStyles.post}
                 // data-aos="fade-up"
                 // data-aos-offset="275"
@@ -59,16 +59,22 @@ const ProjectPage = () => {
               >
                 <Link
                   to={`/${edge.node.slug}`}
+                  className={projectStyles.blob}
                   style={{
                     backgroundImage: `url(${blob1})`,
                   }}
                 >
-                  <img
-                    src={edge.node.thumbnail.file.url}
-                    alt={edge.node.thumbnail.title}
-                    style={{ float: "right", width: "50%", height: "auto" }}
-                  />
-                  <div style={{ padding: "18vh 50% 18vh 0" }}>
+                  <div
+                    className={projectStyles.projectMockup}
+                    style={{ float: "right" }}
+                  >
+                    <img
+                      src={edge.node.thumbnail.file.url}
+                      alt={edge.node.thumbnail.title}
+                    />
+                  </div>
+
+                  <div style={{ padding: "18% 50% 18% 0" }}>
                     <h2>{edge.node.title}</h2>
                     <h4>
                       <b>{edge.node.projectType}</b> • {edge.node.category}
@@ -76,12 +82,12 @@ const ProjectPage = () => {
                     <p>{edge.node.description}</p>
                   </div>
                 </Link>
-              </li>
+              </div>
             )
           } else {
             num++
             return (
-              <li
+              <div
                 className={projectStyles.post}
                 style={{ textAlign: "right" }}
                 // data-aos="fade-up"
@@ -90,6 +96,7 @@ const ProjectPage = () => {
               >
                 <Link
                   to={`/${edge.node.slug}`}
+                  className={projectStyles.blob}
                   style={{
                     backgroundImage: `url(${blob2})`,
                   }}
@@ -97,9 +104,10 @@ const ProjectPage = () => {
                   <img
                     src={edge.node.thumbnail.file.url}
                     alt={edge.node.thumbnail.title}
-                    style={{ float: "left", width: "50%", height: "auto" }}
+                    className={projectStyles.projectMockup}
+                    style={{ float: "left" }}
                   />
-                  <div style={{ padding: "18vh 0 18vh 50%" }}>
+                  <div style={{ padding: "18% 0 18% 50%" }}>
                     {" "}
                     <h2>{edge.node.title}</h2>
                     <h4>
@@ -110,7 +118,7 @@ const ProjectPage = () => {
                     </div>
                   </div>
                 </Link>
-              </li>
+              </div>
             )
           }
         })}

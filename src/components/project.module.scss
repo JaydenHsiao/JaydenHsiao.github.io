@@ -5,6 +5,24 @@
 
 .post {
   margin-bottom: 5vh;
+  max-height: 100vh;
+
+  .blob {
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+
+    /* This is what makes the background image rescale based
+     on the container's size */
+    background-size: cover;
+  }
+
+  .project-mockup {
+    max-width: 50%;
+    padding: 10% 0 10% 0;
+  }
 
   a {
     position: relative;
