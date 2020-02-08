@@ -1,5 +1,6 @@
 .image-container {
   max-width: 80%;
+  min-width: 210px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -8,7 +9,7 @@
 }
 
 .gif-container {
-  width: 50%;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -79,7 +80,7 @@
 
   .quote-div {
     position: relative;
-    width: 50%;
+    max-width: 500px;
     display: block;
     margin: 5% auto 10% auto;
   }
@@ -96,17 +97,8 @@
         font-family: Baskerville, Georgia, serif;
         font-style: italic;
         font-size: 1.6rem;
-        line-height: 46px;
+        line-height: 2.8rem;
         text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-
-        i {
-          font-size: 20px;
-          position: absolute;
-          right: 0;
-          box-shadow: 0 -6px 0 rgba(255, 255, 255, 1);
-          font-style: normal;
-          color: grey;
-        }
       }
 
       &:after {
@@ -131,7 +123,7 @@
         border-left: 5px solid rgba(72, 149, 234, 0.1);
         border-radius: 50% 50% 50% 50%;
         content: "";
-        height: 120%;
+        height: 105%;
         left: -40px;
         position: absolute;
         top: 0;
