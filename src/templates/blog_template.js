@@ -1,4 +1,5 @@
 import React from "react"
+
 import Layout from "../components/layout"
 import { graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -6,8 +7,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { INLINES, BLOCKS } from "@contentful/rich-text-types"
 import Head from "../components/head"
 
-import SimpleReactLightbox from "simple-react-lightbox"
-import { SRLWrapper } from "simple-react-lightbox"
 import blogTemplateStyles from "./blog_template.module.scss"
 
 const website_url = "https://jaydenhsiao.me"
@@ -24,20 +23,6 @@ export const query = graphql`
 `
 
 var images = []
-
-const lightbox_options = {
-  enablePanzoom: false,
-  overlayColor: "rgb(25, 136, 124)",
-  captionColor: "#a6cfa5",
-  captionFontFamily: "Lato",
-  captionFontSize: "18px",
-  captionFontWeight: "300",
-  captionFontStyle: "capitalize",
-  buttonsBackgroundColor: "#1b5245",
-  buttonsIconColor: "rgba(126, 172, 139, 0.8)",
-  autoplaySpeed: 1500,
-  transitionSpeed: 100,
-}
 
 const Blog = props => {
   const options = {
@@ -72,12 +57,7 @@ const Blog = props => {
             />
           )
           if (words[words.length - 1] === "(Last)") {
-            return (
-              <SimpleReactLightbox>
-                {" "}
-                <SRLWrapper {...lightbox_options}>{images}</SRLWrapper>
-              </SimpleReactLightbox>
-            )
+            return <div>{images}</div>
           }
         } else {
           const alt = node.data.target.fields.description["en-US"]
@@ -131,7 +111,6 @@ const Blog = props => {
           options
         )}
       </div>
-      <div id="grid"></div>
     </Layout>
   )
 }
