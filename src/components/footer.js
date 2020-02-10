@@ -2,8 +2,6 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import footerStyles from "./footer.module.scss"
 
-import "aos/dist/aos.css"
-
 import emailLogo from "../images/email.png"
 import githubLogo from "../images/github.png"
 import linkedinLogo from "../images/linkedin.png"
@@ -29,11 +27,7 @@ const Footer = () => {
   `)
 
   return (
-    <footer
-      className={footerStyles.footer}
-      // data-aos="fade-in"
-      // data-aos-once="false"
-    >
+    <footer className={footerStyles.footer}>
       <h2 style={{ lineHeight: "1", marginBottom: "3vh" }}>
         Like what you see?
       </h2>

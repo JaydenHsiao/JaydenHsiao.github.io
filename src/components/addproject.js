@@ -1,8 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
-import "aos/dist/aos.css"
-
 import addProjectStyles from "./addproject.module.scss"
 
 const AdditionalProjectPage = () => {
@@ -36,25 +34,14 @@ const AdditionalProjectPage = () => {
 
   return (
     <div>
-      <h1
-      // data-aos="fade-up"
-      // data-aos-offset="275"
-      // data-aos-once="false"
-      >
-        Additional Projects
-      </h1>
+      <h1>Additional Projects</h1>
       <div>
         <ol className={addProjectStyles.posts}>
           {data.allContentfulBlogPost.edges.map(edge => {
             if (num % 2 === 0) {
               num++
               return (
-                <li
-                  className={addProjectStyles.post}
-                  // data-aos="fade-up"
-                  // data-aos-offset="225"
-                  // data-aos-once="false"
-                >
+                <li className={addProjectStyles.post}>
                   <Link to={`/${edge.node.slug}`}>
                     <img
                       src={edge.node.thumbnail.file.url}
@@ -75,9 +62,6 @@ const AdditionalProjectPage = () => {
               return (
                 <li
                   className={addProjectStyles.post}
-                  // data-aos="fade-up"
-                  // data-aos-offset="225"
-                  // data-aos-once="false"
                   style={{ float: "right", margin: "-18vh 0 15vh 0" }}
                 >
                   <Link to={`/${edge.node.slug}`}>

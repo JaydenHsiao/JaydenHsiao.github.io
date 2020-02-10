@@ -1,6 +1,5 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import "aos/dist/aos.css"
 
 import blob1 from "../images/blob1.png"
 import blob2 from "../images/blob2.png"
@@ -38,25 +37,13 @@ const ProjectPage = () => {
 
   return (
     <div style={{ marginBottom: "22vh" }}>
-      <h1
-        style={{ marginTop: "22vh" }}
-        // data-aos="fade-up"
-        // data-aos-offset="275"
-        // data-aos-once="false"
-      >
-        Portfolio
-      </h1>
+      <h1 style={{ marginTop: "22vh" }}>Portfolio</h1>
       <ol className={projectStyles.posts}>
         {data.allContentfulBlogPost.edges.map(edge => {
           if (num === 0) {
             num++
             return (
-              <div
-                className={projectStyles.post}
-                // data-aos="fade-up"
-                // data-aos-offset="275"
-                // data-aos-once="false"
-              >
+              <div className={projectStyles.post}>
                 <Link
                   to={`/${edge.node.slug}`}
                   className={projectStyles.blob}
@@ -90,9 +77,6 @@ const ProjectPage = () => {
               <div
                 className={projectStyles.post}
                 style={{ textAlign: "right" }}
-                // data-aos="fade-up"
-                // data-aos-offset="275"
-                // data-aos-once="false"
               >
                 <Link
                   to={`/${edge.node.slug}`}
