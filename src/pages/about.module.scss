@@ -1,0 +1,93 @@
+.object {
+  width: auto;
+  position: absolute;
+}
+
+.tooltip-span {
+  transition: -webkit-transform 0.4s ease;
+
+  .tooltip-object {
+    transition: -webkit-transform 0.4s ease;
+    width: auto;
+    position: absolute;
+  }
+
+  .pointer {
+    transition: -webkit-transform 0.4s ease;
+    border-radius: 50%;
+    width: 2%;
+    height: auto;
+    padding-top: calc(2% - 4px);
+    background: white;
+    border: 2px solid #86cbcf;
+
+    -webkit-animation: glowing 2.5s infinite;
+    -moz-animation: glowing 2.5s infinite;
+    -o-animation: glowing 2.5s infinite;
+    animation: glowing 2.5s infinite;
+  }
+
+  &:hover .tooltip-object {
+    transform: translate(0, -5px);
+  }
+  &:hover .pointer {
+    transform: translate(0, -5px);
+  }
+
+  @-webkit-keyframes glowing {
+    0% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+    50% {
+      box-shadow: 0 0 10px 3px rgb(166, 251, 255);
+    }
+    100% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+  }
+
+  @-moz-keyframes glowing {
+    0% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+    50% {
+      box-shadow: 0 0 10px 3px rgb(166, 251, 255);
+    }
+    100% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+  }
+
+  @-o-keyframes glowing {
+    0% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+    50% {
+      box-shadow: 0 0 10px 3px rgb(166, 251, 255);
+    }
+    100% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+  }
+
+  @keyframes glowing {
+    0% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+    50% {
+      box-shadow: 0 0 10px 3px rgb(166, 251, 255);
+    }
+    100% {
+      box-shadow: 0 0 5px 1px #86cbcf;
+    }
+  }
+}
+
+.tooltip {
+  background-color: white !important;
+  border: 5px solid #4896ea50 !important;
+}
+
+.tooltip-pic {
+  max-width: 100px;
+}

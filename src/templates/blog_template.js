@@ -47,18 +47,27 @@ const Blog = props => {
           words[words.length - 1] === "(Grid)" ||
           words[words.length - 2] === "(Grid)"
         ) {
+          // const alt = node.data.target.fields.description["en-US"]
+          // const url = node.data.target.fields.file["en-US"].url
+          // images.push(
+          //   <img
+          //     alt={alt}
+          //     src={url}
+          //     className={blogTemplateStyles.photography}
+          //   />
+          // )
+          // if (words[words.length - 1] === "(Last)") {
+          //   return { images }
+          // }
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
-          images.push(
+          return (
             <img
               alt={alt}
               src={url}
               className={blogTemplateStyles.photography}
             />
           )
-          if (words[words.length - 1] === "(Last)") {
-            return <div>{images}</div>
-          }
         } else {
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
