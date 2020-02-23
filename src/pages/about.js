@@ -243,7 +243,6 @@ const DualTooltipImg = ({
         className={aboutStyles.tooltip}
         place={`${place}`}
         effect="float"
-        style={{ opacity: "100 !important" }}
       >
         <span className={aboutStyles.tooltipContent}>
           <img className={aboutStyles.tooltipPic} src={`${tooltip_src}`} />
@@ -254,219 +253,222 @@ const DualTooltipImg = ({
   )
 }
 
-const AboutPage = () => {
-  useEffect(() => {
+class AboutPage extends React.Component {
+  render() {
+    return (
+      <Layout>
+        <Head title="About" />
+        <h1>About Me</h1>
+        <div style={{ position: "relative" }}>
+          {/* <img style={{ opacity: "50%" }} src={Room} /> */}
+          <img
+            style={{
+              position: "relative",
+              top: "20px",
+            }}
+            src={Walls}
+          />
+          <TooltipImg
+            src={Diploma}
+            width="144.882"
+            left="125.292"
+            height="182.399"
+            top="428.64"
+            tooltip_src={Diploma_Tooltip}
+            tooltip_text="I am part of University of Waterloo's Systems Design Engineering Class of 2024 🔧 - ninety-six brilliant, innovative students who inspire me to do my best everyday! 🎉"
+          />
+          <ObjectImg
+            src={Bed}
+            width="527.212"
+            left="392.937"
+            height="429.075"
+            top="383.053"
+          />
+          <ObjectImg
+            src={Shelf}
+            width="182.383"
+            left="415.048"
+            height="157.6"
+            top="252.548"
+          />
+          <TooltipImg
+            src={Camera}
+            width="63.873"
+            left="496.082"
+            height="59.844"
+            top="273.441"
+            tooltip_src={Camera_Tooltip}
+            tooltip_text="Whether it be landscape 🍃, digital manipulation 💻, or fine art 🎨, photography has always been one of my favourite methods of artistic expression! 📷"
+          />
+          <ObjectImg
+            src={Window}
+            width="155.817"
+            left="943.216"
+            height="326.001"
+            top="278.795"
+          />
+          <ObjectImg
+            src={Lamp}
+            width="88.203"
+            left="1092.044"
+            height="323.453"
+            top="481.806"
+          />
+          <ObjectImg
+            src={Shelf_Left}
+            width="64.797"
+            left="1171.351"
+            height="421.563"
+            top="423.51"
+          />
+          <ObjectImg
+            src={Shelf_Shadow}
+            width="142.431"
+            left="1180.766"
+            height="98.04"
+            top="828.827"
+          />
+          <ObjectImg
+            src={Shelf_Level}
+            width="183.101"
+            left="1187.665"
+            height="115.826"
+            top="779.11"
+          />
+          <TooltipImg
+            src={Chest}
+            width="113.543"
+            left="1193.234"
+            height="105.57"
+            top="738.426"
+            tooltip_src
+            tooltip_text
+          />
+          <ObjectImg
+            src={Shelf_Level}
+            width="183.101"
+            left="1187.665"
+            height="115.826"
+            top="666.835"
+          />
+          <TooltipImg
+            src={Books}
+            width="62.452"
+            left="1199.892"
+            height="88.043"
+            top="614.167"
+            tooltip_src
+            tooltip_text
+          />
+          <ObjectImg
+            src={Shelf_Level}
+            width="183.101"
+            left="1187.665"
+            height="115.826"
+            top="554.56"
+          />
+          <TooltipImg
+            src={Trophy}
+            width="58.789"
+            left="1205.505"
+            height="84.168"
+            top="508.032"
+            tooltip_src
+            tooltip_text
+          />
+          <ObjectImg
+            src={Shelf_Level}
+            width="183.101"
+            left="1187.665"
+            height="115.826"
+            top="442.285"
+          />
+          <ObjectImg
+            src={Shelf_Right}
+            width="64.797"
+            left="1322.773"
+            height="421.563"
+            top="511.136"
+          />
+          <TooltipImg
+            src={Keyboard}
+            width="329.984"
+            left="867.694"
+            height="340.265"
+            top="800.998"
+            left_pt_adj="0.5"
+            top_pt_adj="-6.5"
+            tooltip_src={Keyboard_Tooltip}
+            tooltip_text="I absolutely love music! You can often find me jamming out on the piano 🎹, improvising on the saxophone 🎷, or performing acapella on-campus! 🎤"
+          />
+          <DualTooltipImg
+            src1={Jayden_Body}
+            width1="169.855"
+            left1="389.488"
+            height1="344.375"
+            top1="598.128"
+            src2={Jayden_Arms}
+            width2="139.541"
+            left2="384.592"
+            height2="121.758"
+            top2="678.873"
+            zIndex2="1"
+            left_pt_adj="-1"
+            top_pt_adj="-4.5"
+            tooltip_src={Jayden_Tooltip}
+            tooltip_text="Hi, I'm Jayden! 👋🏽 As a product designer 📱, I strive to improve the lives of others through the skills that I have been blessed with! Thanks for checking out my portfolio! 😊"
+          />
+          <ObjectImg
+            src={Table}
+            width="324.163"
+            left="247.313"
+            height="352.24"
+            top="715.529"
+          />
+          <TooltipImg
+            src={Sushi}
+            width="112.465"
+            left="425.272"
+            height="71.335"
+            top="822.686"
+            tooltip_src
+            tooltip_text="Some of my most treasured memories revolve around food! 😋 So let me know if you know any good restaurants, especially for sushi! 🍣"
+          />
+          <DualTooltipImg
+            src1={Laptop_Bottom}
+            width1="129.753"
+            left1="349.302"
+            height1="77.711"
+            top1="743.74"
+            src2={Laptop_Top}
+            width2="91.57"
+            left2="330.456"
+            height2="100.791"
+            top2="719.825"
+            zIndex2="2"
+            left_pt_adj="-2.5"
+            top_pt_adj="-0.75"
+            tooltip_src={Laptop_Tooltip}
+            tooltip_text="I believe that designers should understand the technical functionality of the products they are designing for. 💭 From C++ to C#, ReactJS to GraphQL, I am equipped to adapt and optimize my designs! ⚙"
+          />
+          <ObjectImg
+            src={Large_Plant}
+            width="258.534"
+            left="520.038"
+            height="377.34"
+            top="791.257"
+          />
+        </div>
+      </Layout>
+    )
+  }
+  componentDidMount() {
     ReactTooltip.rebuild()
-    setTimeout(() => {
-      ReactTooltip.rebuild()
-    }, 100)
-  })
-  return (
-    <Layout>
-      <Head title="About" />
-      <h1>About Me</h1>
-      <div style={{ position: "relative" }}>
-        {/* <img style={{ opacity: "50%" }} src={Room} /> */}
-        <img
-          style={{
-            position: "relative",
-            top: "20px",
-          }}
-          src={Walls}
-        />
-        <TooltipImg
-          src={Diploma}
-          width="144.882"
-          left="125.292"
-          height="182.399"
-          top="428.64"
-          tooltip_src={Diploma_Tooltip}
-          tooltip_text="I am part of University of Waterloo's Systems Design Engineering Class of 2024 🔧 - ninety-six brilliant, innovative students who inspire me to do my best everyday! 🎉"
-        />
-        <ObjectImg
-          src={Bed}
-          width="527.212"
-          left="392.937"
-          height="429.075"
-          top="383.053"
-        />
-        <ObjectImg
-          src={Shelf}
-          width="182.383"
-          left="415.048"
-          height="157.6"
-          top="252.548"
-        />
-        <TooltipImg
-          src={Camera}
-          width="63.873"
-          left="496.082"
-          height="59.844"
-          top="273.441"
-          tooltip_src={Camera_Tooltip}
-          tooltip_text="Whether it be landscape 🍃, digital manipulation 💻, or fine art 🎨, photography has always been one of my favourite methods of artistic expression! 📷"
-        />
-        <ObjectImg
-          src={Window}
-          width="155.817"
-          left="943.216"
-          height="326.001"
-          top="278.795"
-        />
-        <ObjectImg
-          src={Lamp}
-          width="88.203"
-          left="1092.044"
-          height="323.453"
-          top="481.806"
-        />
-        <ObjectImg
-          src={Shelf_Left}
-          width="64.797"
-          left="1171.351"
-          height="421.563"
-          top="423.51"
-        />
-        <ObjectImg
-          src={Shelf_Shadow}
-          width="142.431"
-          left="1180.766"
-          height="98.04"
-          top="828.827"
-        />
-        <ObjectImg
-          src={Shelf_Level}
-          width="183.101"
-          left="1187.665"
-          height="115.826"
-          top="779.11"
-        />
-        <TooltipImg
-          src={Chest}
-          width="113.543"
-          left="1193.234"
-          height="105.57"
-          top="738.426"
-          tooltip_src
-          tooltip_text
-        />
-        <ObjectImg
-          src={Shelf_Level}
-          width="183.101"
-          left="1187.665"
-          height="115.826"
-          top="666.835"
-        />
-        <TooltipImg
-          src={Books}
-          width="62.452"
-          left="1199.892"
-          height="88.043"
-          top="614.167"
-          tooltip_src
-          tooltip_text
-        />
-        <ObjectImg
-          src={Shelf_Level}
-          width="183.101"
-          left="1187.665"
-          height="115.826"
-          top="554.56"
-        />
-        <TooltipImg
-          src={Trophy}
-          width="58.789"
-          left="1205.505"
-          height="84.168"
-          top="508.032"
-          tooltip_src
-          tooltip_text
-        />
-        <ObjectImg
-          src={Shelf_Level}
-          width="183.101"
-          left="1187.665"
-          height="115.826"
-          top="442.285"
-        />
-        <ObjectImg
-          src={Shelf_Right}
-          width="64.797"
-          left="1322.773"
-          height="421.563"
-          top="511.136"
-        />
-        <TooltipImg
-          src={Keyboard}
-          width="329.984"
-          left="867.694"
-          height="340.265"
-          top="800.998"
-          left_pt_adj="0.5"
-          top_pt_adj="-6.5"
-          tooltip_src={Keyboard_Tooltip}
-          tooltip_text="I absolutely love music! You can often find me jamming out on the piano 🎹, improvising on the saxophone 🎷, or performing acapella on-campus! 🎤"
-        />
-        <DualTooltipImg
-          src1={Jayden_Body}
-          width1="169.855"
-          left1="389.488"
-          height1="344.375"
-          top1="598.128"
-          src2={Jayden_Arms}
-          width2="139.541"
-          left2="384.592"
-          height2="121.758"
-          top2="678.873"
-          zIndex2="1"
-          left_pt_adj="-1"
-          top_pt_adj="-4.5"
-          tooltip_src={Jayden_Tooltip}
-          tooltip_text="Hi, I'm Jayden! 👋🏽 As a product designer 📱, I strive to improve the lives of others through the skills that I have been blessed with! Thanks for checking out my portfolio! 😊"
-        />
-        <ObjectImg
-          src={Table}
-          width="324.163"
-          left="247.313"
-          height="352.24"
-          top="715.529"
-        />
-        <TooltipImg
-          src={Sushi}
-          width="112.465"
-          left="425.272"
-          height="71.335"
-          top="822.686"
-          tooltip_src
-          tooltip_text="Some of my most treasured memories revolve around food! 😋 So let me know if you know any good restaurants, especially for sushi! 🍣"
-        />
-        <DualTooltipImg
-          src1={Laptop_Bottom}
-          width1="129.753"
-          left1="349.302"
-          height1="77.711"
-          top1="743.74"
-          src2={Laptop_Top}
-          width2="91.57"
-          left2="330.456"
-          height2="100.791"
-          top2="719.825"
-          zIndex2="2"
-          left_pt_adj="-2.5"
-          top_pt_adj="-0.75"
-          tooltip_src={Laptop_Tooltip}
-          tooltip_text="I believe that designers should understand the technical functionality of the products they are designing for. 💭 From C++ to C#, ReactJS to GraphQL, I am equipped to adapt and optimize my designs! ⚙"
-        />
-        <ObjectImg
-          src={Large_Plant}
-          width="258.534"
-          left="520.038"
-          height="377.34"
-          top="791.257"
-        />
-      </div>
-    </Layout>
-  )
+    var all = document.getElementsByClassName("__react_component_tooltip")
+    for (var i = 0; i < all.length; i++) {
+      all[i].style.setProperty("opacity", "0.95", "important")
+    }
+  }
 }
 
 export default AboutPage
