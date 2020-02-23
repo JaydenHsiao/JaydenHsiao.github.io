@@ -462,7 +462,8 @@ class AboutPage extends React.Component {
     )
   }
   componentDidMount() {
-    return ReactTooltip.rebuild()
+    console.log("hello")
+    ReactTooltip.rebuild()
   }
 }
 
