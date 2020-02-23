@@ -243,6 +243,7 @@ const DualTooltipImg = ({
         className={aboutStyles.tooltip}
         place={`${place}`}
         effect="float"
+        style={{ opacity: "100 !important" }}
       >
         <span className={aboutStyles.tooltipContent}>
           <img className={aboutStyles.tooltipPic} src={`${tooltip_src}`} />
