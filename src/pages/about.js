@@ -461,4 +461,6 @@ const AboutPage = () => {
   )
 }
 
+ReactTooltip.rebuild()
+
 export default AboutPage
