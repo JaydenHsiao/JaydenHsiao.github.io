@@ -463,10 +463,15 @@ class AboutPage extends React.Component {
   }
   componentDidUpdate() {
     ReactTooltip.rebuild()
+    setTimeout(() => {
+      ReactTooltip.rebuild()
+    }, 100)
   }
   componentDidMount() {
-    console.log("hello")
     ReactTooltip.rebuild()
+    setTimeout(() => {
+      ReactTooltip.rebuild()
+    }, 100)
   }
 }
 
