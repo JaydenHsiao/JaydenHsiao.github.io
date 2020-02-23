@@ -4,7 +4,7 @@ import slideshowStyles from "./slideshow.module.scss"
 
 import productDesigner from "../images/profile.jpg"
 import photographer from "../images/photographer.jpg"
-import pianist from "../images/pianist.png"
+import pianist from "../images/pianist_filtered.png"
 import acapellaEnthusiast from "../images/acapella_enthusiast.jpg"
 import friend from "../images/friend.jpg"
 
