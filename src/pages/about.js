@@ -34,7 +34,7 @@ import Keyboard_Tooltip from "../images/keyboard_tooltip.jpg"
 import Jayden_Tooltip from "../images/jayden_tooltip.png"
 import Camera_Tooltip from "../images/camera_tooltip.jpg"
 import Diploma_Tooltip from "../images/diploma_tooltip.jpg"
-import Laptop_Tooltip from "../images/laptop_tooltip.jpg"
+import Laptop_Tooltip from "../images/laptop_tooltip.png"
 
 import aboutStyles from "./about.module.scss"
 
