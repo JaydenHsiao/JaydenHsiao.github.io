@@ -32,9 +32,13 @@ import Sushi from "../images/sushi.png"
 
 import Keyboard_Tooltip from "../images/keyboard_tooltip.jpg"
 import Jayden_Tooltip from "../images/jayden_tooltip.png"
-import Camera_Tooltip from "../images/camera_tooltip.jpg"
+import Camera_Tooltip from "../images/photographer.jpg"
 import Diploma_Tooltip from "../images/diploma_tooltip.jpg"
 import Laptop_Tooltip from "../images/laptop_tooltip.png"
+import Trophy_Tooltip from "../images/trophy_tooltip.jpeg"
+import Sushi_Tooltip from "../images/sushi_tooltip.jpg"
+import Books_Tooltip from "../images/books_tooltip.png"
+import Window_Tooltip from "../images/window_tooltip.jpg"
 
 import aboutStyles from "./about.module.scss"
 
@@ -91,18 +95,18 @@ const TooltipImg = ({
   const left_pt_adj_per = left_pt_adj + "%"
   const top_pt_adj_per = top_pt_adj + "%"
 
-  // const place_result =
-  //   (height / h_orig) * 100 + (top / h_orig) * top_rel_adjustment + "%"
+  const place_result =
+    (height / h_orig) * 100 + (top / h_orig) * top_rel_adjustment + "%"
 
-  // var place
+  var place
 
-  // if (place_result > 50 + "%") {
-  //   place = "bottom"
-  // } else {
-  //   place = "top"
-  // }
+  if (place_result > 50 + "%") {
+    place = "top"
+  } else {
+    place = "bottom"
+  }
 
-  var place = "top"
+  var text = `${tooltip_text}`
 
   return (
     <React.Fragment>
@@ -141,7 +145,9 @@ const TooltipImg = ({
       >
         <span className={aboutStyles.tooltipContent}>
           <img className={aboutStyles.tooltipPic} src={`${tooltip_src}`} />
-          <p>{`${tooltip_text}`}</p>
+          <p>
+            <div dangerouslySetInnerHTML={{ __html: text }} />
+          </p>
         </span>
       </ReactTooltip>
     </React.Fragment>
@@ -168,8 +174,6 @@ const DualTooltipImg = ({
   const h_orig = 1303.02
   const w_orig = 1449.034
 
-  const i = 1
-
   const width_rel1 = (width1 / w_orig) * 100 + "%"
   const left_rel1 = (left1 / w_orig) * 100 + "%"
   const height_rel1 = (height1 / h_orig) * 100 + "%"
@@ -186,18 +190,18 @@ const DualTooltipImg = ({
   const left_pt_adj_per = left_pt_adj + "%"
   const top_pt_adj_per = top_pt_adj + "%"
 
-  // const place_result =
-  //   (height1 / h_orig) * 100 + (top1 / h_orig) * top_rel_adjustment + "%"
+  const place_result =
+    (height1 / h_orig) * 100 + (top1 / h_orig) * top_rel_adjustment + "%"
 
-  // var place
+  var place
 
-  // if (place_result > 50 + "%") {
-  //   place = "bottom"
-  // } else {
-  //   place = "top"
-  // }
+  if (place_result > 50 + "%") {
+    place = "top"
+  } else {
+    place = "bottom"
+  }
 
-  var place = "top"
+  var text = `${tooltip_text}`
 
   return (
     <React.Fragment>
@@ -246,7 +250,9 @@ const DualTooltipImg = ({
       >
         <span className={aboutStyles.tooltipContent}>
           <img className={aboutStyles.tooltipPic} src={`${tooltip_src}`} />
-          <p>{`${tooltip_text}`}</p>
+          <p>
+            <div dangerouslySetInnerHTML={{ __html: text }} />
+          </p>
         </span>
       </ReactTooltip>
     </React.Fragment>
@@ -300,12 +306,16 @@ class AboutPage extends React.Component {
             tooltip_src={Camera_Tooltip}
             tooltip_text="Whether it be landscape 🍃, digital manipulation 💻, or fine art 🎨, photography has always been one of my favourite methods of artistic expression! 📷"
           />
-          <ObjectImg
+          <TooltipImg
             src={Window}
             width="155.817"
             left="943.216"
             height="326.001"
             top="278.795"
+            left_pt_adj="0.9"
+            top_pt_adj="0"
+            tooltip_src={Window_Tooltip}
+            tooltip_text="I have always loved this final panel from Calvin and Hobbes 📚 - ever since I read it as a child, I've tried to apply this same curiosity to explore myself, my work, and the world around me! 🌎"
           />
           <ObjectImg
             src={Lamp}
@@ -342,7 +352,7 @@ class AboutPage extends React.Component {
             height="105.57"
             top="738.426"
             tooltip_src
-            tooltip_text
+            tooltip_text="Whether it be planning a checkmate in chess ♟️, crafting the perfect deck in Dominion ⚔️, or monopolizing the sheep trade in Catan 🐑, one of my favourite ways to have fun is through board games!"
           />
           <ObjectImg
             src={Shelf_Level}
@@ -357,8 +367,8 @@ class AboutPage extends React.Component {
             left="1199.892"
             height="88.043"
             top="614.167"
-            tooltip_src
-            tooltip_text
+            tooltip_src={Books_Tooltip}
+            tooltip_text="Luke 6:31 is my favourite quote! 📖 I constantly strive to devote the empathy, kindness, and care highlighted within this passage not only to my design work, but my lifestyle as well. 💙"
           />
           <ObjectImg
             src={Shelf_Level}
@@ -373,8 +383,20 @@ class AboutPage extends React.Component {
             left="1205.505"
             height="84.168"
             top="508.032"
-            tooltip_src
-            tooltip_text
+            tooltip_src={Trophy_Tooltip}
+            tooltip_text="I always try my best to excel in everything that I do!
+            <ul>
+            <li>
+            <strong>Best Pitch</strong> - StarterHacks 2020 💬
+            </li>
+            <li>
+            <strong>First Class Honours</strong> - Grade 10 Piano Practical Exam 🎹
+            </li>
+            <li>
+            <strong>Honourable Mention</strong> - Jostens Canada Photo Contest 📷
+            </li>
+            </ul>
+            "
           />
           <ObjectImg
             src={Shelf_Level}
@@ -431,7 +453,7 @@ class AboutPage extends React.Component {
             left="425.272"
             height="71.335"
             top="822.686"
-            tooltip_src
+            tooltip_src={Sushi_Tooltip}
             tooltip_text="Some of my most treasured memories revolve around food! 😋 So let me know if you know any good restaurants, especially for sushi! 🍣"
           />
           <DualTooltipImg
@@ -449,7 +471,7 @@ class AboutPage extends React.Component {
             left_pt_adj="-2.5"
             top_pt_adj="-0.75"
             tooltip_src={Laptop_Tooltip}
-            tooltip_text="I believe that designers should understand the technical functionality of the products they are designing for. 💭 From C++ to C#, ReactJS to GraphQL, I am equipped to adapt and optimize my designs! ⚙"
+            tooltip_text="I believe that designers should understand the technical functionality of the products they are designing for. 💭 From C++ to C#, ReactJS to GraphQL, I am equipped to adapt and optimize my designs! ⚙️"
           />
           <ObjectImg
             src={Large_Plant}
