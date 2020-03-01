@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.4.0",
+    "aos": "^2.3.4",
     "browser-monads": "git+https://github.com/Jense5/browser-monads.git",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",

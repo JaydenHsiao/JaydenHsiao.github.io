@@ -34,14 +34,21 @@ const AdditionalProjectPage = () => {
 
   return (
     <div>
-      <h1>Additional Projects</h1>
+      <h1 data-aos="fade-up" data-aos-offset="275" data-aos-once="false">
+        Additional Projects
+      </h1>
       <div>
         <ol className={addProjectStyles.posts}>
           {data.allContentfulBlogPost.edges.map(edge => {
             if (num % 2 === 0) {
               num++
               return (
-                <li className={addProjectStyles.post}>
+                <li
+                  className={addProjectStyles.post}
+                  data-aos="fade-up"
+                  data-aos-offset="225"
+                  data-aos-once="false"
+                >
                   <Link to={`/${edge.node.slug}`}>
                     <img
                       src={edge.node.thumbnail.file.url}
@@ -63,6 +70,9 @@ const AdditionalProjectPage = () => {
                 <li
                   className={addProjectStyles.post}
                   style={{ float: "right", margin: "-18vh 0 15vh 0" }}
+                  data-aos="fade-up"
+                  data-aos-offset="225"
+                  data-aos-once="false"
                 >
                   <Link to={`/${edge.node.slug}`}>
                     <img
