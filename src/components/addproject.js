@@ -47,7 +47,6 @@ const AdditionalProjectPage = () => {
                   className={addProjectStyles.post}
                   data-aos="fade-up"
                   data-aos-offset="225"
-                  data-aos-once="false"
                 >
                   <Link to={`/${edge.node.slug}`}>
                     <img
@@ -72,7 +71,6 @@ const AdditionalProjectPage = () => {
                   style={{ float: "right", margin: "-18vh 0 15vh 0" }}
                   data-aos="fade-up"
                   data-aos-offset="225"
-                  data-aos-once="false"
                 >
                   <Link to={`/${edge.node.slug}`}>
                     <img

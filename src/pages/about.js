@@ -39,6 +39,7 @@ import Trophy_Tooltip from "../images/trophy_tooltip.jpeg"
 import Sushi_Tooltip from "../images/sushi_tooltip.jpg"
 import Books_Tooltip from "../images/books_tooltip.png"
 import Window_Tooltip from "../images/window_tooltip.jpg"
+import Chest_Tooltip from "../images/chest_tooltip.jpg"
 
 import aboutStyles from "./about.module.scss"
 
@@ -351,7 +352,7 @@ class AboutPage extends React.Component {
             left="1193.234"
             height="105.57"
             top="738.426"
-            tooltip_src
+            tooltip_src={Chest_Tooltip}
             tooltip_text="Whether it be planning a checkmate in chess ♟️, crafting the perfect deck in Dominion ⚔️, or monopolizing the sheep trade in Catan 🐑, one of my favourite ways to have fun is through board games!"
           />
           <ObjectImg

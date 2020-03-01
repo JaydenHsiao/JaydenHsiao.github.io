@@ -54,7 +54,6 @@ const ProjectPage = () => {
                 className={projectStyles.post}
                 data-aos="fade-up"
                 data-aos-offset="275"
-                data-aos-once="false"
               >
                 <Link
                   to={`/${edge.node.slug}`}
@@ -91,7 +90,6 @@ const ProjectPage = () => {
                 style={{ textAlign: "right" }}
                 data-aos="fade-up"
                 data-aos-offset="275"
-                data-aos-once="false"
               >
                 <Link
                   to={`/${edge.node.slug}`}
