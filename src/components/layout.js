@@ -15,13 +15,13 @@ if (exists(window) && exists(document)) {
 
 const Layout = props => {
   return (
-    <div className={layoutStyles.container}>
-      <div className={layoutStyles.content}>
-        <Header />
-        {props.children}
+    <React.Fragment>
+      <Header />
+      <div className={layoutStyles.container}>
+        <div className={layoutStyles.content}>{props.children}</div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </React.Fragment>
   )
 }
 

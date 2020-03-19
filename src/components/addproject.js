@@ -35,7 +35,7 @@ const AdditionalProjectPage = () => {
   return (
     <div>
       <h1 data-aos="fade-up" data-aos-offset="275" data-aos-once="false">
-        Additional Projects
+        Portfolio
       </h1>
       <div>
         <ol className={addProjectStyles.posts}>
