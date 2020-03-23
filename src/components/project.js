@@ -37,14 +37,14 @@ const ProjectPage = () => {
 
   return (
     <div style={{ marginBottom: "22vh" }}>
-      {/* <h1
+      <h1
         style={{ marginTop: "22vh" }}
         data-aos="fade-up"
         data-aos-offset="275"
         data-aos-once="false"
       >
         Portfolio
-      </h1> */}
+      </h1>
       <ol className={projectStyles.posts}>
         {data.allContentfulBlogPost.edges.map(edge => {
           if (num === 0) {
