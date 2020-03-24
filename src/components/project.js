@@ -102,7 +102,7 @@ const ProjectPage = () => {
                     src={edge.node.thumbnail.file.url}
                     alt={edge.node.thumbnail.title}
                     className={projectStyles.projectMockup}
-                    style={{ float: "left" }}
+                    style={{ float: "left", maxWidth: "60%" }}
                   />
                   <div style={{ padding: "18% 0 18% 50%" }}>
                     {" "}
