@@ -19,19 +19,19 @@ const IndexPage = () => {
         <Typing loop={true}>
           <div style={{ color: "#4895EA" }}>
             <span>Product Designer</span>
-            <Typing.Delay ms={1000} />
+            <Typing.Delay ms={800} />
             <Typing.Backspace count={17} />
             <span>Photographer</span>
-            <Typing.Delay ms={1000} />
+            <Typing.Delay ms={1600} />
             <Typing.Backspace count={13} />
             <span>Pianist</span>
-            <Typing.Delay ms={1000} />
+            <Typing.Delay ms={2600} />
             <Typing.Backspace count={8} />
             <span>Acapella Enthusiast</span>
-            <Typing.Delay ms={1000} />
+            <Typing.Delay ms={1100} />
             <Typing.Backspace count={20} />
             <span>Friend</span>
-            <Typing.Delay ms={1000} />
+            <Typing.Delay ms={2700} />
             <Typing.Backspace count={7} />
           </div>
         </Typing>

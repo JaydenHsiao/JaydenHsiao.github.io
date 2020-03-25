@@ -22,19 +22,30 @@ export const query = graphql`
   }
 `
 
-var images = []
-
 const Blog = props => {
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
         const words = node.data.target.fields.title["en-US"].split(" ")
-        if (words[words.length - 1] === "GIF") {
+        var asset_width =
+          node.data.target.fields.file["en-US"].details.image.width
+        var asset_height =
+          node.data.target.fields.file["en-US"].details.image.height
+
+        var ratio = asset_height / asset_width
+        console.log(
+          `${node.data.target.fields.title["en-US"]} ratio = ${ratio}`
+        )
+        if (ratio > 1 && asset_width < 1000) {
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
           return (
-            <div className={blogTemplateStyles.gifContainer}>
-              <img alt={alt} src={url} className={blogTemplateStyles.gif} />
+            <div className={blogTemplateStyles.portraitContainer}>
+              <img
+                alt={alt}
+                src={url}
+                className={blogTemplateStyles.portrait}
+              />
               <div className={blogTemplateStyles.captionContainer}>
                 {" "}
                 <p className={blogTemplateStyles.caption}>
@@ -47,18 +58,6 @@ const Blog = props => {
           words[words.length - 1] === "(Grid)" ||
           words[words.length - 2] === "(Grid)"
         ) {
-          // const alt = node.data.target.fields.description["en-US"]
-          // const url = node.data.target.fields.file["en-US"].url
-          // images.push(
-          //   <img
-          //     alt={alt}
-          //     src={url}
-          //     className={blogTemplateStyles.photography}
-          //   />
-          // )
-          // if (words[words.length - 1] === "(Last)") {
-          //   return { images }
-          // }
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
           return (

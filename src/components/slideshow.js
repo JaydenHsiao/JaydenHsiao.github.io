@@ -2,7 +2,7 @@ import React from "react"
 import { Fade } from "react-slideshow-image"
 import slideshowStyles from "./slideshow.module.scss"
 
-import productDesigner from "../images/profile.jpg"
+import productDesigner from "../images/product_designer.jpg"
 import photographer from "../images/photographer.jpg"
 import pianist from "../images/pianist_filtered.png"
 import acapellaEnthusiast from "../images/acapella_enthusiast.jpg"
@@ -18,7 +18,7 @@ const fadeImages = [
 
 const fadeProperties = {
   duration: 3000,
-  transitionDuration: 500,
+  transitionDuration: 1000,
   infinite: true,
   indicators: false,
   arrows: false,
