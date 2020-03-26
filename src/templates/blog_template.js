@@ -33,26 +33,26 @@ const Blog = props => {
           node.data.target.fields.file["en-US"].details.image.height
 
         var ratio = asset_height / asset_width
-        console.log(
-          `${node.data.target.fields.title["en-US"]} ratio = ${ratio}`
-        )
         if (ratio > 1 && asset_width < 1000) {
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
           return (
-            <div className={blogTemplateStyles.portraitContainer}>
-              <img
-                alt={alt}
-                src={url}
-                className={blogTemplateStyles.portrait}
-              />
-              <div className={blogTemplateStyles.captionContainer}>
-                {" "}
-                <p className={blogTemplateStyles.caption}>
-                  {node.data.target.fields.description["en-US"]}
-                </p>
+            <React.Fragment>
+              <div className={blogTemplateStyles.portraitContainer}>
+                <img
+                  alt={alt}
+                  src={url}
+                  className={blogTemplateStyles.portrait}
+                />
+                <div className={blogTemplateStyles.captionContainer}>
+                  {" "}
+                  <p className={blogTemplateStyles.caption}>
+                    {node.data.target.fields.description["en-US"]}
+                  </p>
+                </div>
               </div>
-            </div>
+              <br />
+            </React.Fragment>
           )
         } else if (
           words[words.length - 1] === "(Grid)" ||
@@ -71,15 +71,18 @@ const Blog = props => {
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
           return (
-            <div className={blogTemplateStyles.imageContainer}>
-              <img alt={alt} src={url} />
-              <div className={blogTemplateStyles.captionContainer}>
-                {" "}
-                <p className={blogTemplateStyles.caption}>
-                  {node.data.target.fields.description["en-US"]}
-                </p>
+            <React.Fragment>
+              <div className={blogTemplateStyles.imageContainer}>
+                <img alt={alt} src={url} />
+                <div className={blogTemplateStyles.captionContainer}>
+                  {" "}
+                  <p className={blogTemplateStyles.caption}>
+                    {node.data.target.fields.description["en-US"]}
+                  </p>
+                </div>
               </div>
-            </div>
+              <br />
+            </React.Fragment>
           )
         }
       },
@@ -106,6 +109,37 @@ const Blog = props => {
               <blockquote>{children}</blockquote>
             </div>
           </div>
+        )
+      },
+      [BLOCKS.HEADING_1]: (node, children) => {
+        return (
+          <React.Fragment>
+            <strong>
+              <h1>{children}</h1>
+            </strong>
+          </React.Fragment>
+        )
+      },
+      [BLOCKS.HEADING_2]: (node, children) => {
+        return (
+          <React.Fragment>
+            <br />
+            <br />
+            <strong>
+              <h2>{children}</h2>
+            </strong>
+            <hr />
+          </React.Fragment>
+        )
+      },
+      [BLOCKS.HEADING_3]: (node, children) => {
+        return (
+          <React.Fragment>
+            <br />
+            <strong>
+              <h3>{children}</h3>
+            </strong>
+          </React.Fragment>
         )
       },
     },
