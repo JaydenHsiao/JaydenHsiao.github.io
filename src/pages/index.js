@@ -11,20 +11,22 @@ import Head from "../components/head"
 import Description from "../components/description"
 import Chat from "../components/chat"
 class IndexPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.slideRef = React.createRef()
-  }
-  onBeforeType = () => {
-    this.slideRef.current.goNext()
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.slideRef = React.createRef()
+  // }
+  // onStartedTyping = () => {
+  //   this.slideRef.current.goNext()
+  //   console.log(`onStartedTyping is referenced`)
+  // }
   render() {
     return (
       <Layout>
         <Head title="Home" />
         <h1 style={{ margin: "25vh 0 5vh 0" }}>
           Hello, I'm Jayden - a <br />
-          <Typing loop={true} onBeforeType={this.onBeforeType}>
+          <Typing loop={true}>
+            {/* <Typing loop={true} onStartedTyping={this.onStartedTyping}> */}
             <div style={{ color: "#4895EA" }}>
               <span>Product Designer</span>
               <Typing.Delay ms={800} />

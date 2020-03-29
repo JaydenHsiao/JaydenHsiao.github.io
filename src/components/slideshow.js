@@ -66,6 +66,6 @@ const Slideshow = React.forwardRef((props, ref) => (
       </div>
     </Fade>
   </div>
-));
+))
 
 export default Slideshow
