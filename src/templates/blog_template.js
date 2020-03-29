@@ -7,6 +7,9 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { INLINES, BLOCKS } from "@contentful/rich-text-types"
 import Head from "../components/head"
 
+import Zoom from "react-medium-image-zoom"
+import "react-medium-image-zoom/dist/styles.css"
+
 import blogTemplateStyles from "./blog_template.module.scss"
 
 const website_url = "https://jaydenhsiao.me"
@@ -39,11 +42,9 @@ const Blog = props => {
           return (
             <React.Fragment>
               <div className={blogTemplateStyles.portraitContainer}>
-                <img
-                  alt={alt}
-                  src={url}
-                  className={blogTemplateStyles.portrait}
-                />
+                <Zoom>
+                  <img alt={alt} src={url} />
+                </Zoom>
                 <div className={blogTemplateStyles.captionContainer}>
                   {" "}
                   <p className={blogTemplateStyles.caption}>
@@ -61,11 +62,13 @@ const Blog = props => {
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
           return (
-            <img
-              alt={alt}
-              src={url}
-              className={blogTemplateStyles.photography}
-            />
+            <Zoom>
+              <img
+                alt={alt}
+                src={url}
+                className={blogTemplateStyles.photography}
+              />
+            </Zoom>
           )
         } else {
           const alt = node.data.target.fields.description["en-US"]
@@ -73,7 +76,9 @@ const Blog = props => {
           return (
             <React.Fragment>
               <div className={blogTemplateStyles.imageContainer}>
-                <img alt={alt} src={url} />
+                <Zoom>
+                  <img alt={alt} src={url} />
+                </Zoom>
                 <div className={blogTemplateStyles.captionContainer}>
                   {" "}
                   <p className={blogTemplateStyles.caption}>

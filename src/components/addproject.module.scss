@@ -13,7 +13,8 @@
   }
 
   a {
-    transition: -webkit-transform 0.8s ease, box-shadow 0.8s ease;
+    transition: transform 0.8s ease, -webkit-transform 0.8s ease,
+      box-shadow 0.8s ease;
     background: #ffffff;
     color: black;
     display: block;
