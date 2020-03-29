@@ -119,9 +119,7 @@ const Blog = props => {
       [BLOCKS.HEADING_1]: (node, children) => {
         return (
           <React.Fragment>
-            <strong>
-              <h1>{children}</h1>
-            </strong>
+            <h1>{children}</h1>
           </React.Fragment>
         )
       },
@@ -130,9 +128,7 @@ const Blog = props => {
           <React.Fragment>
             <br />
             <br />
-            <strong>
-              <h2>{children}</h2>
-            </strong>
+            <h2>{children}</h2>
             <hr />
           </React.Fragment>
         )
@@ -141,9 +137,7 @@ const Blog = props => {
         return (
           <React.Fragment>
             <br />
-            <strong>
-              <h3>{children}</h3>
-            </strong>
+            <h3>{children}</h3>
           </React.Fragment>
         )
       },
@@ -151,12 +145,14 @@ const Blog = props => {
   }
   return (
     <Layout>
-      <Head title={props.data.contentfulBlogPost.title} />
-      <div className={blogTemplateStyles.post}>
-        {documentToReactComponents(
-          props.data.contentfulBlogPost.body.json,
-          options
-        )}
+      <div className={blogTemplateStyles.postLayout}>
+        <Head title={props.data.contentfulBlogPost.title} />
+        <div className={blogTemplateStyles.post}>
+          {documentToReactComponents(
+            props.data.contentfulBlogPost.body.json,
+            options
+          )}
+        </div>
       </div>
     </Layout>
   )

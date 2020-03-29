@@ -29,6 +29,13 @@
 @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap");
 
 html {
+  ::selection {
+    background: #c8e0fa; /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: #bbd7f7; /* Gecko Browsers */
+  }
+
   font-family: Lato;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
