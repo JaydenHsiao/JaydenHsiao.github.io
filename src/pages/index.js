@@ -24,7 +24,7 @@ class IndexPage extends React.Component {
         <Head title="Home" />
         <h1 style={{ margin: "25vh 0 5vh 0" }}>
           Hello, I'm Jayden - a <br />
-          <Typing loop={true} ref={this.slideRef}>
+          <Typing loop={true} onBeforeType={this.onBeforeType}>
             <div style={{ color: "#4895EA" }}>
               <span>Product Designer</span>
               <Typing.Delay ms={800} />
@@ -43,7 +43,7 @@ class IndexPage extends React.Component {
               <Typing.Backspace count={7} />
             </div>
           </Typing>
-          <Slideshow />
+          <Slideshow ref={this.slideRef} />
         </h1>
         <Description />
         <Chat />

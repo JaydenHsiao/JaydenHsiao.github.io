@@ -27,47 +27,45 @@ const fadeProperties = {
   },
 }
 
-const Slideshow = () => {
-  return (
-    <div className={slideshowStyles.slideContainer}>
-      <Fade {...fadeProperties}>
-        <div className={slideshowStyles.eachFade}>
-          <div className={slideshowStyles.imageContainer}>
-            <img
-              src={fadeImages[0]}
-              alt="Jayden presenting a wireframe to his coworkers"
-            />
-          </div>
+const Slideshow = React.forwardRef((props, ref) => (
+  <div className={slideshowStyles.slideContainer}>
+    <Fade {...fadeProperties} ref={ref}>
+      <div className={slideshowStyles.eachFade}>
+        <div className={slideshowStyles.imageContainer}>
+          <img
+            src={fadeImages[0]}
+            alt="Jayden presenting a wireframe to his coworkers"
+          />
         </div>
-        <div className={slideshowStyles.eachFade}>
-          <div className={slideshowStyles.imageContainer}>
-            <img
-              src={fadeImages[1]}
-              alt="Jayden taking a photograph with his camera"
-            />
-          </div>
+      </div>
+      <div className={slideshowStyles.eachFade}>
+        <div className={slideshowStyles.imageContainer}>
+          <img
+            src={fadeImages[1]}
+            alt="Jayden taking a photograph with his camera"
+          />
         </div>
-        <div className={slideshowStyles.eachFade}>
-          <div className={slideshowStyles.imageContainer}>
-            <img src={fadeImages[2]} alt="Jayden performing a piano piece" />
-          </div>
+      </div>
+      <div className={slideshowStyles.eachFade}>
+        <div className={slideshowStyles.imageContainer}>
+          <img src={fadeImages[2]} alt="Jayden performing a piano piece" />
         </div>
-        <div className={slideshowStyles.eachFade}>
-          <div className={slideshowStyles.imageContainer}>
-            <img
-              src={fadeImages[3]}
-              alt="Jayden with his university acapella group"
-            />
-          </div>
+      </div>
+      <div className={slideshowStyles.eachFade}>
+        <div className={slideshowStyles.imageContainer}>
+          <img
+            src={fadeImages[3]}
+            alt="Jayden with his university acapella group"
+          />
         </div>
-        <div className={slideshowStyles.eachFade}>
-          <div className={slideshowStyles.imageContainer}>
-            <img src={fadeImages[4]} alt="Jayden with his friends!" />
-          </div>
+      </div>
+      <div className={slideshowStyles.eachFade}>
+        <div className={slideshowStyles.imageContainer}>
+          <img src={fadeImages[4]} alt="Jayden with his friends!" />
         </div>
-      </Fade>
-    </div>
-  )
-}
+      </div>
+    </Fade>
+  </div>
+));
 
 export default Slideshow
