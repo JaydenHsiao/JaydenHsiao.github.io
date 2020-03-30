@@ -5,15 +5,18 @@
 
 .tooltip-span {
   transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
 
   .tooltip-object {
     transition: -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
     width: auto;
     position: absolute;
   }
 
   .pointer {
     transition: -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
     border-radius: 50%;
     width: 2%;
     height: auto;
