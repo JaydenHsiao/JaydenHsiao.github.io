@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import ReactTooltip from "react-tooltip"
 
 import Layout from "../components/layout"
 import Head from "../components/head"
 
-import Room from "../images/room.png"
+// import Room from "../images/room.png"
 import Walls from "../images/walls.png"
 import Diploma from "../images/diploma.svg"
 import Bed from "../images/bed.png"
@@ -45,7 +45,7 @@ import aboutStyles from "./about.module.scss"
 
 const top_rel_adjustment = 100
 
-const ObjectImg = ({ src, height, width, top, left }) => {
+const ObjectImg = ({ img_alt, src, height, width, top, left }) => {
   const h_orig = 1303.02
   const w_orig = 1449.034
 
@@ -57,6 +57,7 @@ const ObjectImg = ({ src, height, width, top, left }) => {
   return (
     <React.Fragment>
       <img
+        alt={`${img_alt}`}
         src={`${src}`}
         className={aboutStyles.object}
         style={{
@@ -71,6 +72,7 @@ const ObjectImg = ({ src, height, width, top, left }) => {
 }
 
 const TooltipImg = ({
+  img_alt,
   src,
   height,
   width,
@@ -78,6 +80,7 @@ const TooltipImg = ({
   left,
   left_pt_adj,
   top_pt_adj,
+  tooltip_alt,
   tooltip_src,
   tooltip_text,
 }) => {
@@ -111,9 +114,10 @@ const TooltipImg = ({
 
   return (
     <React.Fragment>
-      <a data-tip={`${src}`} data-for={`${src}`}>
+      <button href="!#" data-tip={`${src}`} data-for={`${src}`}>
         <span className={aboutStyles.tooltipSpan}>
           <img
+            alt={`${img_alt}`}
             src={`${src}`}
             className={aboutStyles.tooltipObject}
             style={{
@@ -134,7 +138,7 @@ const TooltipImg = ({
             }}
           ></span>
         </span>
-      </a>
+      </button>
 
       <ReactTooltip
         id={`${src}`}
@@ -145,7 +149,11 @@ const TooltipImg = ({
         style={{ opacity: "100 !important" }}
       >
         <span className={aboutStyles.tooltipContent}>
-          <img className={aboutStyles.tooltipPic} src={`${tooltip_src}`} />
+          <img
+            alt={`${tooltip_alt}`}
+            lassName={aboutStyles.tooltipPic}
+            src={`${tooltip_src}`}
+          />
           <p>
             <div dangerouslySetInnerHTML={{ __html: text }} />
           </p>
@@ -156,11 +164,13 @@ const TooltipImg = ({
 }
 
 const DualTooltipImg = ({
+  title1,
   src1,
   height1,
   width1,
   top1,
   left1,
+  title2,
   src2,
   height2,
   width2,
@@ -169,6 +179,7 @@ const DualTooltipImg = ({
   zIndex2,
   left_pt_adj,
   top_pt_adj,
+  tooltip_alt,
   tooltip_src,
   tooltip_text,
 }) => {
@@ -206,9 +217,10 @@ const DualTooltipImg = ({
 
   return (
     <React.Fragment>
-      <a data-tip={`${src1}`} data-for={`${src1}`}>
+      <button href="!#" data-tip={`${src1}`} data-for={`${src1}`}>
         <span className={aboutStyles.tooltipSpan}>
           <img
+            alt={`${title1}`}
             src={`${src1}`}
             className={aboutStyles.tooltipObject}
             style={{
@@ -219,6 +231,7 @@ const DualTooltipImg = ({
             }}
           />
           <img
+            alt={`${title2}`}
             src={`${src2}`}
             className={aboutStyles.tooltipObject}
             style={{
@@ -241,7 +254,7 @@ const DualTooltipImg = ({
             }}
           ></span>
         </span>
-      </a>
+      </button>
       <ReactTooltip
         id={`${src1}`}
         aria-haspopup="true"
@@ -250,7 +263,11 @@ const DualTooltipImg = ({
         effect="float"
       >
         <span className={aboutStyles.tooltipContent}>
-          <img className={aboutStyles.tooltipPic} src={`${tooltip_src}`} />
+          <img
+            alt={`${tooltip_alt}`}
+            className={aboutStyles.tooltipPic}
+            src={`${tooltip_src}`}
+          />
           <p>
             <div dangerouslySetInnerHTML={{ __html: text }} />
           </p>
@@ -269,6 +286,7 @@ class AboutPage extends React.Component {
         <div style={{ position: "relative" }}>
           {/* <img style={{ opacity: "50%" }} src={Room} /> */}
           <img
+            alt="The walls of a room"
             style={{
               position: "relative",
               top: "20px",
@@ -276,15 +294,18 @@ class AboutPage extends React.Component {
             src={Walls}
           />
           <TooltipImg
+            img_alt="Diploma"
             src={Diploma}
             width="144.882"
             left="125.292"
             height="182.399"
             top="428.64"
+            tooltip_alt="A class photo of Jayden's Systems Design Engineering Class of 2024"
             tooltip_src={Diploma_Tooltip}
             tooltip_text="I am part of University of Waterloo's Systems Design Engineering Class of 2024 🔧 - ninety-six brilliant, innovative students who inspire me to do my best everyday! 🎉"
           />
           <ObjectImg
+            img_alt="Bed"
             src={Bed}
             width="527.212"
             left="392.937"
@@ -292,6 +313,7 @@ class AboutPage extends React.Component {
             top="383.053"
           />
           <ObjectImg
+            img_alt="Shelf"
             src={Shelf}
             width="182.383"
             left="415.048"
@@ -299,15 +321,18 @@ class AboutPage extends React.Component {
             top="252.548"
           />
           <TooltipImg
+            img_alt="Camera"
             src={Camera}
             width="63.873"
             left="496.082"
             height="59.844"
             top="273.441"
+            tooltip_alt="Jayden taking a picture with his camera"
             tooltip_src={Camera_Tooltip}
             tooltip_text="Whether it be landscape 🍃, digital manipulation 💻, or fine art 🎨, photography has always been one of my favourite methods of artistic expression! 📷"
           />
           <TooltipImg
+            img_alt="Window"
             src={Window}
             width="155.817"
             left="943.216"
@@ -315,10 +340,12 @@ class AboutPage extends React.Component {
             top="278.795"
             left_pt_adj="0.9"
             top_pt_adj="0"
+            tooltip_alt="The final comic strip of Calvin and Hobbes, where Calvin exclaims, 'Let's go exploring!'"
             tooltip_src={Window_Tooltip}
             tooltip_text="I have always loved this final panel from Calvin and Hobbes 📚 - ever since I read it as a child, I've tried to apply this same curiosity to explore myself, my work, and the world around me! 🌎"
           />
           <ObjectImg
+            img_alt="Lamp"
             src={Lamp}
             width="88.203"
             left="1092.044"
@@ -326,6 +353,7 @@ class AboutPage extends React.Component {
             top="481.806"
           />
           <ObjectImg
+            img_alt="Shelf side"
             src={Shelf_Left}
             width="64.797"
             left="1171.351"
@@ -333,6 +361,7 @@ class AboutPage extends React.Component {
             top="423.51"
           />
           <ObjectImg
+            img_alt="Shelf shadow"
             src={Shelf_Shadow}
             width="142.431"
             left="1180.766"
@@ -340,6 +369,7 @@ class AboutPage extends React.Component {
             top="828.827"
           />
           <ObjectImg
+            img_alt="Shelf level"
             src={Shelf_Level}
             width="183.101"
             left="1187.665"
@@ -347,6 +377,7 @@ class AboutPage extends React.Component {
             top="779.11"
           />
           <TooltipImg
+            img_alt="Chest"
             src={Chest}
             width="113.543"
             left="1193.234"
@@ -356,6 +387,7 @@ class AboutPage extends React.Component {
             tooltip_text="Whether it be planning a checkmate in chess ♟️, crafting the perfect deck in Dominion ⚔️, or monopolizing the sheep trade in Catan 🐑, one of my favourite ways to have fun is through board games!"
           />
           <ObjectImg
+            img_alt="Shelf level"
             src={Shelf_Level}
             width="183.101"
             left="1187.665"
@@ -363,6 +395,7 @@ class AboutPage extends React.Component {
             top="666.835"
           />
           <TooltipImg
+            img_alt="Books"
             src={Books}
             width="62.452"
             left="1199.892"
@@ -372,6 +405,7 @@ class AboutPage extends React.Component {
             tooltip_text="Luke 6:31 is my favourite quote! 📖 I constantly strive to devote the empathy, kindness, and care highlighted within this passage not only to my design work, but my lifestyle as well. 💙"
           />
           <ObjectImg
+            img_alt="Shelf level"
             src={Shelf_Level}
             width="183.101"
             left="1187.665"
@@ -379,6 +413,7 @@ class AboutPage extends React.Component {
             top="554.56"
           />
           <TooltipImg
+            img_alt="Trophy"
             src={Trophy}
             width="58.789"
             left="1205.505"
@@ -400,6 +435,7 @@ class AboutPage extends React.Component {
             "
           />
           <ObjectImg
+            img_alt="Shelf level"
             src={Shelf_Level}
             width="183.101"
             left="1187.665"
@@ -407,6 +443,7 @@ class AboutPage extends React.Component {
             top="442.285"
           />
           <ObjectImg
+            img_alt="Shelf side"
             src={Shelf_Right}
             width="64.797"
             left="1322.773"
@@ -414,6 +451,7 @@ class AboutPage extends React.Component {
             top="511.136"
           />
           <TooltipImg
+            img_alt="Keyboard"
             src={Keyboard}
             width="329.984"
             left="867.694"
@@ -421,15 +459,18 @@ class AboutPage extends React.Component {
             top="800.998"
             left_pt_adj="0.5"
             top_pt_adj="-6.5"
+            tooltip_alt="Jayden performing piano on a stage"
             tooltip_src={Keyboard_Tooltip}
             tooltip_text="I absolutely love music! You can often find me jamming out on the piano 🎹, improvising on the saxophone 🎷, or performing acapella on-campus! 🎤"
           />
           <DualTooltipImg
+            title1="Jayden's body"
             src1={Jayden_Body}
             width1="169.855"
             left1="389.488"
             height1="344.375"
             top1="598.128"
+            title2="Jayden's arms"
             src2={Jayden_Arms}
             width2="139.541"
             left2="384.592"
@@ -438,10 +479,12 @@ class AboutPage extends React.Component {
             zIndex2="1"
             left_pt_adj="-1"
             top_pt_adj="-4.5"
+            tooltip_alt="A memoji of Jayden waving"
             tooltip_src={Jayden_Tooltip}
             tooltip_text="Hi, I'm Jayden! 👋🏽 As a product designer 📱, I strive to improve the lives of others through the skills that I have been blessed with! Thanks for checking out my portfolio! 😊"
           />
           <ObjectImg
+            img_alt="Table"
             src={Table}
             width="324.163"
             left="247.313"
@@ -449,20 +492,24 @@ class AboutPage extends React.Component {
             top="715.529"
           />
           <TooltipImg
+            img_alt="Sushi"
             src={Sushi}
             width="112.465"
             left="425.272"
             height="71.335"
             top="822.686"
+            tooltip_alt="Jayden smiling as he holds up hand rolls and sushi on a plate"
             tooltip_src={Sushi_Tooltip}
             tooltip_text="Some of my most treasured memories revolve around food! 😋 So let me know if you know any good restaurants, especially for sushi! 🍣"
           />
           <DualTooltipImg
+            title1="Bottom of laptop"
             src1={Laptop_Bottom}
             width1="129.753"
             left1="349.302"
             height1="77.711"
             top1="743.74"
+            title2="Top of laptop"
             src2={Laptop_Top}
             width2="91.57"
             left2="330.456"
@@ -471,10 +518,12 @@ class AboutPage extends React.Component {
             zIndex2="2"
             left_pt_adj="-2.5"
             top_pt_adj="-0.75"
+            tooltip_alt="A list of what programming languages Jayden knows - ReactJS, GatsbyJS, HTML/CSS, GraphQL, C++, and C#"
             tooltip_src={Laptop_Tooltip}
             tooltip_text="I believe that designers should understand the technical functionality of the products they are designing for. 💭 From C++ to C#, ReactJS to GraphQL, I am equipped to adapt and optimize my designs! ⚙️"
           />
           <ObjectImg
+            img_alt="Large plant"
             src={Large_Plant}
             width="258.534"
             left="520.038"

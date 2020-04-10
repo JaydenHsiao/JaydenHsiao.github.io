@@ -96,9 +96,12 @@ const Blog = props => {
           return (
             <React.Fragment>
               <iframe
+                title={`${node.data.target.fields.title["en-US"]}`}
                 width="100%"
-                height="360"
-                src={`${node.data.target.fields.src["en-US"] + "autoplay=yep"}`}
+                height="500"
+                src={`${"https://miro.com/app/embed/" +
+                  node.data.target.fields.src["en-US"] +
+                  "=/?autoplay=yep"}`}
                 frameborder="0"
                 scrolling="no"
                 allowfullscreen
@@ -109,10 +112,11 @@ const Blog = props => {
           return (
             <React.Fragment>
               <iframe
-                src={`${node.data.target.fields.src["en-US"] + ".html"}`}
-                frameBorder="0"
+                title={`${node.data.target.fields.title["en-US"]}`}
                 width="100%"
                 height="600"
+                src={`${node.data.target.fields.src["en-US"] + ".html"}`}
+                frameBorder="0"
               ></iframe>
             </React.Fragment>
           )
@@ -122,6 +126,7 @@ const Blog = props => {
           return (
             <React.Fragment>
               <iframe
+                title={`${node.data.target.fields.title["en-US"]}`}
                 width="100%"
                 height="600"
                 src={`${node.data.target.fields.src["en-US"]}`}
@@ -135,6 +140,7 @@ const Blog = props => {
           return (
             <React.Fragment>
               <iframe
+                title={`${node.data.target.fields.title["en-US"]}`}
                 width="100%"
                 height="800"
                 src={`${node.data.target.fields.src["en-US"]}`}

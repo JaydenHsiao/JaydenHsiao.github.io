@@ -1,7 +1,6 @@
 import React from "react"
 
 import Typing from "react-typing-animation"
-import { Fade } from "react-slideshow-image"
 
 import Slideshow from "../components/slideshow"
 import ProjectPage from "../components/project"
