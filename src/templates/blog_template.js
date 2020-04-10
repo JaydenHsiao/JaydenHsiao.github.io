@@ -91,6 +91,59 @@ const Blog = props => {
           )
         }
       },
+      [BLOCKS.EMBEDDED_ENTRY]: node => {
+        if (node.data.target.sys.contentType.sys.id === "miroEmbed") {
+          return (
+            <React.Fragment>
+              <iframe
+                width="100%"
+                height="360"
+                src={`${node.data.target.fields.src["en-US"] + "autoplay=yep"}`}
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen
+              ></iframe>
+            </React.Fragment>
+          )
+        } else if (node.data.target.sys.contentType.sys.id === "trelloEmbed") {
+          return (
+            <React.Fragment>
+              <iframe
+                src={`${node.data.target.fields.src["en-US"] + ".html"}`}
+                frameBorder="0"
+                width="100%"
+                height="600"
+              ></iframe>
+            </React.Fragment>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "figmaPageEmbed"
+        ) {
+          return (
+            <React.Fragment>
+              <iframe
+                width="100%"
+                height="600"
+                src={`${node.data.target.fields.src["en-US"]}`}
+                allowfullscreen
+              ></iframe>
+            </React.Fragment>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "figmaPrototypeEmbed"
+        ) {
+          return (
+            <React.Fragment>
+              <iframe
+                width="100%"
+                height="800"
+                src={`${node.data.target.fields.src["en-US"]}`}
+                allowfullscreen
+              ></iframe>
+            </React.Fragment>
+          )
+        }
+      },
       [INLINES.HYPERLINK]: node => {
         return (
           <a
