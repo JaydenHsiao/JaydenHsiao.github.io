@@ -7,13 +7,21 @@ import Icon from "../images/icon.png"
 
 import headerStyles from "./header.module.scss"
 
+var maxWidth
+
+if (window.matchMedia("(min-width: 992px)").matches) {
+  maxWidth = "77vw"
+} else if (window.matchMedia("(min-width: 375px)").matches) {
+  maxWidth = "100vw"
+}
+
 const Header = () => {
   return (
     <Headroom
       style={{
         backgroundColor: "white",
         margin: "0 auto",
-        maxWidth: "77vw",
+        maxWidth: `${maxWidth}`,
         padding: "1rem",
         position: "fixed",
         transition: "all 0.2s ease-in-out 0s",
