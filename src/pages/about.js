@@ -1,7 +1,6 @@
 import React from "react"
 import ReactTooltip from "react-tooltip"
 
-import Layout from "../components/layout"
 import Head from "../components/head"
 
 // import Room from "../images/room.png"
@@ -31,13 +30,13 @@ import Table from "../images/table.png"
 import Sushi from "../images/sushi.svg"
 
 import Keyboard_Tooltip from "../images/keyboard_tooltip.jpg"
-import Jayden_Tooltip from "../images/jayden_tooltip.png"
+import Jayden_Tooltip from "../images/jayden_tooltip.jpg"
 import Camera_Tooltip from "../images/photographer.jpg"
 import Diploma_Tooltip from "../images/diploma_tooltip.jpg"
-import Laptop_Tooltip from "../images/laptop_tooltip.png"
-import Trophy_Tooltip from "../images/trophy_tooltip.jpeg"
+import Laptop_Tooltip from "../images/laptop_tooltip.jpg"
+import Trophy_Tooltip from "../images/trophy_tooltip.jpg"
 import Sushi_Tooltip from "../images/sushi_tooltip.jpg"
-import Books_Tooltip from "../images/books_tooltip.png"
+import Books_Tooltip from "../images/books_tooltip.jpg"
 import Window_Tooltip from "../images/window_tooltip.jpg"
 import Chest_Tooltip from "../images/chest_tooltip.jpg"
 

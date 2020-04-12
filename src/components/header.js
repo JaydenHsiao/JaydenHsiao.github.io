@@ -89,8 +89,8 @@ const Header = ({ location }) => {
               <Link
                 className={headerStyles.navItem}
                 activeClassName={headerStyles.isActive}
-                activeColor="orange"
-                activeStyle={{ color: "orange" }}
+                activeColor="#fbc15e"
+                activeStyle={{ color: "#fbc15e" }}
                 to="/about"
                 ref={linkRefs[1]}
               >
