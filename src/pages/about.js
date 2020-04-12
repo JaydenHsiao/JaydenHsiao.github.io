@@ -280,7 +280,7 @@ const DualTooltipImg = ({
 class AboutPage extends React.Component {
   render() {
     return (
-      <Layout>
+      <React.Fragment>
         <Head title="About" />
         <h1>About Me</h1>
         <div style={{ position: "relative" }}>
@@ -531,7 +531,7 @@ class AboutPage extends React.Component {
             top="791.257"
           />
         </div>
-      </Layout>
+      </React.Fragment>
     )
   }
   componentDidMount() {

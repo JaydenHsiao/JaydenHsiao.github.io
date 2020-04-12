@@ -4,7 +4,7 @@ import Head from "../components/head"
 
 const ContactPage = () => {
   return (
-    <Layout>
+    <React.Fragment>
       <Head title="Contact" />
       <h1>Contact Me</h1>
       <p>
@@ -20,7 +20,7 @@ const ContactPage = () => {
           Check out my LinkedIn profile as well!
         </a>
       </p>
-    </Layout>
+    </React.Fragment>
   )
 }
 
