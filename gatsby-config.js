@@ -68,5 +68,12 @@ module.exports = {
         id: "portal",
       },
     },
+    {
+      resolve: `gatsby-plugin-compression-v2`,
+      options: {
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+      },
+    },
   ],
 }

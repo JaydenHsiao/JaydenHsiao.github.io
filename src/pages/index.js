@@ -5,7 +5,7 @@ import Typing from "react-typing-animation"
 import Slideshow from "../components/slideshow"
 import ProjectPage from "../components/project"
 import AdditionalProjectPage from "../components/addproject"
-import Layout from "../components/layout"
+
 import Head from "../components/head"
 import Description from "../components/description"
 import Chat from "../components/chat"
