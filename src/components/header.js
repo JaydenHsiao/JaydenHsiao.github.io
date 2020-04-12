@@ -7,39 +7,44 @@ import Icon from "../images/icon.png"
 
 import headerStyles from "./header.module.scss"
 
-const Header = ({ location }) => {
-  const navIndicatorRef = useRef(null);
-  const linkRefs = [useRef(null), useRef(null)];
+import { window, document, exists } from "browser-monads"
 
-  useEffect(() => {
-    if(location.pathname === "/" && linkRefs[0]){
-      focusNavLink(linkRefs[0].current);
-    }else if(location.pathname === "/about" && linkRefs[1]){
-      focusNavLink(linkRefs[1].current);
-    }
-  }, [location, linkRefs]);
-
-  const focusNavLink = (el) => {
-    if(navIndicatorRef.current.style.left){
-      navIndicatorRef.current.classList.add(headerStyles.transition);
-    }else{
-      navIndicatorRef.current.classList.remove(headerStyles.transition);
-    }
-
-    navIndicatorRef.current.style.width = `${el.offsetWidth}px`;
-    navIndicatorRef.current.style.left = `${el.offsetLeft}px`;
-    navIndicatorRef.current.style.backgroundColor = el.getAttribute('activeColor');
-  }
-  
 var maxWidth
 
-if (window.matchMedia("(min-width: 992px)").matches) {
-  maxWidth = "77vw"
-} else if (window.matchMedia("(min-width: 375px)").matches) {
-  maxWidth = "100vw"
+if (exists(window) && exists(document)) {
+  if (window.matchMedia("(min-width: 992px)").matches) {
+    maxWidth = "77vw"
+  } else if (window.matchMedia("(min-width: 375px)").matches) {
+    maxWidth = "100vw"
+  }
 }
 
-const Header = () => {
+const Header = ({ location }) => {
+  const navIndicatorRef = useRef(null)
+  const linkRefs = [useRef(null), useRef(null)]
+
+  useEffect(() => {
+    if (location.pathname === "/" && linkRefs[0]) {
+      focusNavLink(linkRefs[0].current)
+    } else if (location.pathname === "/about" && linkRefs[1]) {
+      focusNavLink(linkRefs[1].current)
+    }
+  }, [location, linkRefs])
+
+  const focusNavLink = el => {
+    if (navIndicatorRef.current.style.left) {
+      navIndicatorRef.current.classList.add(headerStyles.transition)
+    } else {
+      navIndicatorRef.current.classList.remove(headerStyles.transition)
+    }
+
+    navIndicatorRef.current.style.width = `${el.offsetWidth}px`
+    navIndicatorRef.current.style.left = `${el.offsetLeft}px`
+    navIndicatorRef.current.style.backgroundColor = el.getAttribute(
+      "activeColor"
+    )
+  }
+
   return (
     <Headroom
       style={{
@@ -72,7 +77,7 @@ const Header = () => {
                 className={headerStyles.navItem}
                 activeClassName={headerStyles.isActive}
                 activeColor="#4895EA"
-                activeStyle={{color: "#4895EA"}}
+                activeStyle={{ color: "#4895EA" }}
                 to="/"
                 ref={linkRefs[0]}
               >
@@ -85,7 +90,7 @@ const Header = () => {
                 className={headerStyles.navItem}
                 activeClassName={headerStyles.isActive}
                 activeColor="orange"
-                activeStyle={{color: "orange"}}
+                activeStyle={{ color: "orange" }}
                 to="/about"
                 ref={linkRefs[1]}
               >
