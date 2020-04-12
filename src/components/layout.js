@@ -16,7 +16,7 @@ if (exists(window) && exists(document)) {
 const Layout = props => {
   return (
     <React.Fragment>
-      <Header />
+      <Header location={props.location} />
       <div className={layoutStyles.container}>
         <div className={layoutStyles.content}>{props.children}</div>
         <Footer />

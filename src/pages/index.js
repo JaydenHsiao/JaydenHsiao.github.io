@@ -54,7 +54,7 @@ class IndexPage extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <React.Fragment>
         <Head title="Home" />
         <h1 style={{ margin: "25vh 0 5vh 0" }}>
           Hello, I'm Jayden - a <br />
@@ -83,7 +83,7 @@ class IndexPage extends React.Component {
         <Chat />
         <ProjectPage />
         <AdditionalProjectPage />
-      </Layout>
+      </React.Fragment>
     )
   }
 }

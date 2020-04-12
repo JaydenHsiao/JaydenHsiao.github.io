@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import Resume from "../assets/resume.pdf"
 import Headroom from "react-headroom"
@@ -7,6 +7,30 @@ import Icon from "../images/icon.png"
 
 import headerStyles from "./header.module.scss"
 
+const Header = ({ location }) => {
+  const navIndicatorRef = useRef(null);
+  const linkRefs = [useRef(null), useRef(null)];
+
+  useEffect(() => {
+    if(location.pathname === "/" && linkRefs[0]){
+      focusNavLink(linkRefs[0].current);
+    }else if(location.pathname === "/about" && linkRefs[1]){
+      focusNavLink(linkRefs[1].current);
+    }
+  }, [location, linkRefs]);
+
+  const focusNavLink = (el) => {
+    if(navIndicatorRef.current.style.left){
+      navIndicatorRef.current.classList.add(headerStyles.transition);
+    }else{
+      navIndicatorRef.current.classList.remove(headerStyles.transition);
+    }
+
+    navIndicatorRef.current.style.width = `${el.offsetWidth}px`;
+    navIndicatorRef.current.style.left = `${el.offsetLeft}px`;
+    navIndicatorRef.current.style.backgroundColor = el.getAttribute('activeColor');
+  }
+  
 var maxWidth
 
 if (window.matchMedia("(min-width: 992px)").matches) {
@@ -46,8 +70,11 @@ const Header = () => {
               {" "}
               <Link
                 className={headerStyles.navItem}
-                activeClassName={headerStyles.activeNavItem}
+                activeClassName={headerStyles.isActive}
+                activeColor="#4895EA"
+                activeStyle={{color: "#4895EA"}}
                 to="/"
+                ref={linkRefs[0]}
               >
                 Portfolio
               </Link>
@@ -56,8 +83,11 @@ const Header = () => {
               {" "}
               <Link
                 className={headerStyles.navItem}
-                activeClassName={headerStyles.activeNavItem}
+                activeClassName={headerStyles.isActive}
+                activeColor="orange"
+                activeStyle={{color: "orange"}}
                 to="/about"
+                ref={linkRefs[1]}
               >
                 About
               </Link>
@@ -65,7 +95,7 @@ const Header = () => {
             <li>
               <a
                 className={headerStyles.navItem}
-                activeClassName={headerStyles.activeNavItem}
+                activeClassName={headerStyles.isActive}
                 href={Resume}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -74,6 +104,7 @@ const Header = () => {
               </a>
             </li>
           </ul>
+          <span class={headerStyles.navIndicator} ref={navIndicatorRef}></span>
         </nav>
       </header>
     </Headroom>

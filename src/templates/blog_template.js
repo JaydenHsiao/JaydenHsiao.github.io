@@ -203,17 +203,15 @@ const Blog = props => {
     },
   }
   return (
-    <Layout>
-      <div className={blogTemplateStyles.postLayout}>
-        <Head title={props.data.contentfulBlogPost.title} />
-        <div className={blogTemplateStyles.post}>
-          {documentToReactComponents(
-            props.data.contentfulBlogPost.body.json,
-            options
-          )}
-        </div>
+    <div className={blogTemplateStyles.postLayout}>
+      <Head title={props.data.contentfulBlogPost.title} />
+      <div className={blogTemplateStyles.post}>
+        {documentToReactComponents(
+          props.data.contentfulBlogPost.body.json,
+          options
+        )}
       </div>
-    </Layout>
+    </div>
   )
 }
 
