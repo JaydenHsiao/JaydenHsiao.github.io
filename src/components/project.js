@@ -30,6 +30,18 @@ const ProjectPage = () => {
           }
         }
       }
+      allContentfulAsset {
+        edges {
+          node {
+            title
+            resize(width: 50) {
+              src
+              width
+              height
+            }
+          }
+        }
+      }
     }
   `)
 

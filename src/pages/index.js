@@ -34,10 +34,10 @@ class IndexPage extends React.Component {
   }
   onBeforeType = () => {
     letters++
-    console.log("letters is " + letters)
-    console.log("word is " + word)
+    // console.log("letters is " + letters)
+    // console.log("word is " + word)
     if (letters === words[word].length) {
-      console.log(`finished typing word`)
+      // console.log(`finished typing word`)
     }
     if (letters === words[word].length * 2 - 3) {
       this.slideRef.current.goNext()
