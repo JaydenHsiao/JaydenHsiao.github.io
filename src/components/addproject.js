@@ -50,7 +50,8 @@ const AdditionalProjectPage = () => {
                 >
                   <Link to={`/${edge.node.slug}`}>
                     <img
-                      src={edge.node.thumbnail.file.url}
+                      src={`${edge.node.thumbnail.file.url}
+                      ?w=800&fm=webp&q=80`}
                       alt={edge.node.thumbnail.title}
                     />
                     <div className={addProjectStyles.content}>
@@ -74,7 +75,8 @@ const AdditionalProjectPage = () => {
                 >
                   <Link to={`/${edge.node.slug}`}>
                     <img
-                      src={edge.node.thumbnail.file.url}
+                      src={`${edge.node.thumbnail.file.url}
+                        ?w=800&fm=webp&q=80`}
                       alt={edge.node.thumbnail.title}
                     />
                     <div className={addProjectStyles.content}>
