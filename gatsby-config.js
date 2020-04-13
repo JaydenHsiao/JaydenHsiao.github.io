@@ -45,19 +45,5 @@ module.exports = {
         algorithm: "gzip",
       },
     },
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images-contentful`,
-            options: {
-              maxWidth: 590,
-            },
-          },
-        ],
-      },
-    },
   ],
 }

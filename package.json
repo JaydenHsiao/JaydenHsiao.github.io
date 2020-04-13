@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby clean & gatsby build",
-    "develop": "env-cmd -f .env.production gatsby develop",
+    "develop": "gatsby clean & env-cmd -f .env.production gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
@@ -36,7 +36,6 @@
     "gatsby-remark-images": "^3.1.39",
     "gatsby-remark-images-contentful": "^2.2.2",
     "gatsby-remark-relative-images": "^0.2.3",
-    "gatsby-source-contentful": "^2.2.7",
     "gatsby-source-filesystem": "^2.1.43",
     "gatsby-transformer-remark": "^2.6.45",
     "gatsby-transformer-sharp": "^2.4.4",

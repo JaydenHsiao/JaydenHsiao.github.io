@@ -42,7 +42,7 @@ const Blog = props => {
             <React.Fragment>
               <div className={blogTemplateStyles.portraitContainer}>
                 <Zoom>
-                  <img alt={alt} src={url} />
+                  <img alt={alt} src={`${url}?w=800&fm=webp&q=80`} />
                 </Zoom>
                 <div className={blogTemplateStyles.captionContainer}>
                   {" "}
@@ -64,7 +64,7 @@ const Blog = props => {
             <Zoom>
               <img
                 alt={alt}
-                src={url}
+                src={`${url}?w=800&fm=webp&q=80`}
                 className={blogTemplateStyles.photography}
               />
             </Zoom>
@@ -76,7 +76,7 @@ const Blog = props => {
             <React.Fragment>
               <div className={blogTemplateStyles.imageContainer}>
                 <Zoom>
-                  <img alt={alt} src={url} />
+                  <img alt={alt} src={`${url}?w=800&fm=webp&q=80`} />
                 </Zoom>
                 <div className={blogTemplateStyles.captionContainer}>
                   {" "}

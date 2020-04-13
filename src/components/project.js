@@ -30,18 +30,6 @@ const ProjectPage = () => {
           }
         }
       }
-      allContentfulAsset {
-        edges {
-          node {
-            title
-            resize(width: 50) {
-              src
-              width
-              height
-            }
-          }
-        }
-      }
     }
   `)
 
@@ -79,7 +67,7 @@ const ProjectPage = () => {
                     style={{ float: "right" }}
                   >
                     <img
-                      src={edge.node.thumbnail.file.url}
+                      src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
                       alt={edge.node.thumbnail.title}
                     />
                   </div>
@@ -111,7 +99,7 @@ const ProjectPage = () => {
                   }}
                 >
                   <img
-                    src={edge.node.thumbnail.file.url}
+                    src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
                     alt={edge.node.thumbnail.title}
                     className={projectStyles.projectMockup}
                     style={{ float: "left", maxWidth: "60%" }}
