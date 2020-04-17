@@ -12,6 +12,32 @@
   display: block;
 }
 
+.flex-grid {
+  display: flex;
+  justify-content: space-between;
+  .col {
+    width: 32%;
+    padding: 1.5rem;
+    background-color: lightgrey;
+    .icon {
+      height: 10rem;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .flex-grid {
+    display: block;
+    .col {
+      width: 100% !important;
+      margin: 0 0 10px 0;
+    }
+  }
+}
+
 .image-container {
   // max-width: 90%;
   min-width: 210px;

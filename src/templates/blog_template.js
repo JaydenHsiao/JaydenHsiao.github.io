@@ -11,6 +11,8 @@ import "react-medium-image-zoom/dist/styles.css"
 
 import blogTemplateStyles from "./blog_template.module.scss"
 
+import Dog from "../images/dog.svg"
+
 const website_url = "https://jaydenhsiao.me"
 
 export const query = graphql`
@@ -146,6 +148,46 @@ const Blog = props => {
                 allowfullscreen
               ></iframe>
             </React.Fragment>
+          )
+        } else if (node.data.target.sys.contentType.sys.id === "grid") {
+          var col = `${node.data.target.fields.text["en-US"].content.length}`
+          var width = 100 / col - 1 + "%"
+          var renders = []
+
+          for (var i = 1; i <= col; i++) {
+            renders.push(
+              <div
+                className={blogTemplateStyles.col}
+                style={{
+                  width: width,
+                }}
+              >
+                <img
+                  className={blogTemplateStyles.icon}
+                  src={`${
+                    node.data.target.fields.images["en-US"][i - 1].fields.file[
+                      "en-US"
+                    ].url
+                  }`}
+                  alt={`${
+                    node.data.target.fields.images["en-US"][i - 1].fields
+                      .description["en-US"]
+                  }`}
+                />
+                {documentToReactComponents(
+                  node.data.target.fields.text["en-US"].content[i - 1],
+                  options
+                )}
+              </div>
+            )
+          }
+
+          return (
+            <div className={blogTemplateStyles.flexGrid}>
+              {renders.map(render => (
+                <React.Fragment key={render}>{render}</React.Fragment>
+              ))}
+            </div>
           )
         }
       },

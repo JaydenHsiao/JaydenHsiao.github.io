@@ -150,7 +150,7 @@ const TooltipImg = ({
         <span className={aboutStyles.tooltipContent}>
           <img
             alt={`${tooltip_alt}`}
-            lassName={aboutStyles.tooltipPic}
+            className={aboutStyles.tooltipPic}
             src={`${tooltip_src}`}
           />
           <p>
