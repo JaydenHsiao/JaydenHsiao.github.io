@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
+import ProgressiveImage from "react-progressive-image-loading"
 
 import addProjectStyles from "./addproject.module.scss"
 
@@ -49,10 +50,16 @@ const AdditionalProjectPage = () => {
                   data-aos-offset="225"
                 >
                   <Link to={`/${edge.node.slug}`}>
-                    <img
-                      src={`${edge.node.thumbnail.file.url}
-                      ?w=800&fm=webp&q=80`}
-                      alt={edge.node.thumbnail.title}
+                    <ProgressiveImage
+                      preview={`${edge.node.thumbnail.file.url}?w=100&q=1`}
+                      src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
+                      render={(src, style) => (
+                        <img
+                          src={src}
+                          style={style}
+                          alt={`${edge.node.thumbnail.title}`}
+                        />
+                      )}
                     />
                     <div className={addProjectStyles.content}>
                       <h2>{edge.node.title}</h2>
@@ -74,10 +81,16 @@ const AdditionalProjectPage = () => {
                   data-aos-offset="225"
                 >
                   <Link to={`/${edge.node.slug}`}>
-                    <img
-                      src={`${edge.node.thumbnail.file.url}
-                        ?w=800&fm=webp&q=80`}
-                      alt={edge.node.thumbnail.title}
+                    <ProgressiveImage
+                      preview={`${edge.node.thumbnail.file.url}?w=100&q=1`}
+                      src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
+                      render={(src, style) => (
+                        <img
+                          src={src}
+                          style={style}
+                          alt={`${edge.node.thumbnail.title}`}
+                        />
+                      )}
                     />
                     <div className={addProjectStyles.content}>
                       <h2>{edge.node.title}</h2>

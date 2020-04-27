@@ -9,9 +9,9 @@ import Head from "../components/head"
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
 
-import blogTemplateStyles from "./blog_template.module.scss"
+import ProgressiveImage from "react-progressive-image-loading"
 
-import Dog from "../images/dog.svg"
+import blogTemplateStyles from "./blog_template.module.scss"
 
 const website_url = "https://jaydenhsiao.me"
 
@@ -43,9 +43,13 @@ const Blog = props => {
           return (
             <React.Fragment>
               <div className={blogTemplateStyles.portraitContainer}>
-                <Zoom>
-                  <img alt={alt} src={`${url}?w=800&fm=webp&q=80`} />
-                </Zoom>
+                <ProgressiveImage
+                  preview={`${url}?w=800&fm=webp&q=1`}
+                  src={`${url}?w=800&fm=webp&q=80`}
+                  render={(src, style) => (
+                    <img src={src} style={style} alt={`${alt}`} />
+                  )}
+                />
                 <div className={blogTemplateStyles.captionContainer}>
                   {" "}
                   <p className={blogTemplateStyles.caption}>
@@ -77,9 +81,16 @@ const Blog = props => {
           return (
             <React.Fragment>
               <div className={blogTemplateStyles.imageContainer}>
-                <Zoom>
+                {/* <Zoom>
                   <img alt={alt} src={`${url}?w=800&fm=webp&q=80`} />
-                </Zoom>
+                </Zoom> */}
+                <ProgressiveImage
+                  preview={`${url}?w=800&fm=webp&q=1`}
+                  src={`${url}?w=800&fm=webp&q=80`}
+                  render={(src, style) => (
+                    <img src={src} style={style} alt={`${alt}`} />
+                  )}
+                />
                 <div className={blogTemplateStyles.captionContainer}>
                   {" "}
                   <p className={blogTemplateStyles.caption}>
@@ -94,15 +105,18 @@ const Blog = props => {
       },
       [BLOCKS.EMBEDDED_ENTRY]: node => {
         if (node.data.target.sys.contentType.sys.id === "miroEmbed") {
+          let str =
+            `${node.data.target.fields.src["en-US"]}`.replace(
+              `board`,
+              `embed`
+            ) + "=/?autoplay=yep"
           return (
             <React.Fragment>
               <iframe
                 title={`${node.data.target.fields.title["en-US"]}`}
                 width="100%"
                 height="500"
-                src={`${"https://miro.com/app/embed/" +
-                  node.data.target.fields.src["en-US"] +
-                  "=/?autoplay=yep"}`}
+                src={`${str}`}
                 frameborder="0"
                 scrolling="no"
                 allowfullscreen

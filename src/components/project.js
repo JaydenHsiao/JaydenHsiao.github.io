@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
+import ProgressiveImage from "react-progressive-image-loading"
 
 import blob1 from "../images/blob1.png"
 import blob2 from "../images/blob2.png"
@@ -66,9 +67,16 @@ const ProjectPage = () => {
                     className={projectStyles.projectMockup}
                     style={{ float: "right" }}
                   >
-                    <img
+                    <ProgressiveImage
+                      preview={`${edge.node.thumbnail.file.url}?w=800&q=1`}
                       src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
-                      alt={edge.node.thumbnail.title}
+                      render={(src, style) => (
+                        <img
+                          src={src}
+                          style={style}
+                          alt={`${edge.node.thumbnail.title}`}
+                        />
+                      )}
                     />
                   </div>
 
@@ -98,12 +106,22 @@ const ProjectPage = () => {
                     backgroundImage: `url(${blob2})`,
                   }}
                 >
-                  <img
-                    src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
-                    alt={edge.node.thumbnail.title}
+                  <div
                     className={projectStyles.projectMockup}
                     style={{ float: "left", maxWidth: "60%" }}
-                  />
+                  >
+                    <ProgressiveImage
+                      preview={`${edge.node.thumbnail.file.url}?w=800&q=1`}
+                      src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
+                      render={(src, style) => (
+                        <img
+                          src={src}
+                          style={style}
+                          alt={`${edge.node.thumbnail.title}`}
+                        />
+                      )}
+                    />
+                  </div>
                   <div style={{ padding: "18% 0 18% 50%" }}>
                     {" "}
                     <h2>{edge.node.title}</h2>
