@@ -12,28 +12,26 @@
   display: block;
 }
 
-.flex-grid {
-  display: flex;
-  justify-content: space-between;
-  .col {
-    width: 32%;
-    padding: 1.5rem;
-    background-color: lightgrey;
-    .icon {
-      height: 10rem;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 0.5rem;
+  margin-bottom: 2rem;
+  @media only screen and (min-width: 500px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 0.5rem;
   }
-}
-
-@media (max-width: 600px) {
-  .flex-grid {
-    display: block;
-    .col {
-      width: 100% !important;
-      margin: 0 0 10px 0;
+  @media only screen and (min-width: 650px) {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 0rem;
+  }
+  div {
+    padding: 0 1.5rem 0 0;
+    margin: 1rem 0 0rem 0;
+    span {
+      ul {
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -110,6 +108,7 @@
   h3 {
     font-weight: bold;
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   //author quote

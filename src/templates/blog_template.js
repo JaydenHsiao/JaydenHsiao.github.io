@@ -2,12 +2,15 @@ import React from "react"
 
 import { graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
 import { INLINES, BLOCKS } from "@contentful/rich-text-types"
 import Head from "../components/head"
 
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
+
+import Dog from "../images/dog.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
 
@@ -164,40 +167,62 @@ const Blog = props => {
             </React.Fragment>
           )
         } else if (node.data.target.sys.contentType.sys.id === "grid") {
-          var col = `${node.data.target.fields.text["en-US"].content.length}`
-          var width = 100 / col - 1 + "%"
+          var num_of_indexes = `${node.data.target.fields.text["en-US"].content.length}`
           var renders = []
+          var text = ""
+          var header = true
+          var temp_text
+          var last_paragraph = false
 
-          for (var i = 1; i <= col; i++) {
-            renders.push(
-              <div
-                className={blogTemplateStyles.col}
-                style={{
-                  width: width,
-                }}
-              >
-                <img
-                  className={blogTemplateStyles.icon}
-                  src={`${
-                    node.data.target.fields.images["en-US"][i - 1].fields.file[
-                      "en-US"
-                    ].url
-                  }`}
-                  alt={`${
-                    node.data.target.fields.images["en-US"][i - 1].fields
-                      .description["en-US"]
-                  }`}
-                />
-                {documentToReactComponents(
-                  node.data.target.fields.text["en-US"].content[i - 1],
-                  options
-                )}
-              </div>
-            )
+          for (var i = 0; i <= num_of_indexes - 2; i++) {
+            if (
+              node.data.target.fields.text["en-US"].content[i + 1].nodeType ===
+              "hr"
+            ) {
+              console.log("Last paragraph!")
+              last_paragraph = true
+            }
+            if (
+              node.data.target.fields.text["en-US"].content[i].nodeType === "hr"
+            ) {
+              renders.push(
+                <div>
+                  <span dangerouslySetInnerHTML={{ __html: text }} />
+                </div>
+              )
+              last_paragraph = false
+              header = true
+              temp_text = ""
+              text = ""
+            } else if (
+              node.data.target.fields.text["en-US"].content[i].nodeType ===
+                "paragraph" ||
+              node.data.target.fields.text["en-US"].content[i].nodeType ===
+                "unordered-list"
+            ) {
+              temp_text = `${documentToHtmlString(
+                node.data.target.fields.text["en-US"].content[i],
+                options
+              )}`
+              if (temp_text.startsWith("<li>")) {
+                temp_text = "<ul>" + temp_text + "</ul>"
+              } else if (header === true) {
+                temp_text = `<h3>${temp_text}</h3>`
+                header = false
+              } else if (last_paragraph === false) {
+                temp_text += "</br></br>"
+              }
+            } else if (
+              node.data.target.fields.text["en-US"].content[i].nodeType ===
+              "embedded-asset-block"
+            ) {
+              var url = `${node.data.target.fields.text["en-US"].content[i].data.target.fields.file["en-US"].url}`
+              temp_text = `<img src=${url} />`
+            }
+            text += `${temp_text}`
           }
-
           return (
-            <div className={blogTemplateStyles.flexGrid}>
+            <div className={blogTemplateStyles.grid}>
               {renders.map(render => (
                 <React.Fragment key={render}>{render}</React.Fragment>
               ))}
