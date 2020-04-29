@@ -164,37 +164,135 @@ const Blog = props => {
             </React.Fragment>
           )
         } else if (node.data.target.sys.contentType.sys.id === "grid") {
-          var col = `${node.data.target.fields.text["en-US"].content.length}`
+          var num_of_indexes = `${node.data.target.fields.text["en-US"].content.length}`
+          var col = 0
+
+          for (var j = 0; j <= num_of_indexes - 1; j++) {
+            if (
+              node.data.target.fields.text["en-US"].content[j].nodeType === "hr"
+            ) {
+              col++
+            }
+          }
+
+          // console.log(`${node.data.target.fields.title["en-US"]}`)
+          // console.log(`${col}`)
+
           var width = 100 / col - 1 + "%"
           var renders = []
 
-          for (var i = 1; i <= col; i++) {
-            renders.push(
-              <div
-                className={blogTemplateStyles.col}
-                style={{
-                  width: width,
-                }}
-              >
-                <img
-                  className={blogTemplateStyles.icon}
-                  src={`${
-                    node.data.target.fields.images["en-US"][i - 1].fields.file[
-                      "en-US"
-                    ].url
-                  }`}
-                  alt={`${
-                    node.data.target.fields.images["en-US"][i - 1].fields
-                      .description["en-US"]
-                  }`}
-                />
-                {documentToReactComponents(
-                  node.data.target.fields.text["en-US"].content[i - 1],
-                  options
-                )}
-              </div>
-            )
+          var hr_found = false
+          var hr_at = 0
+          var hr_previously_at = 0
+          var first_time = 1
+          var img_num = 0
+
+          for (var i = 0; i <= num_of_indexes - 1; i++) {
+            console.log(`${i}`)
+            if (
+              node.data.target.fields.text["en-US"].content[i].nodeType ===
+                "hr" &&
+              hr_found === false
+            ) {
+              hr_found = true
+              hr_previously_at = hr_at
+              hr_at = i
+              // console.log(`horizontal rule found at ${hr_at}`)
+            } else if (
+              hr_found === true &&
+              hr_at - hr_previously_at + first_time === 3
+            ) {
+              renders.push(
+                <div
+                  className={blogTemplateStyles.col}
+                  style={{
+                    width: width,
+                  }}
+                >
+                  <div className={blogTemplateStyles.heading}>
+                    {documentToReactComponents(
+                      node.data.target.fields.text["en-US"].content[hr_at - 2],
+                      options
+                    )}{" "}
+                  </div>
+                  {documentToReactComponents(
+                    node.data.target.fields.text["en-US"].content[hr_at - 1],
+                    options
+                  )}
+                </div>
+              )
+              first_time = 0
+              hr_found = false
+            } else if (
+              hr_found === true &&
+              hr_at - hr_previously_at + first_time === 4
+            ) {
+              if (node.data.target.fields.hasImages["en-US"] === true) {
+                renders.push(
+                  <div
+                    className={blogTemplateStyles.col}
+                    style={{
+                      width: width,
+                    }}
+                  >
+                    <img
+                      className={blogTemplateStyles.icon}
+                      src={`${node.data.target.fields.images["en-US"][img_num].fields.file["en-US"].url}`}
+                      alt={`${node.data.target.fields.images["en-US"][img_num].fields.description["en-US"]}`}
+                    />
+                    <div className={blogTemplateStyles.heading}>
+                      {documentToReactComponents(
+                        node.data.target.fields.text["en-US"].content[
+                          hr_at - 3
+                        ],
+                        options
+                      )}
+                    </div>
+                    {documentToReactComponents(
+                      node.data.target.fields.text["en-US"].content[hr_at - 2],
+                      options
+                    )}
+                    {documentToReactComponents(
+                      node.data.target.fields.text["en-US"].content[hr_at - 1],
+                      options
+                    )}
+                  </div>
+                )
+              } else {
+                renders.push(
+                  <div
+                    className={blogTemplateStyles.col}
+                    style={{
+                      width: width,
+                    }}
+                  >
+                    <div className={blogTemplateStyles.heading}>
+                      {documentToReactComponents(
+                        node.data.target.fields.text["en-US"].content[
+                          hr_at - 3
+                        ],
+                        options
+                      )}
+                    </div>
+                    {documentToReactComponents(
+                      node.data.target.fields.text["en-US"].content[hr_at - 2],
+                      options
+                    )}
+                    {documentToReactComponents(
+                      node.data.target.fields.text["en-US"].content[hr_at - 1],
+                      options
+                    )}
+                  </div>
+                )
+              }
+
+              img_num++
+              first_time = 0
+              hr_found = false
+            }
           }
+
+          console.log(`section is finished`)
 
           return (
             <div className={blogTemplateStyles.flexGrid}>
