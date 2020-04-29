@@ -2,12 +2,15 @@ import React from "react"
 
 import { graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
 import { INLINES, BLOCKS } from "@contentful/rich-text-types"
 import Head from "../components/head"
 
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
+
+import Dog from "../images/dog.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
 
@@ -165,137 +168,61 @@ const Blog = props => {
           )
         } else if (node.data.target.sys.contentType.sys.id === "grid") {
           var num_of_indexes = `${node.data.target.fields.text["en-US"].content.length}`
-          var col = 0
-
-          for (var j = 0; j <= num_of_indexes - 1; j++) {
-            if (
-              node.data.target.fields.text["en-US"].content[j].nodeType === "hr"
-            ) {
-              col++
-            }
-          }
-
-          // console.log(`${node.data.target.fields.title["en-US"]}`)
-          // console.log(`${col}`)
-
-          var width = 100 / col - 1 + "%"
           var renders = []
+          var text = ""
+          var header = true
+          var temp_text
+          var last_paragraph = false
 
-          var hr_found = false
-          var hr_at = 0
-          var hr_previously_at = 0
-          var first_time = 1
-          var img_num = 0
-
-          for (var i = 0; i <= num_of_indexes - 1; i++) {
-            console.log(`${i}`)
+          for (var i = 0; i <= num_of_indexes - 2; i++) {
             if (
-              node.data.target.fields.text["en-US"].content[i].nodeType ===
-                "hr" &&
-              hr_found === false
+              node.data.target.fields.text["en-US"].content[i + 1].nodeType ===
+              "hr"
             ) {
-              hr_found = true
-              hr_previously_at = hr_at
-              hr_at = i
-              // console.log(`horizontal rule found at ${hr_at}`)
-            } else if (
-              hr_found === true &&
-              hr_at - hr_previously_at + first_time === 3
+              console.log("Last paragraph!")
+              last_paragraph = true
+            }
+            if (
+              node.data.target.fields.text["en-US"].content[i].nodeType === "hr"
             ) {
               renders.push(
-                <div
-                  className={blogTemplateStyles.col}
-                  style={{
-                    width: width,
-                  }}
-                >
-                  <div className={blogTemplateStyles.heading}>
-                    {documentToReactComponents(
-                      node.data.target.fields.text["en-US"].content[hr_at - 2],
-                      options
-                    )}{" "}
-                  </div>
-                  {documentToReactComponents(
-                    node.data.target.fields.text["en-US"].content[hr_at - 1],
-                    options
-                  )}
+                <div>
+                  <span dangerouslySetInnerHTML={{ __html: text }} />
                 </div>
               )
-              first_time = 0
-              hr_found = false
+              last_paragraph = false
+              header = true
+              temp_text = ""
+              text = ""
             } else if (
-              hr_found === true &&
-              hr_at - hr_previously_at + first_time === 4
+              node.data.target.fields.text["en-US"].content[i].nodeType ===
+                "paragraph" ||
+              node.data.target.fields.text["en-US"].content[i].nodeType ===
+                "unordered-list"
             ) {
-              if (node.data.target.fields.hasImages["en-US"] === true) {
-                renders.push(
-                  <div
-                    className={blogTemplateStyles.col}
-                    style={{
-                      width: width,
-                    }}
-                  >
-                    <img
-                      className={blogTemplateStyles.icon}
-                      src={`${node.data.target.fields.images["en-US"][img_num].fields.file["en-US"].url}`}
-                      alt={`${node.data.target.fields.images["en-US"][img_num].fields.description["en-US"]}`}
-                    />
-                    <div className={blogTemplateStyles.heading}>
-                      {documentToReactComponents(
-                        node.data.target.fields.text["en-US"].content[
-                          hr_at - 3
-                        ],
-                        options
-                      )}
-                    </div>
-                    {documentToReactComponents(
-                      node.data.target.fields.text["en-US"].content[hr_at - 2],
-                      options
-                    )}
-                    {documentToReactComponents(
-                      node.data.target.fields.text["en-US"].content[hr_at - 1],
-                      options
-                    )}
-                  </div>
-                )
-              } else {
-                renders.push(
-                  <div
-                    className={blogTemplateStyles.col}
-                    style={{
-                      width: width,
-                    }}
-                  >
-                    <div className={blogTemplateStyles.heading}>
-                      {documentToReactComponents(
-                        node.data.target.fields.text["en-US"].content[
-                          hr_at - 3
-                        ],
-                        options
-                      )}
-                    </div>
-                    {documentToReactComponents(
-                      node.data.target.fields.text["en-US"].content[hr_at - 2],
-                      options
-                    )}
-                    {documentToReactComponents(
-                      node.data.target.fields.text["en-US"].content[hr_at - 1],
-                      options
-                    )}
-                  </div>
-                )
+              temp_text = `${documentToHtmlString(
+                node.data.target.fields.text["en-US"].content[i],
+                options
+              )}`
+              if (temp_text.startsWith("<li>")) {
+                temp_text = "<ul>" + temp_text + "</ul>"
+              } else if (header === true) {
+                temp_text = `<h3>${temp_text}</h3>`
+                header = false
+              } else if (last_paragraph === false) {
+                temp_text += "</br></br>"
               }
-
-              img_num++
-              first_time = 0
-              hr_found = false
+            } else if (
+              node.data.target.fields.text["en-US"].content[i].nodeType ===
+              "embedded-asset-block"
+            ) {
+              var url = `${node.data.target.fields.text["en-US"].content[i].data.target.fields.file["en-US"].url}`
+              temp_text = `<img src=${url} />`
             }
+            text += `${temp_text}`
           }
-
-          console.log(`section is finished`)
-
           return (
-            <div className={blogTemplateStyles.flexGrid}>
+            <div className={blogTemplateStyles.grid}>
               {renders.map(render => (
                 <React.Fragment key={render}>{render}</React.Fragment>
               ))}
