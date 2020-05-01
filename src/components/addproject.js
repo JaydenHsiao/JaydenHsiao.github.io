@@ -35,9 +35,6 @@ const AdditionalProjectPage = () => {
 
   return (
     <div>
-      <h1 data-aos="fade-up" data-aos-offset="275" data-aos-once="false">
-        Additional Projects
-      </h1>
       <div>
         <ol className={addProjectStyles.posts}>
           {data.allContentfulBlogPost.edges.map(edge => {
@@ -74,33 +71,37 @@ const AdditionalProjectPage = () => {
             } else {
               num++
               return (
-                <li
-                  className={addProjectStyles.post}
-                  style={{ float: "right", margin: "-18vh 0 15vh 0" }}
-                  data-aos="fade-up"
-                  data-aos-offset="225"
-                >
-                  <Link to={`/${edge.node.slug}`}>
-                    <ProgressiveImage
-                      preview={`${edge.node.thumbnail.file.url}?w=100&q=1`}
-                      src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
-                      render={(src, style) => (
-                        <img
-                          src={src}
-                          style={style}
-                          alt={`${edge.node.thumbnail.title}`}
-                        />
-                      )}
-                    />
-                    <div className={addProjectStyles.content}>
-                      <h2>{edge.node.title}</h2>
-                      <h4>
-                        <b>{edge.node.projectType}</b> • {edge.node.category}
-                      </h4>
-                      <p>{edge.node.description}</p>
-                    </div>
-                  </Link>
-                </li>
+                <div className={addProjectStyles.post}>
+                  <h1
+                    data-aos="fade-up"
+                    data-aos-offset="150"
+                    data-aos-once="false"
+                  >
+                    Additional Projects
+                  </h1>
+                  <li data-aos="fade-up" data-aos-offset="225">
+                    <Link to={`/${edge.node.slug}`}>
+                      <ProgressiveImage
+                        preview={`${edge.node.thumbnail.file.url}?w=100&q=1`}
+                        src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
+                        render={(src, style) => (
+                          <img
+                            src={src}
+                            style={style}
+                            alt={`${edge.node.thumbnail.title}`}
+                          />
+                        )}
+                      />
+                      <div className={addProjectStyles.content}>
+                        <h2>{edge.node.title}</h2>
+                        <h4>
+                          <b>{edge.node.projectType}</b> • {edge.node.category}
+                        </h4>
+                        <p>{edge.node.description}</p>
+                      </div>
+                    </Link>
+                  </li>
+                </div>
               )
             }
           })}

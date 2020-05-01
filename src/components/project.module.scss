@@ -1,11 +1,35 @@
+.project-section {
+  margin: 10rem 0 10rem 0;
+  @media (max-width: 600px) {
+    margin: 5rem 0 5rem 0;
+  }
+}
+
 .posts {
   list-style-type: none;
   margin: 0;
 }
 
 .post {
-  margin-bottom: 5vh;
-  max-height: 100vh;
+  // max-height: 100vh;
+  margin-bottom: 2rem;
+
+  &:nth-child(2) {
+    @media (max-width: 600px) {
+      div:first-child {
+        order: 1;
+        text-align: left;
+      }
+    }
+  }
+
+  .post-column {
+    width: 48%;
+    @media (max-width: 600px) {
+      width: 100% !important;
+      margin: 0 0 20px 0;
+    }
+  }
 
   .blob {
     /* Background image is centered vertically and horizontally at all times */
@@ -17,12 +41,24 @@
     /* This is what makes the background image rescale based
      on the container's size */
     background-size: cover;
-  }
 
-  .project-mockup {
-    max-width: 40%;
-    max-height: 100%;
-    padding: 50px 0 50px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
+
+    img {
+      min-height: 30rem;
+      -o-object-fit: contain;
+      object-fit: contain;
+
+      @media (max-width: 600px) {
+        min-height: 10rem;
+      }
+    }
   }
 
   a {
@@ -34,15 +70,18 @@
     background-position-y: 70%;
     color: black;
     display: block;
-    padding: 5vh 5vh 5vh 5vh;
+    padding: 5%;
+    @media (max-width: 600px) {
+      padding: 8% 5% 10% 5%;
+    }
     box-shadow: 0px 10px 15px 0px #e0e0e0;
     border-radius: 16px;
     text-decoration: none;
-  }
 
-  a:hover {
-    transform: translate(0, -12px);
-    box-shadow: 0px 12px 17px 0px #d1d1d1;
+    &:hover {
+      transform: translate(0, -12px);
+      box-shadow: 0px 12px 17px 0px #d1d1d1;
+    }
   }
 
   h2 {
@@ -56,5 +95,6 @@
 
   p {
     color: #777777;
+    margin-bottom: 0 !important;
   }
 }

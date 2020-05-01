@@ -10,6 +10,8 @@ import Head from "../components/head"
 import Description from "../components/description"
 import Chat from "../components/chat"
 
+import indexStyles from "./index.module.scss"
+
 var letters = 0
 var word = 0
 
@@ -56,8 +58,8 @@ class IndexPage extends React.Component {
     return (
       <React.Fragment>
         <Head title="Home" />
-        <h1 style={{ margin: "25vh 0 5vh 0" }}>
-          Hello, I'm Jayden - a <br />
+        <h1 className={indexStyles.header}>
+          Hello, I'm Jayden - a
           <Typing loop={true} onBeforeType={this.onBeforeType}>
             <div style={{ color: "#4895EA" }}>
               <span>{`${word1}`}</span>

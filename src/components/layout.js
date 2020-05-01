@@ -10,7 +10,7 @@ import { window, document, exists } from "browser-monads"
 
 if (exists(window) && exists(document)) {
   AOS.init()
-  console.log("animate on scroll is successful!")
+  // console.log("animate on scroll is successful!")
 }
 
 const Layout = props => {

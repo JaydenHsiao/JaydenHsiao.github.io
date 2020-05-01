@@ -37,13 +37,8 @@ const ProjectPage = () => {
   let num = 0
 
   return (
-    <div style={{ marginBottom: "22vh" }}>
-      <h1
-        style={{ marginTop: "22vh" }}
-        data-aos="fade-up"
-        data-aos-offset="275"
-        data-aos-once="false"
-      >
+    <div className={projectStyles.projectSection}>
+      <h1 data-aos="fade-up" data-aos-offset="275" data-aos-once="false">
         Portfolio
       </h1>
       <ol className={projectStyles.posts}>
@@ -63,29 +58,26 @@ const ProjectPage = () => {
                     backgroundImage: `url(${blob1})`,
                   }}
                 >
-                  <div
-                    className={projectStyles.projectMockup}
-                    style={{ float: "right" }}
-                  >
+                  <div className={projectStyles.postColumn}>
+                    <h2>{edge.node.title}</h2>
+                    <h4>
+                      <b>{edge.node.projectType}</b> • {edge.node.category}
+                    </h4>
+                    <p>{edge.node.description}</p>
+                  </div>
+
+                  <div className={projectStyles.postColumn}>
                     <ProgressiveImage
                       preview={`${edge.node.thumbnail.file.url}?w=800&q=1`}
                       src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
                       render={(src, style) => (
                         <img
                           src={src}
-                          style={style}
+                          // style={{ float: "right" }}
                           alt={`${edge.node.thumbnail.title}`}
                         />
                       )}
                     />
-                  </div>
-
-                  <div style={{ padding: "18% 50% 18% 0" }}>
-                    <h2>{edge.node.title}</h2>
-                    <h4>
-                      <b>{edge.node.projectType}</b> • {edge.node.category}
-                    </h4>
-                    <p>{edge.node.description}</p>
                   </div>
                 </Link>
               </div>
@@ -95,7 +87,6 @@ const ProjectPage = () => {
             return (
               <div
                 className={projectStyles.post}
-                style={{ textAlign: "right" }}
                 data-aos="fade-up"
                 data-aos-offset="275"
               >
@@ -106,10 +97,7 @@ const ProjectPage = () => {
                     backgroundImage: `url(${blob2})`,
                   }}
                 >
-                  <div
-                    className={projectStyles.projectMockup}
-                    style={{ float: "left", maxWidth: "60%" }}
-                  >
+                  <div className={projectStyles.postColumn}>
                     <ProgressiveImage
                       preview={`${edge.node.thumbnail.file.url}?w=800&q=1`}
                       src={`${edge.node.thumbnail.file.url}?w=800&q=80`}
@@ -122,15 +110,12 @@ const ProjectPage = () => {
                       )}
                     />
                   </div>
-                  <div style={{ padding: "18% 0 18% 50%" }}>
-                    {" "}
+                  <div className={projectStyles.postColumn}>
                     <h2>{edge.node.title}</h2>
                     <h4>
                       <b>{edge.node.projectType}</b> • {edge.node.category}
                     </h4>
-                    <div style={{ paddingLeft: "20%" }}>
-                      <p>{edge.node.description}</p>
-                    </div>
+                    <p>{edge.node.description}</p>
                   </div>
                 </Link>
               </div>
