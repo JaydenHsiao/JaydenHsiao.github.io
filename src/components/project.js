@@ -73,7 +73,7 @@ const ProjectPage = () => {
                       render={(src, style) => (
                         <img
                           src={src}
-                          // style={{ float: "right" }}
+                          style={{ float: "right" }}
                           alt={`${edge.node.thumbnail.title}`}
                         />
                       )}
