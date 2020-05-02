@@ -11,6 +11,8 @@ import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
 
 import Dog from "../images/dog.svg"
+import Example from "../images/example.svg"
+import Arrow_Right from "../images/arrow_right.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
 
@@ -30,6 +32,24 @@ export const query = graphql`
 `
 
 const Blog = props => {
+  const processInfographicOptions = {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ASSET]: node => {
+        const alt = node.data.target.fields.description["en-US"]
+        const url = node.data.target.fields.file["en-US"].url
+        return (
+          <ProgressiveImage
+            preview={`${url}?w=800&fm=webp&q=1`}
+            src={`${url}?w=800&fm=webp&q=80`}
+            render={(src, style) => (
+              <img src={src} style={style} alt={`${alt}`} />
+            )}
+          />
+        )
+      },
+    },
+  }
+
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
@@ -179,7 +199,6 @@ const Blog = props => {
               node.data.target.fields.text["en-US"].content[i + 1].nodeType ===
               "hr"
             ) {
-              console.log("Last paragraph!")
               last_paragraph = true
             }
             if (
@@ -225,6 +244,120 @@ const Blog = props => {
             <div className={blogTemplateStyles.grid}>
               {renders.map(render => (
                 <React.Fragment key={render}>{render}</React.Fragment>
+              ))}
+            </div>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "processInfographic"
+        ) {
+          num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
+          var hr_count = 0
+          var content = []
+          var hr_locations
+          var header = true
+
+          for (i = 0; i < num_of_indexes; i++) {
+            if (
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
+              "hr"
+            ) {
+              hr_count++
+            }
+          }
+
+          var index = 0
+
+          for (i = 0; i < hr_count; i++) {
+            for (index; index < num_of_indexes; index++) {
+              console.log(`${index}`)
+              if (
+                node.data.target.fields.content["en-US"].content[index]
+                  .nodeType === "hr"
+              ) {
+                index++
+                console.log("break!")
+                header = true
+                break
+              } else if (header === true) {
+                console.log("Header added!")
+                content.push(
+                  <div
+                    style={{
+                      gridColumn: `${i * 2 + 1} / ${i * 2 + 2}`,
+                      gridRow: `1 / 2`,
+                    }}
+                  >
+                    <h3>
+                      {" "}
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[index],
+                        processInfographicOptions
+                      )}
+                    </h3>
+                  </div>
+                )
+                header = false
+              } else {
+                console.log("Content added!")
+                if (i === 1) {
+                  content.push(
+                    <div
+                      style={{
+                        gridColumn: `${i * 2 + 1} / ${i * 2 + 2}`,
+                        gridRow: `2 / 3`,
+                        margin: "auto 0 auto 0",
+                      }}
+                    >
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[index],
+                        processInfographicOptions
+                      )}
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[
+                          index + 1
+                        ],
+                        processInfographicOptions
+                      )}
+                    </div>
+                  )
+                  index++
+                } else {
+                  content.push(
+                    <div
+                      style={{
+                        gridColumn: `${i * 2 + 1} / ${i * 2 + 2}`,
+                        gridRow: `2 / 3`,
+                        margin: "auto 0 auto 0",
+                      }}
+                    >
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[index],
+                        processInfographicOptions
+                      )}
+                    </div>
+                  )
+                }
+              }
+            }
+            if (i !== hr_count - 1) {
+              console.log("Arrow added!")
+              content.push(
+                <div
+                  style={{
+                    gridColumn: `${i * 2 + 2} / ${i * 2 + 3}`,
+                    gridRow: "2 / 3",
+                    backgroundImage: `url(${Arrow_Right})`,
+                  }}
+                  className={blogTemplateStyles.arrow}
+                />
+              )
+            }
+          }
+          console.log("Loop finished!")
+          return (
+            <div className={blogTemplateStyles.wrapper}>
+              {content.map(content => (
+                <React.Fragment key={content}>{content}</React.Fragment>
               ))}
             </div>
           )
@@ -282,6 +415,7 @@ const Blog = props => {
       },
     },
   }
+
   return (
     <div className={blogTemplateStyles.postLayout}>
       <Head title={props.data.contentfulBlogPost.title} />
