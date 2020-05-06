@@ -37,15 +37,39 @@ const Blog = props => {
       [BLOCKS.EMBEDDED_ASSET]: node => {
         const alt = node.data.target.fields.description["en-US"]
         const url = node.data.target.fields.file["en-US"].url
-        return (
-          <ProgressiveImage
-            preview={`${url}?w=800&fm=webp&q=1`}
-            src={`${url}?w=800&fm=webp&q=80`}
-            render={(src, style) => (
-              <img src={src} style={style} alt={`${alt}`} />
-            )}
-          />
-        )
+        if (
+          node.data.target.fields.file["en-US"].contentType === "image/svg+xml"
+        ) {
+          return (
+            <ProgressiveImage
+              preview={`${url}?w=800&fm=webp&q=1`}
+              src={`${url}?w=800&fm=webp&q=80`}
+              render={(src, style) => (
+                <img
+                  className={blogTemplateStyles.icon}
+                  src={src}
+                  style={style}
+                  alt={`${alt}`}
+                />
+              )}
+            />
+          )
+        } else {
+          return (
+            <ProgressiveImage
+              preview={`${url}?w=800&fm=webp&q=1`}
+              src={`${url}?w=800&fm=webp&q=80`}
+              render={(src, style) => (
+                <img
+                  className={blogTemplateStyles.otherImage}
+                  src={src}
+                  style={style}
+                  alt={`${alt}`}
+                />
+              )}
+            />
+          )
+        }
       },
     },
   }
@@ -194,6 +218,8 @@ const Blog = props => {
           var temp_text
           var last_paragraph = false
 
+          console.log(`${num_of_indexes}`)
+
           for (var i = 0; i <= num_of_indexes - 2; i++) {
             if (
               node.data.target.fields.text["en-US"].content[i + 1].nodeType ===
@@ -204,6 +230,7 @@ const Blog = props => {
             if (
               node.data.target.fields.text["en-US"].content[i].nodeType === "hr"
             ) {
+              console.log("hr")
               renders.push(
                 <div>
                   <span dangerouslySetInnerHTML={{ __html: text }} />
@@ -219,6 +246,7 @@ const Blog = props => {
               node.data.target.fields.text["en-US"].content[i].nodeType ===
                 "unordered-list"
             ) {
+              console.log("paragraph")
               temp_text = `${documentToHtmlString(
                 node.data.target.fields.text["en-US"].content[i],
                 options
@@ -235,11 +263,13 @@ const Blog = props => {
               node.data.target.fields.text["en-US"].content[i].nodeType ===
               "embedded-asset-block"
             ) {
+              console.log("image")
               var url = `${node.data.target.fields.text["en-US"].content[i].data.target.fields.file["en-US"].url}`
               temp_text = `<img src=${url} />`
             }
             text += `${temp_text}`
           }
+          console.log("return")
           return (
             <div className={blogTemplateStyles.grid}>
               {renders.map(render => (
@@ -282,18 +312,17 @@ const Blog = props => {
                 console.log("Header added!")
                 content.push(
                   <div
+                    className={blogTemplateStyles.headerDiv}
                     style={{
                       gridColumn: `${i * 2 + 1} / ${i * 2 + 2}`,
                       gridRow: `1 / 2`,
                     }}
                   >
-                    <h3>
-                      {" "}
-                      {documentToReactComponents(
-                        node.data.target.fields.content["en-US"].content[index],
-                        processInfographicOptions
-                      )}
-                    </h3>
+                    {" "}
+                    {documentToReactComponents(
+                      node.data.target.fields.content["en-US"].content[index],
+                      processInfographicOptions
+                    )}
                   </div>
                 )
                 header = false
