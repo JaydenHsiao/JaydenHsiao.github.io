@@ -58,10 +58,11 @@ class IndexPage extends React.Component {
     return (
       <React.Fragment>
         <Head title="Home" />
+        <Slideshow ref={this.slideRef} />
         <h1 className={indexStyles.header}>
           Hello, I'm Jayden - a
           <Typing loop={true} onBeforeType={this.onBeforeType}>
-            <div style={{ color: "#4895EA" }}>
+            <div className={indexStyles.typingLoop}>
               <span>{`${word1}`}</span>
               <Typing.Delay ms={800} />
               <Typing.Backspace count={`${word1.length + 1}`} />
@@ -79,7 +80,6 @@ class IndexPage extends React.Component {
               <Typing.Backspace count={`${word5.length + 1}`} />
             </div>
           </Typing>
-          <Slideshow ref={this.slideRef} />
         </h1>
         <Description />
         <Chat />
