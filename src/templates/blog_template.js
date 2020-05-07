@@ -12,6 +12,10 @@ import "react-medium-image-zoom/dist/styles.css"
 
 import Dog from "../images/dog.svg"
 import Example from "../images/example.svg"
+import Pain_Point from "../images/pain_point_ex.png"
+import Opportunity from "../images/opportunity_icon_ex.svg"
+import X from "../images/x.svg"
+import Check from "../images/check.svg"
 import Arrow_Right from "../images/arrow_right.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
@@ -278,13 +282,13 @@ const Blog = props => {
             </div>
           )
         } else if (
-          node.data.target.sys.contentType.sys.id === "processInfographic"
+          node.data.target.sys.contentType.sys.id === "gridWithIcons"
         ) {
           num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
           var hr_count = 0
           var content = []
-          var hr_locations
-          var header = true
+          var hr_locations = [-1]
+          header = true
 
           for (i = 0; i < num_of_indexes; i++) {
             if (
@@ -292,10 +296,123 @@ const Blog = props => {
               "hr"
             ) {
               hr_count++
+              hr_locations.push(i)
             }
           }
 
+          for (i = 0; i < hr_locations.length; i++) {
+            console.log(hr_locations[i])
+          }
+
           var index = 0
+
+          for (i = 0; i < hr_count; i++) {
+            console.log(`${i} loop begins`)
+            for (index; index < num_of_indexes; index++) {
+              console.log(`${index}`)
+              if (
+                node.data.target.fields.content["en-US"].content[index]
+                  .nodeType === "hr"
+              ) {
+                index++
+                console.log("break!")
+                header = true
+                break
+              } else if (header === true) {
+                console.log("Image added!")
+                content.push(
+                  <div
+                    style={{
+                      gridColumn: `${i + 1} / ${i + 2}`,
+                      gridRow: `1 / 2`,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {" "}
+                    {documentToReactComponents(
+                      node.data.target.fields.content["en-US"].content[index],
+                      processInfographicOptions
+                    )}
+                  </div>
+                )
+                header = false
+              } else {
+                console.log("Content added!")
+                if (hr_locations[i + 1] - hr_locations[i] === 3) {
+                  content.push(
+                    <div
+                      style={{
+                        gridColumn: `${i + 1} / ${i + 2}`,
+                        gridRow: `2 / 3`,
+                      }}
+                    >
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[index],
+                        processInfographicOptions
+                      )}
+                    </div>
+                  )
+                } else if (hr_locations[i + 1] - hr_locations[i] === 4) {
+                  content.push(
+                    <div
+                      className={blogTemplateStyles.contentDiv}
+                      style={{
+                        gridColumn: `${i + 1} / ${i + 2}`,
+                        gridRow: `2 / 3`,
+                      }}
+                    >
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[index],
+                        processInfographicOptions
+                      )}
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[
+                          index + 1
+                        ],
+                        processInfographicOptions
+                      )}
+                    </div>
+                  )
+                  index++
+                }
+              }
+            }
+            console.log(`${i} loop ends`)
+          }
+          console.log("Loop finished!")
+          return (
+            <div className={blogTemplateStyles.gridWithIconsWrapper}>
+              {content.map(content => (
+                <React.Fragment key={content}>{content}</React.Fragment>
+              ))}
+            </div>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "processInfographic"
+        ) {
+          num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
+          hr_count = 0
+          content = []
+          hr_locations = [-1]
+          header = true
+
+          for (i = 0; i < num_of_indexes; i++) {
+            if (
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
+              "hr"
+            ) {
+              hr_count++
+              hr_locations.push(i)
+            }
+          }
+
+          for (i = 0; i < hr_locations.length; i++) {
+            console.log(hr_locations[i])
+          }
+
+          index = 0
 
           for (i = 0; i < hr_count; i++) {
             for (index; index < num_of_indexes; index++) {
@@ -328,7 +445,22 @@ const Blog = props => {
                 header = false
               } else {
                 console.log("Content added!")
-                if (i === 1) {
+                if (hr_locations[i + 1] - hr_locations[i] === 3) {
+                  content.push(
+                    <div
+                      style={{
+                        gridColumn: `${i * 2 + 1} / ${i * 2 + 2}`,
+                        gridRow: `2 / 3`,
+                        margin: "auto 0 auto 0",
+                      }}
+                    >
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[index],
+                        processInfographicOptions
+                      )}
+                    </div>
+                  )
+                } else if (hr_locations[i + 1] - hr_locations[i] === 4) {
                   content.push(
                     <div
                       style={{
@@ -350,21 +482,6 @@ const Blog = props => {
                     </div>
                   )
                   index++
-                } else {
-                  content.push(
-                    <div
-                      style={{
-                        gridColumn: `${i * 2 + 1} / ${i * 2 + 2}`,
-                        gridRow: `2 / 3`,
-                        margin: "auto 0 auto 0",
-                      }}
-                    >
-                      {documentToReactComponents(
-                        node.data.target.fields.content["en-US"].content[index],
-                        processInfographicOptions
-                      )}
-                    </div>
-                  )
                 }
               }
             }
@@ -389,6 +506,173 @@ const Blog = props => {
                 <React.Fragment key={content}>{content}</React.Fragment>
               ))}
             </div>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "painPointGrid"
+        ) {
+          hr_count = 0
+          content = []
+          num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
+
+          for (i = 0; i < num_of_indexes; i++) {
+            if (
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
+              "hr"
+            ) {
+              hr_count++
+              console.log("---- hr found")
+            }
+          }
+
+          // Header
+          content.push(
+            <React.Fragment>
+              <div
+                style={{
+                  gridColumn: `1 / 3`,
+                  gridRow: "1 / 2",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ display: "table", margin: "0 auto" }}>
+                  <img
+                    style={{
+                      height: "2.5rem",
+                      marginRight: "0.5rem",
+                      float: "left",
+                    }}
+                    src={X}
+                  ></img>
+                  <h2 style={{ float: "left" }}>Pain Points</h2>
+                </div>
+              </div>
+              <div
+                style={{
+                  gridColumn: `3 / 5`,
+                  gridRow: "1 / 2",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ display: "table", margin: "0 auto" }}>
+                  <img
+                    style={{
+                      height: "2.5rem",
+                      marginRight: "0.5rem",
+                      float: "left",
+                    }}
+                    src={Check}
+                  ></img>
+                  <h2 style={{ float: "left" }}>Opportunities</h2>
+                </div>
+              </div>
+            </React.Fragment>
+          )
+
+          i = 0
+          var direction = "column"
+          for (var j = 1; j <= hr_count; j++) {
+            content.push(
+              <React.Fragment>
+                {/* Mockup */}
+                <div
+                  style={{
+                    gridColumn: `1 / 2`,
+                    gridRow: `${j + 1} / ${j + 2}`,
+                    margin: "auto 0 auto 0",
+                  }}
+                >
+                  {" "}
+                  {documentToReactComponents(
+                    node.data.target.fields.content["en-US"].content[i],
+                    processInfographicOptions
+                  )}
+                </div>
+                {/* Pain point and user comment bubbles */}
+                <div
+                  style={{
+                    gridColumn: `2 / 3`,
+                    gridRow: `${j + 1} / ${j + 2}`,
+                  }}
+                >
+                  {" "}
+                  <div className={blogTemplateStyles.headerDiv}>
+                    {" "}
+                    {documentToReactComponents(
+                      node.data.target.fields.content["en-US"].content[i + 1],
+                      processInfographicOptions
+                    )}
+                  </div>
+                  <div
+                    className={blogTemplateStyles.speechBubblesDiv}
+                    style={{ flexDirection: `${direction}` }}
+                  >
+                    <div className={blogTemplateStyles.speechBubble}>
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[i + 2],
+                        processInfographicOptions
+                      )}
+                      <div
+                        className={blogTemplateStyles.speechBubbleArrowRight}
+                      ></div>
+                    </div>
+                    <div className={blogTemplateStyles.speechBubble}>
+                      {documentToReactComponents(
+                        node.data.target.fields.content["en-US"].content[i + 3],
+                        processInfographicOptions
+                      )}
+                      <div
+                        className={blogTemplateStyles.speechBubbleArrowLeft}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                {/* Arrow */}
+                <div
+                  className={blogTemplateStyles.arrow}
+                  style={{
+                    gridColumn: `3 / 4`,
+                    gridRow: `${j + 1} / ${j + 2}`,
+                    backgroundImage: `url(${Arrow_Right})`,
+                  }}
+                ></div>
+                {/* Icon and Opportunity */}
+                <div
+                  style={{
+                    gridColumn: `4 / 5`,
+                    gridRow: `${j + 1} / ${j + 2}`,
+                    margin: "auto 0 auto 0",
+                  }}
+                >
+                  {" "}
+                  {documentToReactComponents(
+                    node.data.target.fields.content["en-US"].content[i + 4],
+                    processInfographicOptions
+                  )}
+                  {documentToReactComponents(
+                    node.data.target.fields.content["en-US"].content[i + 5],
+                    processInfographicOptions
+                  )}
+                </div>
+              </React.Fragment>
+            )
+            console.log(`Direction before was ${direction}`)
+            if (direction === "column") {
+              direction = "column-reverse"
+            } else if (direction === "column-reverse") {
+              direction = "column"
+            }
+            console.log(`Direction after was ${direction}`)
+            i += 7
+          }
+
+          return (
+            <React.Fragment>
+              <div className={blogTemplateStyles.painPointGrid}>
+                {content.map(content => (
+                  <React.Fragment key={content}>{content}</React.Fragment>
+                ))}
+              </div>
+            </React.Fragment>
           )
         }
       },
