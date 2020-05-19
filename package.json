@@ -14,7 +14,11 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build:tailwind": "tailwindcss build src/styles/tailwind.css -o src/styles/tailwind.generated.css",
+    "prestart": "npm run build:tailwind",
+    "prebuild": "npm run build:tailwind",
+    "watch": "watch 'npm run build:tailwind' ./src"
   },
   "dependencies": {
     "@afiniti/image-lazy-load": "0.0.6",
@@ -27,7 +31,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "framer-motion": "^1.8.4",
-    "gatsby": "^2.20.8",
+    "gatsby": "^2.21.37",
     "gatsby-image": "^2.3.2",
     "gatsby-plugin-compression": "0.0.1",
     "gatsby-plugin-compression-v2": "^0.1.0",
@@ -62,13 +66,17 @@
     "react-tooltip": "^4.0.3",
     "react-typing-animation": "^1.6.2",
     "react-typist": "^2.0.5",
-    "simple-react-lightbox": "^2.2.0"
+    "simple-react-lightbox": "^2.2.0",
+    "watch": "^1.0.2"
   },
   "devDependencies": {
+    "autoprefixer": "^9.8.0",
     "env-cmd": "^10.0.1",
     "fslightbox-react": "^1.4.9",
     "gh-pages": "^2.2.0",
-    "prettier": "^1.19.1"
+    "postcss-cli": "^7.1.1",
+    "prettier": "^1.19.1",
+    "tailwindcss": "^1.4.6"
   },
   "repository": {
     "type": "git",

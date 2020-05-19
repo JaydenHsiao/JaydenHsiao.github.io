@@ -10,13 +10,12 @@ import Head from "../components/head"
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
 
-import Dog from "../images/dog.svg"
-import Example from "../images/example.svg"
-import Pain_Point from "../images/pain_point_ex.png"
-import Opportunity from "../images/opportunity_icon_ex.svg"
 import X from "../images/x.svg"
 import Check from "../images/check.svg"
 import Arrow_Right from "../images/arrow_right.svg"
+import Problem_Statement from "../images/problem_statement.svg"
+import Perhaps from "../images/SVG/SVG/Clarity, Clarity, Clarity - (NEW) Ensure the User is Informed Before They Begin.svg"
+import PS_Blob from "../images/ps_blob.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
 
@@ -39,7 +38,7 @@ const Blog = props => {
   const processInfographicOptions = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
-        const alt = node.data.target.fields.description["en-US"]
+        // const alt = node.data.target.fields.description["en-US"]
         const url = node.data.target.fields.file["en-US"].url
         if (
           node.data.target.fields.file["en-US"].contentType === "image/svg+xml"
@@ -53,7 +52,7 @@ const Blog = props => {
                   className={blogTemplateStyles.icon}
                   src={src}
                   style={style}
-                  alt={`${alt}`}
+                  // alt={`${alt}`}
                 />
               )}
             />
@@ -68,7 +67,7 @@ const Blog = props => {
                   className={blogTemplateStyles.otherImage}
                   src={src}
                   style={style}
-                  alt={`${alt}`}
+                  // alt={`${alt}`}
                 />
               )}
             />
@@ -215,65 +214,60 @@ const Blog = props => {
             </React.Fragment>
           )
         } else if (node.data.target.sys.contentType.sys.id === "grid") {
-          var num_of_indexes = `${node.data.target.fields.text["en-US"].content.length}`
+          var num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
           var renders = []
-          var text = ""
+          var content = ""
           var header = true
-          var temp_text
+          var temp_content
           var last_paragraph = false
-
-          console.log(`${num_of_indexes}`)
 
           for (var i = 0; i <= num_of_indexes - 2; i++) {
             if (
-              node.data.target.fields.text["en-US"].content[i + 1].nodeType ===
-              "hr"
+              node.data.target.fields.content["en-US"].content[i + 1]
+                .nodeType === "hr"
             ) {
               last_paragraph = true
             }
             if (
-              node.data.target.fields.text["en-US"].content[i].nodeType === "hr"
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
+              "hr"
             ) {
-              console.log("hr")
               renders.push(
                 <div>
-                  <span dangerouslySetInnerHTML={{ __html: text }} />
+                  <span dangerouslySetInnerHTML={{ __html: content }} />
                 </div>
               )
               last_paragraph = false
               header = true
-              temp_text = ""
-              text = ""
+              temp_content = ""
+              content = ""
             } else if (
-              node.data.target.fields.text["en-US"].content[i].nodeType ===
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
                 "paragraph" ||
-              node.data.target.fields.text["en-US"].content[i].nodeType ===
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
                 "unordered-list"
             ) {
-              console.log("paragraph")
-              temp_text = `${documentToHtmlString(
-                node.data.target.fields.text["en-US"].content[i],
+              temp_content = `${documentToHtmlString(
+                node.data.target.fields.content["en-US"].content[i],
                 options
               )}`
-              if (temp_text.startsWith("<li>")) {
-                temp_text = "<ul>" + temp_text + "</ul>"
+              if (temp_content.startsWith("<li>")) {
+                temp_content = "<ul>" + temp_content + "</ul>"
               } else if (header === true) {
-                temp_text = `<h3>${temp_text}</h3>`
+                temp_content = `<h3>${temp_content}</h3>`
                 header = false
               } else if (last_paragraph === false) {
-                temp_text += "</br></br>"
+                temp_content += "</br></br>"
               }
             } else if (
-              node.data.target.fields.text["en-US"].content[i].nodeType ===
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
               "embedded-asset-block"
             ) {
-              console.log("image")
-              var url = `${node.data.target.fields.text["en-US"].content[i].data.target.fields.file["en-US"].url}`
-              temp_text = `<img src=${url} />`
+              var url = `${node.data.target.fields.content["en-US"].content[i].data.target.fields.file["en-US"].url}`
+              temp_content = `<img src=${url} />`
             }
-            text += `${temp_text}`
+            content += `${temp_content}`
           }
-          console.log("return")
           return (
             <div className={blogTemplateStyles.grid}>
               {renders.map(render => (
@@ -300,26 +294,18 @@ const Blog = props => {
             }
           }
 
-          for (i = 0; i < hr_locations.length; i++) {
-            console.log(hr_locations[i])
-          }
-
           var index = 0
 
           for (i = 0; i < hr_count; i++) {
-            console.log(`${i} loop begins`)
             for (index; index < num_of_indexes; index++) {
-              console.log(`${index}`)
               if (
                 node.data.target.fields.content["en-US"].content[index]
                   .nodeType === "hr"
               ) {
                 index++
-                console.log("break!")
                 header = true
                 break
               } else if (header === true) {
-                console.log("Image added!")
                 content.push(
                   <div
                     style={{
@@ -339,7 +325,6 @@ const Blog = props => {
                 )
                 header = false
               } else {
-                console.log("Content added!")
                 if (hr_locations[i + 1] - hr_locations[i] === 3) {
                   content.push(
                     <div
@@ -379,9 +364,7 @@ const Blog = props => {
                 }
               }
             }
-            console.log(`${i} loop ends`)
           }
-          console.log("Loop finished!")
           return (
             <div className={blogTemplateStyles.gridWithIconsWrapper}>
               {content.map(content => (
@@ -408,25 +391,18 @@ const Blog = props => {
             }
           }
 
-          for (i = 0; i < hr_locations.length; i++) {
-            console.log(hr_locations[i])
-          }
-
           index = 0
 
           for (i = 0; i < hr_count; i++) {
             for (index; index < num_of_indexes; index++) {
-              console.log(`${index}`)
               if (
                 node.data.target.fields.content["en-US"].content[index]
                   .nodeType === "hr"
               ) {
                 index++
-                console.log("break!")
                 header = true
                 break
               } else if (header === true) {
-                console.log("Header added!")
                 content.push(
                   <div
                     className={blogTemplateStyles.headerDiv}
@@ -444,7 +420,6 @@ const Blog = props => {
                 )
                 header = false
               } else {
-                console.log("Content added!")
                 if (hr_locations[i + 1] - hr_locations[i] === 3) {
                   content.push(
                     <div
@@ -486,7 +461,6 @@ const Blog = props => {
               }
             }
             if (i !== hr_count - 1) {
-              console.log("Arrow added!")
               content.push(
                 <div
                   style={{
@@ -499,7 +473,6 @@ const Blog = props => {
               )
             }
           }
-          console.log("Loop finished!")
           return (
             <div className={blogTemplateStyles.wrapper}>
               {content.map(content => (
@@ -520,7 +493,6 @@ const Blog = props => {
               "hr"
             ) {
               hr_count++
-              console.log("---- hr found")
             }
           }
 
@@ -655,13 +627,11 @@ const Blog = props => {
                 </div>
               </React.Fragment>
             )
-            console.log(`Direction before was ${direction}`)
             if (direction === "column") {
               direction = "column-reverse"
             } else if (direction === "column-reverse") {
               direction = "column"
             }
-            console.log(`Direction after was ${direction}`)
             i += 7
           }
 
@@ -673,6 +643,104 @@ const Blog = props => {
                 ))}
               </div>
             </React.Fragment>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "problemStatement"
+        )
+          //FIX
+          return (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ width: "50%" }}>
+                <h3 className="mb-2">
+                  <strong>Problem Statement</strong>
+                </h3>
+                <p>
+                  We have observed that the ServiceOntario online renewal flows
+                  are <strong>not meeting user needs,</strong> which is causing
+                  low completion rates, negative user feedback, inclusion
+                  concerns, and low uptake on digital services.
+                </p>
+                <p>
+                  How might we design a{" "}
+                  <strong>one-window digital renewal transaction flow</strong>{" "}
+                  that promotes usability and inclusion by reducing time on task
+                  and increasing positive feedback on eligibility?
+                </p>
+              </div>
+              <div
+                style={{
+                  backgroundImage: `url(${PS_Blob})`,
+                  height: "22rem",
+                }}
+                className="w-1/2 flex bg-no-repeat bg-cover items-center"
+              >
+                <img src={Problem_Statement} className="w-2/3 mx-auto" />
+              </div>
+            </div>
+          )
+        else if (node.data.target.sys.contentType.sys.id === "oldToNew") {
+          num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
+          let user_quotes = []
+          hr_count = 0
+          hr_locations = []
+
+          for (i = 0; i < num_of_indexes; i++) {
+            if (
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
+              "hr"
+            ) {
+              hr_count++
+              hr_locations.push(i)
+            }
+          }
+
+          let j = 0
+
+          for (i = 2; i < hr_locations[0]; i++) {
+            user_quotes.push(
+              documentToHtmlString(
+                node.data.target.fields.content["en-US"].content[i],
+                processInfographicOptions
+              )
+            )
+          }
+
+          return (
+            <div className="flex">
+              <img
+                src={
+                  node.data.target.fields.content["en-US"].content[1].data
+                    .target.fields.file["en-US"].url
+                }
+                className="w-1/4 px-1"
+              />
+              <div className="flex w-1/4 flex-col px-1">
+                {user_quotes.map((value, index) => {
+                  return (
+                    <div
+                      className="mb-4 p-3 rounded-lg"
+                      style={{ backgroundColor: "#85cbcf" }}
+                      key={index}
+                    >
+                      <p className={blogTemplateStyles.annotation + " mb-0"}>
+                        {value}
+                      </p>
+                      <div
+                        className="border-solid relative"
+                        style={{
+                          top: "35%",
+                          left: `${width - 2 * width}px`,
+                          width: `${width}px`,
+                          borderColor: "#85cbcf",
+                          borderTopWidth: "2px",
+                        }}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+              <img src={Arrow_Right} className="w-1/6 px-2" />
+            </div>
           )
         }
       },
@@ -728,6 +796,8 @@ const Blog = props => {
       },
     },
   }
+
+  let width = 50
 
   return (
     <div className={blogTemplateStyles.postLayout}>
