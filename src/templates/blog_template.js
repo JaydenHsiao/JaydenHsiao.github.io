@@ -14,7 +14,6 @@ import X from "../images/x.svg"
 import Check from "../images/check.svg"
 import Arrow_Right from "../images/arrow_right.svg"
 import Problem_Statement from "../images/problem_statement.svg"
-import Perhaps from "../images/SVG/SVG/Clarity, Clarity, Clarity - (NEW) Ensure the User is Informed Before They Begin.svg"
 import PS_Blob from "../images/ps_blob.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
@@ -681,8 +680,37 @@ const Blog = props => {
         else if (node.data.target.sys.contentType.sys.id === "oldToNew") {
           num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
           let user_quotes = []
+          let improvements = []
           hr_count = 0
           hr_locations = []
+          let oldDimensions_query = []
+          let newDimensions_query = []
+          let title = documentToHtmlString(
+            node.data.target.fields.content["en-US"].content[0],
+            processInfographicOptions
+          )
+
+          for (
+            i = 0;
+            i < node.data.target.fields.oldDimensions["en-US"].content.length;
+            i++
+          ) {
+            oldDimensions_query.push(
+              node.data.target.fields.oldDimensions["en-US"].content[i]
+                .content[0].value
+            )
+          }
+
+          for (
+            i = 0;
+            i < node.data.target.fields.newDimensions["en-US"].content.length;
+            i++
+          ) {
+            newDimensions_query.push(
+              node.data.target.fields.newDimensions["en-US"].content[i]
+                .content[0].value
+            )
+          }
 
           for (i = 0; i < num_of_indexes; i++) {
             if (
@@ -705,42 +733,116 @@ const Blog = props => {
             )
           }
 
+          for (i = hr_locations[0] + 1; i < num_of_indexes - 2; i++) {
+            console.log(`improvement found at ${i}`)
+            improvements.push(
+              documentToHtmlString(
+                node.data.target.fields.content["en-US"].content[i],
+                processInfographicOptions
+              )
+            )
+          }
+
           return (
-            <div className="flex">
-              <img
-                src={
-                  node.data.target.fields.content["en-US"].content[1].data
-                    .target.fields.file["en-US"].url
-                }
-                className="w-1/4 px-1"
-              />
-              <div className="flex w-1/4 flex-col px-1">
-                {user_quotes.map((value, index) => {
-                  return (
-                    <div
-                      className="mb-4 p-3 rounded-lg"
-                      style={{ backgroundColor: "#85cbcf" }}
-                      key={index}
-                    >
-                      <p className={blogTemplateStyles.annotation + " mb-0"}>
-                        {value}
-                      </p>
-                      <div
-                        className="border-solid relative"
-                        style={{
-                          top: "35%",
-                          left: `${width - 2 * width}px`,
-                          width: `${width}px`,
-                          borderColor: "#85cbcf",
-                          borderTopWidth: "2px",
-                        }}
-                      />
-                    </div>
-                  )
-                })}
+            <React.Fragment>
+              <h3>{title}</h3>
+              <div className="flex">
+                <img
+                  src={
+                    node.data.target.fields.content["en-US"].content[1].data
+                      .target.fields.file["en-US"].url
+                  }
+                  className="w-1/4 px-1"
+                />
+                <div className="flex w-1/5 flex-col relative">
+                  {user_quotes.map((value, index) => {
+                    var oldDimensions_array = oldDimensions_query[index].split(
+                      ","
+                    )
+                    let top_quote = (oldDimensions_array[0] / 551) * 100
+                    let top_line = (oldDimensions_array[1] / 551) * 100
+                    let width = (oldDimensions_array[2] / 331.5) * 100
+
+                    return (
+                      <React.Fragment className="relative">
+                        <div
+                          className={blogTemplateStyles.leftLine}
+                          style={{
+                            top: `${top_line}%`,
+                            left: `${width + 5 - 2 * width}%`,
+                            width: `${width}%`,
+                            borderColor: "#85cbcf",
+                            borderBottomWidth: "2px",
+                          }}
+                        />
+                        <div
+                          className="p-3 rounded-lg absolute text-white"
+                          style={{
+                            backgroundColor: "#85cbcf",
+                            top: `${top_quote}%`,
+                          }}
+                          key={index}
+                        >
+                          <p
+                            className={blogTemplateStyles.annotation + " mb-0"}
+                          >
+                            {value}
+                          </p>
+                        </div>
+                      </React.Fragment>
+                    )
+                  })}
+                </div>
+                <img src={Arrow_Right} className="w-20 pl-3 pr-2" />
+                <div className="flex w-1/5 flex-col relative justify-between">
+                  {improvements.map((value, index) => {
+                    var newDimensions_array = newDimensions_query[index].split(
+                      ","
+                    )
+                    let top_quote = (newDimensions_array[0] / 551) * 100
+                    let top_line = (newDimensions_array[1] / 551) * 100
+                    let width = (newDimensions_array[2] / 331.5) * 100
+
+                    return (
+                      <React.Fragment className="relative">
+                        <div
+                          className={blogTemplateStyles.rightLine}
+                          style={{
+                            top: `${top_line}%`,
+                            right: `${width + 5 - 2 * width}%`,
+                            width: `${width}%`,
+                            borderColor: "#85cbcf",
+                            borderBottomWidth: "2px",
+                          }}
+                        />
+                        <div
+                          className="p-3 rounded-lg absolute text-white"
+                          style={{
+                            backgroundColor: "#85cbcf",
+                            top: `${top_quote}%`,
+                          }}
+                          key={index}
+                        >
+                          <p
+                            className={blogTemplateStyles.annotation + " mb-0"}
+                          >
+                            {value}
+                          </p>
+                        </div>
+                      </React.Fragment>
+                    )
+                  })}
+                </div>
+                <img
+                  src={
+                    node.data.target.fields.content["en-US"].content[
+                      num_of_indexes - 2
+                    ].data.target.fields.file["en-US"].url
+                  }
+                  className="w-1/4 px-1"
+                />
               </div>
-              <img src={Arrow_Right} className="w-1/6 px-2" />
-            </div>
+            </React.Fragment>
           )
         }
       },
@@ -796,8 +898,6 @@ const Blog = props => {
       },
     },
   }
-
-  let width = 50
 
   return (
     <div className={blogTemplateStyles.postLayout}>

@@ -123,7 +123,7 @@
   }
 
   .annotation {
-    font-size: 0.85rem;
+    font-size: 0.65rem;
   }
 
   .caption {
@@ -386,5 +386,51 @@
     content: "";
     position: absolute;
     left: 6px;
+  }
+}
+
+.leftLine {
+  border-top: 3px solid #85cbcf;
+  position: absolute;
+
+  &:before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-width: 3px;
+    border-color: #85cbcf;
+    border-radius: 999px;
+    position: absolute;
+    top: -10px;
+    left: -18px;
+  }
+
+  &:after {
+    right: 0;
+  }
+}
+
+.rightLine {
+  border-top: 3px solid #85cbcf;
+  position: absolute;
+
+  &:before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    border-width: 3px;
+    border-color: #85cbcf;
+    border-radius: 999px;
+    position: absolute;
+    top: -10px;
+    right: -18px;
+  }
+
+  &:after {
+    left: 0;
   }
 }
