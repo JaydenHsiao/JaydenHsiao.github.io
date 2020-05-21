@@ -483,6 +483,7 @@
   -ms-transform: rotate(12deg);
 }
 
+//FIX (consider dynamic positioning of arrows)
 .vp-div {
   > div:nth-child(even) {
     h3 {
