@@ -15,6 +15,7 @@ import Check from "../images/check.svg"
 import Arrow_Right from "../images/arrow_right.svg"
 import Problem_Statement from "../images/problem_statement.svg"
 import PS_Blob from "../images/ps_blob.svg"
+import Grey_VP_Arrow from "../images/grey_vp_arrow.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
 
@@ -34,6 +35,7 @@ export const query = graphql`
 `
 
 const Blog = props => {
+  let add_hr = false
   const processInfographicOptions = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
@@ -685,10 +687,23 @@ const Blog = props => {
           hr_locations = []
           let oldDimensions_query = []
           let newDimensions_query = []
+
+          for (i = 0; i < num_of_indexes; i++) {
+            if (
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
+              "hr"
+            ) {
+              hr_count++
+              hr_locations.push(i)
+            }
+          }
+
           let title = documentToHtmlString(
             node.data.target.fields.content["en-US"].content[0],
             processInfographicOptions
           )
+
+          add_hr ? (add_hr = false) : (add_hr = true)
 
           for (
             i = 0;
@@ -712,18 +727,6 @@ const Blog = props => {
             )
           }
 
-          for (i = 0; i < num_of_indexes; i++) {
-            if (
-              node.data.target.fields.content["en-US"].content[i].nodeType ===
-              "hr"
-            ) {
-              hr_count++
-              hr_locations.push(i)
-            }
-          }
-
-          let j = 0
-
           for (i = 2; i < hr_locations[0]; i++) {
             user_quotes.push(
               documentToHtmlString(
@@ -734,7 +737,6 @@ const Blog = props => {
           }
 
           for (i = hr_locations[0] + 1; i < num_of_indexes - 2; i++) {
-            console.log(`improvement found at ${i}`)
             improvements.push(
               documentToHtmlString(
                 node.data.target.fields.content["en-US"].content[i],
@@ -743,106 +745,213 @@ const Blog = props => {
             )
           }
 
+          let url =
+            node.data.target.fields.content["en-US"].content[1].data.target
+              .fields.file["en-US"].url
+
           return (
             <React.Fragment>
-              <h3>{title}</h3>
-              <div className="flex">
-                <img
-                  src={
-                    node.data.target.fields.content["en-US"].content[1].data
-                      .target.fields.file["en-US"].url
-                  }
-                  className="w-1/4 px-1"
-                />
-                <div className="flex w-1/5 flex-col relative">
-                  {user_quotes.map((value, index) => {
-                    var oldDimensions_array = oldDimensions_query[index].split(
-                      ","
-                    )
-                    let top_quote = (oldDimensions_array[0] / 551) * 100
-                    let top_line = (oldDimensions_array[1] / 551) * 100
-                    let width = (oldDimensions_array[2] / 331.5) * 100
-
-                    return (
-                      <React.Fragment className="relative">
-                        <div
-                          className={blogTemplateStyles.leftLine}
-                          style={{
-                            top: `${top_line}%`,
-                            left: `${width + 5 - 2 * width}%`,
-                            width: `${width}%`,
-                            borderColor: "#85cbcf",
-                            borderBottomWidth: "2px",
-                          }}
+              <div className="mb-4 overflow-visible">
+                <h3>{title}</h3>
+                <div className="flex overflow-visible">
+                  <div className="w-1/4 overflow-visible">
+                    <ProgressiveImage
+                      preview={`${url}?w=800&fm=webp&q=1`}
+                      src={`${url}?w=800&fm=webp&q=80`}
+                      render={(src, style) => (
+                        <img
+                          src={src}
+                          style={style}
+                          // alt={`${alt}`}
                         />
-                        <div
-                          className="p-3 rounded-lg absolute text-white"
-                          style={{
-                            backgroundColor: "#85cbcf",
-                            top: `${top_quote}%`,
-                          }}
-                          key={index}
-                        >
-                          <p
-                            className={blogTemplateStyles.annotation + " mb-0"}
-                          >
-                            {value}
-                          </p>
-                        </div>
-                      </React.Fragment>
-                    )
-                  })}
-                </div>
-                <img src={Arrow_Right} className="w-20 pl-3 pr-2" />
-                <div className="flex w-1/5 flex-col relative justify-between">
-                  {improvements.map((value, index) => {
-                    var newDimensions_array = newDimensions_query[index].split(
-                      ","
-                    )
-                    let top_quote = (newDimensions_array[0] / 551) * 100
-                    let top_line = (newDimensions_array[1] / 551) * 100
-                    let width = (newDimensions_array[2] / 331.5) * 100
+                      )}
+                    />
+                  </div>
+                  <div className="flex w-1/5 flex-col relative">
+                    {user_quotes.map((value, index) => {
+                      var oldDimensions_array = oldDimensions_query[
+                        index
+                      ].split(",")
+                      let top_quote = (oldDimensions_array[0] / 551) * 100
+                      let top_line = (oldDimensions_array[1] / 551) * 100
+                      let width = (oldDimensions_array[2] / 331.5) * 100
 
-                    return (
-                      <React.Fragment className="relative">
-                        <div
-                          className={blogTemplateStyles.rightLine}
-                          style={{
-                            top: `${top_line}%`,
-                            right: `${width + 5 - 2 * width}%`,
-                            width: `${width}%`,
-                            borderColor: "#85cbcf",
-                            borderBottomWidth: "2px",
-                          }}
-                        />
-                        <div
-                          className="p-3 rounded-lg absolute text-white"
-                          style={{
-                            backgroundColor: "#85cbcf",
-                            top: `${top_quote}%`,
-                          }}
-                          key={index}
-                        >
-                          <p
-                            className={blogTemplateStyles.annotation + " mb-0"}
+                      return (
+                        <React.Fragment className="relative">
+                          <div
+                            className={blogTemplateStyles.leftLine}
+                            style={{
+                              top: `${top_line}%`,
+                              left: `${width + 5 - 2 * width}%`,
+                              width: `${width}%`,
+                              borderColor: "#85cbcf",
+                              borderBottomWidth: "2px",
+                            }}
+                          />
+                          <div
+                            className="p-3 rounded-lg absolute text-white"
+                            style={{
+                              backgroundColor: "#85cbcf",
+                              top: `${top_quote}%`,
+                            }}
+                            key={index}
                           >
-                            {value}
-                          </p>
-                        </div>
-                      </React.Fragment>
-                    )
-                  })}
+                            <p
+                              className={
+                                blogTemplateStyles.annotation + " mb-0"
+                              }
+                            >
+                              {value}
+                            </p>
+                          </div>
+                        </React.Fragment>
+                      )
+                    })}
+                  </div>
+                  <img src={Arrow_Right} className="w-20 pl-3 pr-2" />
+                  <div className="flex w-1/5 flex-col relative justify-between">
+                    {improvements.map((value, index) => {
+                      var newDimensions_array = newDimensions_query[
+                        index
+                      ].split(",")
+                      let top_quote = (newDimensions_array[0] / 551) * 100
+                      let top_line = (newDimensions_array[1] / 551) * 100
+                      let width = (newDimensions_array[2] / 331.5) * 100
+
+                      return (
+                        <React.Fragment className="relative">
+                          <div
+                            className={blogTemplateStyles.rightLine}
+                            style={{
+                              top: `${top_line}%`,
+                              right: `${width + 5 - 2 * width}%`,
+                              width: `${width}%`,
+                              borderColor: "#85cbcf",
+                              borderBottomWidth: "2px",
+                            }}
+                          />
+                          <div
+                            className="p-3 rounded-lg absolute text-white"
+                            style={{
+                              backgroundColor: "#85cbcf",
+                              top: `${top_quote}%`,
+                            }}
+                            key={index}
+                          >
+                            <p
+                              className={
+                                blogTemplateStyles.annotation + " mb-0"
+                              }
+                            >
+                              {value}
+                            </p>
+                          </div>
+                        </React.Fragment>
+                      )
+                    })}
+                  </div>
+                  <img
+                    src={
+                      node.data.target.fields.content["en-US"].content[
+                        num_of_indexes - 2
+                      ].data.target.fields.file["en-US"].url
+                    }
+                    className="w-1/4 px-1"
+                  />
                 </div>
-                <img
-                  src={
-                    node.data.target.fields.content["en-US"].content[
-                      num_of_indexes - 2
-                    ].data.target.fields.file["en-US"].url
-                  }
-                  className="w-1/4 px-1"
-                />
               </div>
+              {add_hr ? <hr /> : null}
             </React.Fragment>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "verticalProcess"
+        ) {
+          num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
+          let user_quotes = []
+          let improvements = []
+          hr_count = 0
+          hr_locations = [-1]
+          let num_of_sections = []
+
+          // let right_var = "50%"
+          // let right_var = "auto"
+
+          for (i = 0; i < num_of_indexes; i++) {
+            if (
+              node.data.target.fields.content["en-US"].content[i].nodeType ===
+              "hr"
+            ) {
+              hr_count++
+              num_of_sections.push(i)
+              hr_locations.push(i)
+            }
+          }
+
+          return (
+            <div className={blogTemplateStyles.vpDiv}>
+              {num_of_sections.map((value, index) => {
+                url =
+                  node.data.target.fields.content["en-US"].content[
+                    hr_locations[index] + 1
+                  ].data.target.fields.file["en-US"].url
+
+                let render_arrow = true
+                if (index === num_of_sections.length - 1) {
+                  render_arrow = false
+                }
+
+                return (
+                  <div
+                    className={
+                      "flex mb-6 items-center even:flex-row-reverse even:text-right relative "
+                    }
+                  >
+                    {render_arrow ? (
+                      <img
+                        src={Grey_VP_Arrow}
+                        className={
+                          "w-16 absolute z-10 " + blogTemplateStyles.vp_arrow
+                        }
+                        // style={{ right: "50%", left: "auto", top: "54%" }}
+                      />
+                    ) : null}
+                    <div className="w-2/3">
+                      <ProgressiveImage
+                        preview={`${url}?w=800&fm=webp&q=1`}
+                        src={`${url}?w=800&fm=webp&q=100`}
+                        render={(src, style) => (
+                          <img
+                            src={src}
+                            style={style}
+                            className="w-full"
+                            // alt={`${alt}`}
+                          />
+                        )}
+                      />
+                    </div>
+                    <div className="mx-3"></div>
+                    <div className="w-1/3">
+                      <h3 className={`w-3/4`}>
+                        {documentToHtmlString(
+                          node.data.target.fields.content["en-US"].content[
+                            hr_locations[index] + 2
+                          ],
+                          processInfographicOptions
+                        )}
+                      </h3>
+                      <p>
+                        {documentToHtmlString(
+                          node.data.target.fields.content["en-US"].content[
+                            hr_locations[index] + 3
+                          ],
+                          processInfographicOptions
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           )
         }
       },
@@ -898,6 +1007,8 @@ const Blog = props => {
       },
     },
   }
+
+  add_hr = false
 
   return (
     <div className={blogTemplateStyles.postLayout}>

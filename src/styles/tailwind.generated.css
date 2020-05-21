@@ -5206,6 +5206,38 @@
   flex-direction: column-reverse
 }
 
+.odd\:flex-row:nth-child(odd) {
+  flex-direction: row
+}
+
+.odd\:flex-row-reverse:nth-child(odd) {
+  flex-direction: row-reverse
+}
+
+.odd\:flex-col:nth-child(odd) {
+  flex-direction: column
+}
+
+.odd\:flex-col-reverse:nth-child(odd) {
+  flex-direction: column-reverse
+}
+
+.even\:flex-row:nth-child(even) {
+  flex-direction: row
+}
+
+.even\:flex-row-reverse:nth-child(even) {
+  flex-direction: row-reverse
+}
+
+.even\:flex-col:nth-child(even) {
+  flex-direction: column
+}
+
+.even\:flex-col-reverse:nth-child(even) {
+  flex-direction: column-reverse
+}
+
 .flex-wrap {
   flex-wrap: wrap
 }
@@ -13823,6 +13855,38 @@
   text-align: justify
 }
 
+.odd\:text-left:nth-child(odd) {
+  text-align: left
+}
+
+.odd\:text-center:nth-child(odd) {
+  text-align: center
+}
+
+.odd\:text-right:nth-child(odd) {
+  text-align: right
+}
+
+.odd\:text-justify:nth-child(odd) {
+  text-align: justify
+}
+
+.even\:text-left:nth-child(even) {
+  text-align: left
+}
+
+.even\:text-center:nth-child(even) {
+  text-align: center
+}
+
+.even\:text-right:nth-child(even) {
+  text-align: right
+}
+
+.even\:text-justify:nth-child(even) {
+  text-align: justify
+}
+
 .text-transparent {
   color: transparent
 }
@@ -16733,6 +16797,11 @@
   --transform-scale-y: 1.5
 }
 
+.scale-flip {
+  --transform-scale-x: -1;
+  --transform-scale-y: -1
+}
+
 .scale-x-0 {
   --transform-scale-x: 0
 }
@@ -16773,6 +16842,10 @@
   --transform-scale-x: 1.5
 }
 
+.scale-x-flip {
+  --transform-scale-x: -1
+}
+
 .scale-y-0 {
   --transform-scale-y: 0
 }
@@ -16811,6 +16884,10 @@
 
 .scale-y-150 {
   --transform-scale-y: 1.5
+}
+
+.scale-y-flip {
+  --transform-scale-y: -1
 }
 
 .hover\:scale-0:hover {
@@ -16863,6 +16940,11 @@
   --transform-scale-y: 1.5
 }
 
+.hover\:scale-flip:hover {
+  --transform-scale-x: -1;
+  --transform-scale-y: -1
+}
+
 .hover\:scale-x-0:hover {
   --transform-scale-x: 0
 }
@@ -16903,6 +16985,10 @@
   --transform-scale-x: 1.5
 }
 
+.hover\:scale-x-flip:hover {
+  --transform-scale-x: -1
+}
+
 .hover\:scale-y-0:hover {
   --transform-scale-y: 0
 }
@@ -16941,6 +17027,10 @@
 
 .hover\:scale-y-150:hover {
   --transform-scale-y: 1.5
+}
+
+.hover\:scale-y-flip:hover {
+  --transform-scale-y: -1
 }
 
 .focus\:scale-0:focus {
@@ -16993,6 +17083,11 @@
   --transform-scale-y: 1.5
 }
 
+.focus\:scale-flip:focus {
+  --transform-scale-x: -1;
+  --transform-scale-y: -1
+}
+
 .focus\:scale-x-0:focus {
   --transform-scale-x: 0
 }
@@ -17033,6 +17128,10 @@
   --transform-scale-x: 1.5
 }
 
+.focus\:scale-x-flip:focus {
+  --transform-scale-x: -1
+}
+
 .focus\:scale-y-0:focus {
   --transform-scale-y: 0
 }
@@ -17071,6 +17170,10 @@
 
 .focus\:scale-y-150:focus {
   --transform-scale-y: 1.5
+}
+
+.focus\:scale-y-flip:focus {
+  --transform-scale-y: -1
 }
 
 .rotate-0 {
@@ -23623,6 +23726,38 @@
   }
 
   .sm\:flex-col-reverse {
+    flex-direction: column-reverse
+  }
+
+  .sm\:odd\:flex-row:nth-child(odd) {
+    flex-direction: row
+  }
+
+  .sm\:odd\:flex-row-reverse:nth-child(odd) {
+    flex-direction: row-reverse
+  }
+
+  .sm\:odd\:flex-col:nth-child(odd) {
+    flex-direction: column
+  }
+
+  .sm\:odd\:flex-col-reverse:nth-child(odd) {
+    flex-direction: column-reverse
+  }
+
+  .sm\:even\:flex-row:nth-child(even) {
+    flex-direction: row
+  }
+
+  .sm\:even\:flex-row-reverse:nth-child(even) {
+    flex-direction: row-reverse
+  }
+
+  .sm\:even\:flex-col:nth-child(even) {
+    flex-direction: column
+  }
+
+  .sm\:even\:flex-col-reverse:nth-child(even) {
     flex-direction: column-reverse
   }
 
@@ -32243,6 +32378,38 @@
     text-align: justify
   }
 
+  .sm\:odd\:text-left:nth-child(odd) {
+    text-align: left
+  }
+
+  .sm\:odd\:text-center:nth-child(odd) {
+    text-align: center
+  }
+
+  .sm\:odd\:text-right:nth-child(odd) {
+    text-align: right
+  }
+
+  .sm\:odd\:text-justify:nth-child(odd) {
+    text-align: justify
+  }
+
+  .sm\:even\:text-left:nth-child(even) {
+    text-align: left
+  }
+
+  .sm\:even\:text-center:nth-child(even) {
+    text-align: center
+  }
+
+  .sm\:even\:text-right:nth-child(even) {
+    text-align: right
+  }
+
+  .sm\:even\:text-justify:nth-child(even) {
+    text-align: justify
+  }
+
   .sm\:text-transparent {
     color: transparent
   }
@@ -35153,6 +35320,11 @@
     --transform-scale-y: 1.5
   }
 
+  .sm\:scale-flip {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .sm\:scale-x-0 {
     --transform-scale-x: 0
   }
@@ -35193,6 +35365,10 @@
     --transform-scale-x: 1.5
   }
 
+  .sm\:scale-x-flip {
+    --transform-scale-x: -1
+  }
+
   .sm\:scale-y-0 {
     --transform-scale-y: 0
   }
@@ -35231,6 +35407,10 @@
 
   .sm\:scale-y-150 {
     --transform-scale-y: 1.5
+  }
+
+  .sm\:scale-y-flip {
+    --transform-scale-y: -1
   }
 
   .sm\:hover\:scale-0:hover {
@@ -35283,6 +35463,11 @@
     --transform-scale-y: 1.5
   }
 
+  .sm\:hover\:scale-flip:hover {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .sm\:hover\:scale-x-0:hover {
     --transform-scale-x: 0
   }
@@ -35323,6 +35508,10 @@
     --transform-scale-x: 1.5
   }
 
+  .sm\:hover\:scale-x-flip:hover {
+    --transform-scale-x: -1
+  }
+
   .sm\:hover\:scale-y-0:hover {
     --transform-scale-y: 0
   }
@@ -35361,6 +35550,10 @@
 
   .sm\:hover\:scale-y-150:hover {
     --transform-scale-y: 1.5
+  }
+
+  .sm\:hover\:scale-y-flip:hover {
+    --transform-scale-y: -1
   }
 
   .sm\:focus\:scale-0:focus {
@@ -35413,6 +35606,11 @@
     --transform-scale-y: 1.5
   }
 
+  .sm\:focus\:scale-flip:focus {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .sm\:focus\:scale-x-0:focus {
     --transform-scale-x: 0
   }
@@ -35453,6 +35651,10 @@
     --transform-scale-x: 1.5
   }
 
+  .sm\:focus\:scale-x-flip:focus {
+    --transform-scale-x: -1
+  }
+
   .sm\:focus\:scale-y-0:focus {
     --transform-scale-y: 0
   }
@@ -35491,6 +35693,10 @@
 
   .sm\:focus\:scale-y-150:focus {
     --transform-scale-y: 1.5
+  }
+
+  .sm\:focus\:scale-y-flip:focus {
+    --transform-scale-y: -1
   }
 
   .sm\:rotate-0 {
@@ -42044,6 +42250,38 @@
   }
 
   .md\:flex-col-reverse {
+    flex-direction: column-reverse
+  }
+
+  .md\:odd\:flex-row:nth-child(odd) {
+    flex-direction: row
+  }
+
+  .md\:odd\:flex-row-reverse:nth-child(odd) {
+    flex-direction: row-reverse
+  }
+
+  .md\:odd\:flex-col:nth-child(odd) {
+    flex-direction: column
+  }
+
+  .md\:odd\:flex-col-reverse:nth-child(odd) {
+    flex-direction: column-reverse
+  }
+
+  .md\:even\:flex-row:nth-child(even) {
+    flex-direction: row
+  }
+
+  .md\:even\:flex-row-reverse:nth-child(even) {
+    flex-direction: row-reverse
+  }
+
+  .md\:even\:flex-col:nth-child(even) {
+    flex-direction: column
+  }
+
+  .md\:even\:flex-col-reverse:nth-child(even) {
     flex-direction: column-reverse
   }
 
@@ -50664,6 +50902,38 @@
     text-align: justify
   }
 
+  .md\:odd\:text-left:nth-child(odd) {
+    text-align: left
+  }
+
+  .md\:odd\:text-center:nth-child(odd) {
+    text-align: center
+  }
+
+  .md\:odd\:text-right:nth-child(odd) {
+    text-align: right
+  }
+
+  .md\:odd\:text-justify:nth-child(odd) {
+    text-align: justify
+  }
+
+  .md\:even\:text-left:nth-child(even) {
+    text-align: left
+  }
+
+  .md\:even\:text-center:nth-child(even) {
+    text-align: center
+  }
+
+  .md\:even\:text-right:nth-child(even) {
+    text-align: right
+  }
+
+  .md\:even\:text-justify:nth-child(even) {
+    text-align: justify
+  }
+
   .md\:text-transparent {
     color: transparent
   }
@@ -53574,6 +53844,11 @@
     --transform-scale-y: 1.5
   }
 
+  .md\:scale-flip {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .md\:scale-x-0 {
     --transform-scale-x: 0
   }
@@ -53614,6 +53889,10 @@
     --transform-scale-x: 1.5
   }
 
+  .md\:scale-x-flip {
+    --transform-scale-x: -1
+  }
+
   .md\:scale-y-0 {
     --transform-scale-y: 0
   }
@@ -53652,6 +53931,10 @@
 
   .md\:scale-y-150 {
     --transform-scale-y: 1.5
+  }
+
+  .md\:scale-y-flip {
+    --transform-scale-y: -1
   }
 
   .md\:hover\:scale-0:hover {
@@ -53704,6 +53987,11 @@
     --transform-scale-y: 1.5
   }
 
+  .md\:hover\:scale-flip:hover {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .md\:hover\:scale-x-0:hover {
     --transform-scale-x: 0
   }
@@ -53744,6 +54032,10 @@
     --transform-scale-x: 1.5
   }
 
+  .md\:hover\:scale-x-flip:hover {
+    --transform-scale-x: -1
+  }
+
   .md\:hover\:scale-y-0:hover {
     --transform-scale-y: 0
   }
@@ -53782,6 +54074,10 @@
 
   .md\:hover\:scale-y-150:hover {
     --transform-scale-y: 1.5
+  }
+
+  .md\:hover\:scale-y-flip:hover {
+    --transform-scale-y: -1
   }
 
   .md\:focus\:scale-0:focus {
@@ -53834,6 +54130,11 @@
     --transform-scale-y: 1.5
   }
 
+  .md\:focus\:scale-flip:focus {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .md\:focus\:scale-x-0:focus {
     --transform-scale-x: 0
   }
@@ -53874,6 +54175,10 @@
     --transform-scale-x: 1.5
   }
 
+  .md\:focus\:scale-x-flip:focus {
+    --transform-scale-x: -1
+  }
+
   .md\:focus\:scale-y-0:focus {
     --transform-scale-y: 0
   }
@@ -53912,6 +54217,10 @@
 
   .md\:focus\:scale-y-150:focus {
     --transform-scale-y: 1.5
+  }
+
+  .md\:focus\:scale-y-flip:focus {
+    --transform-scale-y: -1
   }
 
   .md\:rotate-0 {
@@ -60465,6 +60774,38 @@
   }
 
   .lg\:flex-col-reverse {
+    flex-direction: column-reverse
+  }
+
+  .lg\:odd\:flex-row:nth-child(odd) {
+    flex-direction: row
+  }
+
+  .lg\:odd\:flex-row-reverse:nth-child(odd) {
+    flex-direction: row-reverse
+  }
+
+  .lg\:odd\:flex-col:nth-child(odd) {
+    flex-direction: column
+  }
+
+  .lg\:odd\:flex-col-reverse:nth-child(odd) {
+    flex-direction: column-reverse
+  }
+
+  .lg\:even\:flex-row:nth-child(even) {
+    flex-direction: row
+  }
+
+  .lg\:even\:flex-row-reverse:nth-child(even) {
+    flex-direction: row-reverse
+  }
+
+  .lg\:even\:flex-col:nth-child(even) {
+    flex-direction: column
+  }
+
+  .lg\:even\:flex-col-reverse:nth-child(even) {
     flex-direction: column-reverse
   }
 
@@ -69085,6 +69426,38 @@
     text-align: justify
   }
 
+  .lg\:odd\:text-left:nth-child(odd) {
+    text-align: left
+  }
+
+  .lg\:odd\:text-center:nth-child(odd) {
+    text-align: center
+  }
+
+  .lg\:odd\:text-right:nth-child(odd) {
+    text-align: right
+  }
+
+  .lg\:odd\:text-justify:nth-child(odd) {
+    text-align: justify
+  }
+
+  .lg\:even\:text-left:nth-child(even) {
+    text-align: left
+  }
+
+  .lg\:even\:text-center:nth-child(even) {
+    text-align: center
+  }
+
+  .lg\:even\:text-right:nth-child(even) {
+    text-align: right
+  }
+
+  .lg\:even\:text-justify:nth-child(even) {
+    text-align: justify
+  }
+
   .lg\:text-transparent {
     color: transparent
   }
@@ -71995,6 +72368,11 @@
     --transform-scale-y: 1.5
   }
 
+  .lg\:scale-flip {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .lg\:scale-x-0 {
     --transform-scale-x: 0
   }
@@ -72035,6 +72413,10 @@
     --transform-scale-x: 1.5
   }
 
+  .lg\:scale-x-flip {
+    --transform-scale-x: -1
+  }
+
   .lg\:scale-y-0 {
     --transform-scale-y: 0
   }
@@ -72073,6 +72455,10 @@
 
   .lg\:scale-y-150 {
     --transform-scale-y: 1.5
+  }
+
+  .lg\:scale-y-flip {
+    --transform-scale-y: -1
   }
 
   .lg\:hover\:scale-0:hover {
@@ -72125,6 +72511,11 @@
     --transform-scale-y: 1.5
   }
 
+  .lg\:hover\:scale-flip:hover {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .lg\:hover\:scale-x-0:hover {
     --transform-scale-x: 0
   }
@@ -72165,6 +72556,10 @@
     --transform-scale-x: 1.5
   }
 
+  .lg\:hover\:scale-x-flip:hover {
+    --transform-scale-x: -1
+  }
+
   .lg\:hover\:scale-y-0:hover {
     --transform-scale-y: 0
   }
@@ -72203,6 +72598,10 @@
 
   .lg\:hover\:scale-y-150:hover {
     --transform-scale-y: 1.5
+  }
+
+  .lg\:hover\:scale-y-flip:hover {
+    --transform-scale-y: -1
   }
 
   .lg\:focus\:scale-0:focus {
@@ -72255,6 +72654,11 @@
     --transform-scale-y: 1.5
   }
 
+  .lg\:focus\:scale-flip:focus {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .lg\:focus\:scale-x-0:focus {
     --transform-scale-x: 0
   }
@@ -72295,6 +72699,10 @@
     --transform-scale-x: 1.5
   }
 
+  .lg\:focus\:scale-x-flip:focus {
+    --transform-scale-x: -1
+  }
+
   .lg\:focus\:scale-y-0:focus {
     --transform-scale-y: 0
   }
@@ -72333,6 +72741,10 @@
 
   .lg\:focus\:scale-y-150:focus {
     --transform-scale-y: 1.5
+  }
+
+  .lg\:focus\:scale-y-flip:focus {
+    --transform-scale-y: -1
   }
 
   .lg\:rotate-0 {
@@ -78886,6 +79298,38 @@
   }
 
   .xl\:flex-col-reverse {
+    flex-direction: column-reverse
+  }
+
+  .xl\:odd\:flex-row:nth-child(odd) {
+    flex-direction: row
+  }
+
+  .xl\:odd\:flex-row-reverse:nth-child(odd) {
+    flex-direction: row-reverse
+  }
+
+  .xl\:odd\:flex-col:nth-child(odd) {
+    flex-direction: column
+  }
+
+  .xl\:odd\:flex-col-reverse:nth-child(odd) {
+    flex-direction: column-reverse
+  }
+
+  .xl\:even\:flex-row:nth-child(even) {
+    flex-direction: row
+  }
+
+  .xl\:even\:flex-row-reverse:nth-child(even) {
+    flex-direction: row-reverse
+  }
+
+  .xl\:even\:flex-col:nth-child(even) {
+    flex-direction: column
+  }
+
+  .xl\:even\:flex-col-reverse:nth-child(even) {
     flex-direction: column-reverse
   }
 
@@ -87506,6 +87950,38 @@
     text-align: justify
   }
 
+  .xl\:odd\:text-left:nth-child(odd) {
+    text-align: left
+  }
+
+  .xl\:odd\:text-center:nth-child(odd) {
+    text-align: center
+  }
+
+  .xl\:odd\:text-right:nth-child(odd) {
+    text-align: right
+  }
+
+  .xl\:odd\:text-justify:nth-child(odd) {
+    text-align: justify
+  }
+
+  .xl\:even\:text-left:nth-child(even) {
+    text-align: left
+  }
+
+  .xl\:even\:text-center:nth-child(even) {
+    text-align: center
+  }
+
+  .xl\:even\:text-right:nth-child(even) {
+    text-align: right
+  }
+
+  .xl\:even\:text-justify:nth-child(even) {
+    text-align: justify
+  }
+
   .xl\:text-transparent {
     color: transparent
   }
@@ -90416,6 +90892,11 @@
     --transform-scale-y: 1.5
   }
 
+  .xl\:scale-flip {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .xl\:scale-x-0 {
     --transform-scale-x: 0
   }
@@ -90456,6 +90937,10 @@
     --transform-scale-x: 1.5
   }
 
+  .xl\:scale-x-flip {
+    --transform-scale-x: -1
+  }
+
   .xl\:scale-y-0 {
     --transform-scale-y: 0
   }
@@ -90494,6 +90979,10 @@
 
   .xl\:scale-y-150 {
     --transform-scale-y: 1.5
+  }
+
+  .xl\:scale-y-flip {
+    --transform-scale-y: -1
   }
 
   .xl\:hover\:scale-0:hover {
@@ -90546,6 +91035,11 @@
     --transform-scale-y: 1.5
   }
 
+  .xl\:hover\:scale-flip:hover {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .xl\:hover\:scale-x-0:hover {
     --transform-scale-x: 0
   }
@@ -90586,6 +91080,10 @@
     --transform-scale-x: 1.5
   }
 
+  .xl\:hover\:scale-x-flip:hover {
+    --transform-scale-x: -1
+  }
+
   .xl\:hover\:scale-y-0:hover {
     --transform-scale-y: 0
   }
@@ -90624,6 +91122,10 @@
 
   .xl\:hover\:scale-y-150:hover {
     --transform-scale-y: 1.5
+  }
+
+  .xl\:hover\:scale-y-flip:hover {
+    --transform-scale-y: -1
   }
 
   .xl\:focus\:scale-0:focus {
@@ -90676,6 +91178,11 @@
     --transform-scale-y: 1.5
   }
 
+  .xl\:focus\:scale-flip:focus {
+    --transform-scale-x: -1;
+    --transform-scale-y: -1
+  }
+
   .xl\:focus\:scale-x-0:focus {
     --transform-scale-x: 0
   }
@@ -90716,6 +91223,10 @@
     --transform-scale-x: 1.5
   }
 
+  .xl\:focus\:scale-x-flip:focus {
+    --transform-scale-x: -1
+  }
+
   .xl\:focus\:scale-y-0:focus {
     --transform-scale-y: 0
   }
@@ -90754,6 +91265,10 @@
 
   .xl\:focus\:scale-y-150:focus {
     --transform-scale-y: 1.5
+  }
+
+  .xl\:focus\:scale-y-flip:focus {
+    --transform-scale-y: -1
   }
 
   .xl\:rotate-0 {
