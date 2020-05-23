@@ -46,7 +46,7 @@ const AdditionalProjectPage = () => {
                   data-aos="fade-up"
                   data-aos-offset="225"
                 >
-                  <Link to={`/${edge.node.slug}`} className="opacity-50">
+                  <Link to={`/${edge.node.slug}`}>
                     <ProgressiveImage
                       preview={`${edge.node.thumbnail.file.url}?w=100&q=1`}
                       src={`${edge.node.thumbnail.file.url}?w=800&q=80`}

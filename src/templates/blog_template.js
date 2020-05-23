@@ -214,6 +214,28 @@ const Blog = props => {
               ></iframe>
             </React.Fragment>
           )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "airtableEmbed"
+        ) {
+          let src = `${node.data.target.fields.src["en-US"]}`
+          let bg_color = `${node.data.target.fields.backgroundColor["en-US"]}`
+          let viewControls
+          if (`${node.data.target.fields.viewControls["en-US"]}` === "on") {
+            viewControls = `&viewControls=on`
+          } else {
+            viewControls = ""
+          }
+          let layout = "card"
+          return (
+            <iframe
+              title={`${node.data.target.fields.title["en-US"]}`}
+              src={`${src}?backgroundColor=${bg_color}&layout=${layout}${viewControls}`}
+              frameborder="0"
+              onmousewheel=""
+              width="100%"
+              height="450"
+            ></iframe>
+          )
         } else if (node.data.target.sys.contentType.sys.id === "grid") {
           var num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
           var renders = []
@@ -754,7 +776,7 @@ const Blog = props => {
               <div className="mb-4 overflow-visible">
                 <h3>{title}</h3>
                 <div className="flex overflow-visible">
-                  <div className="w-1/4 overflow-visible">
+                  <div className="w-1/4 px-1 overflow-visible">
                     <ProgressiveImage
                       preview={`${url}?w=800&fm=webp&q=1`}
                       src={`${url}?w=800&fm=webp&q=80`}
@@ -784,14 +806,14 @@ const Blog = props => {
                               top: `${top_line}%`,
                               left: `${width + 5 - 2 * width}%`,
                               width: `${width}%`,
-                              borderColor: "#85cbcf",
+                              borderColor: "#E6B3AE",
                               borderBottomWidth: "2px",
                             }}
                           />
                           <div
                             className="p-3 rounded-lg absolute text-white"
                             style={{
-                              backgroundColor: "#85cbcf",
+                              backgroundColor: "#E6B3AE",
                               top: `${top_quote}%`,
                             }}
                             key={index}
@@ -949,6 +971,38 @@ const Blog = props => {
                       </p>
                     </div>
                   </div>
+                )
+              })}
+            </div>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "compactImageGrid"
+        ) {
+          let num_of_images = `${node.data.target.fields.images["en-US"].length}`
+          let image_urls = []
+          for (i = 0; i < num_of_images; i++) {
+            image_urls.push(
+              node.data.target.fields.images["en-US"][i].fields.file["en-US"]
+                .url
+            )
+          }
+
+          return (
+            <div className="flex justify-between mx-4 mb-6">
+              {image_urls.map((value, index) => {
+                return (
+                  <ProgressiveImage
+                    preview={`${value}?w=800&fm=webp&q=1`}
+                    src={`${value}?w=800&fm=webp&q=100`}
+                    render={(src, style) => (
+                      <img
+                        src={src}
+                        style={style}
+                        className="w-1/2 pr-2 last:pr-0 object-cover h-64"
+                        // alt={`${alt}`}
+                      />
+                    )}
+                  />
                 )
               })}
             </div>

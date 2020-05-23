@@ -41,7 +41,7 @@ const Header = ({ location }) => {
         style={{
           backgroundColor: "white",
           margin: "0 auto",
-          padding: "1rem 1rem 0.5rem 1rem",
+          padding: "1rem 1rem 8px 1rem",
           position: "fixed",
           transition: "all 0.2s ease-in-out 0s",
           zIndex: "999",
