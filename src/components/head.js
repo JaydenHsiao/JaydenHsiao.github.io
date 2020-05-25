@@ -13,7 +13,11 @@ const Head = ({ title }) => {
     }
   `)
 
-  return <Helmet title={`${title} | ${data.site.siteMetadata.title}`} />
+  return (
+    <Helmet title={`${title} | ${data.site.siteMetadata.title}`}>
+      <script src="dist/BeerSlider.js"></script>
+    </Helmet>
+  )
 }
 
 export default Head

@@ -27,11 +27,7 @@ const Footer = () => {
   `)
 
   return (
-    <footer
-      className={footerStyles.footer}
-      data-aos="fade-in"
-      data-aos-once="false"
-    >
+    <footer className={footerStyles.footer}>
       <h2 style={{ lineHeight: "1", marginBottom: "3vh" }}>
         Like what you see?
       </h2>

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
@@ -16,12 +16,14 @@ import Arrow_Right from "../images/arrow_right.svg"
 import Problem_Statement from "../images/problem_statement.svg"
 import PS_Blob from "../images/ps_blob.svg"
 import Grey_VP_Arrow from "../images/grey_vp_arrow.svg"
+import Dog from "../images/dog.svg"
 
 import ProgressiveImage from "react-progressive-image-loading"
 
 import blogTemplateStyles from "./blog_template.module.scss"
 
 const website_url = "https://jaydenhsiao.me"
+const primary_colour = "#85cbcf"
 
 export const query = graphql`
   query($slug: String!) {
@@ -36,6 +38,8 @@ export const query = graphql`
 
 const Blog = props => {
   let add_hr = false
+  let iteration_num = 0
+  let lesson_num = 0
   const processInfographicOptions = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
@@ -142,12 +146,12 @@ const Blog = props => {
                     <img src={src} style={style} alt={`${alt}`} />
                   )}
                 />
-                <div className={blogTemplateStyles.captionContainer}>
+                {/* <div className={blogTemplateStyles.captionContainer}>
                   {" "}
                   <p className={blogTemplateStyles.caption}>
                     {node.data.target.fields.description["en-US"]}
                   </p>
-                </div>
+                </div> */}
               </div>
               <br />
             </React.Fragment>
@@ -204,15 +208,16 @@ const Blog = props => {
           node.data.target.sys.contentType.sys.id === "figmaPrototypeEmbed"
         ) {
           return (
-            <React.Fragment>
+            <div className="flex justify-end">
               <iframe
                 title={`${node.data.target.fields.title["en-US"]}`}
                 width="100%"
-                height="800"
+                height="600"
+                className="mb-0"
                 src={`${node.data.target.fields.src["en-US"]}`}
                 allowfullscreen
               ></iframe>
-            </React.Fragment>
+            </div>
           )
         } else if (
           node.data.target.sys.contentType.sys.id === "airtableEmbed"
@@ -277,7 +282,7 @@ const Blog = props => {
               if (temp_content.startsWith("<li>")) {
                 temp_content = "<ul>" + temp_content + "</ul>"
               } else if (header === true) {
-                temp_content = `<h3>${temp_content}</h3>`
+                temp_content = `<h3 className="mb-0">${temp_content}</h3>`
                 header = false
               } else if (last_paragraph === false) {
                 temp_content += "</br></br>"
@@ -767,29 +772,75 @@ const Blog = props => {
             )
           }
 
-          let url =
+          let url1 =
             node.data.target.fields.content["en-US"].content[1].data.target
               .fields.file["en-US"].url
+
+          let url2 =
+            node.data.target.fields.content["en-US"].content[num_of_indexes - 2]
+              .data.target.fields.file["en-US"].url
+
+          let mockup_width2 =
+            node.data.target.fields.content["en-US"].content[num_of_indexes - 2]
+              .data.target.fields.file["en-US"].details.image.width
+
+          let mockup_height2 =
+            node.data.target.fields.content["en-US"].content[num_of_indexes - 2]
+              .data.target.fields.file["en-US"].details.image.height
+
+          let landscape_mockup2 = false
+          let mockup2_width_class = "w-1/4"
+          let quotes_width_class = "w-1/5"
+
+          if (mockup_width2 > mockup_height2) {
+            landscape_mockup2 = true
+          }
+
+          if (landscape_mockup2 === true) {
+            mockup2_width_class = "w-5/12"
+            quotes_width_class = "w-1/6"
+          }
+
+          iteration_num++
 
           return (
             <React.Fragment>
               <div className="mb-4 overflow-visible">
-                <h3>{title}</h3>
+                <div className="flex items-center mb-3">
+                  <div
+                    className="rounded-full w-12 h-12 flex flex-col items-center text-center justify-center mr-2"
+                    style={{ backgroundColor: primary_colour }}
+                  >
+                    <span
+                      className={
+                        "my-auto text-white text-2xl " +
+                        blogTemplateStyles.lessonNumber
+                      }
+                    >
+                      0{iteration_num}
+                    </span>
+                  </div>
+                  <h3 className="mb-0">{title}</h3>
+                </div>
+
                 <div className="flex overflow-visible">
                   <div className="w-1/4 px-1 overflow-visible">
                     <ProgressiveImage
-                      preview={`${url}?w=800&fm=webp&q=1`}
-                      src={`${url}?w=800&fm=webp&q=80`}
+                      preview={`${url1}?w=800&fm=webp&q=1`}
+                      src={`${url1}?w=800&fm=webp&q=80`}
                       render={(src, style) => (
                         <img
                           src={src}
                           style={style}
                           // alt={`${alt}`}
+                          className="my-auto"
                         />
                       )}
                     />
                   </div>
-                  <div className="flex w-1/5 flex-col relative">
+                  <div
+                    className={`${quotes_width_class} flex flex-col relative`}
+                  >
                     {user_quotes.map((value, index) => {
                       var oldDimensions_array = oldDimensions_query[
                         index
@@ -822,9 +873,8 @@ const Blog = props => {
                               className={
                                 blogTemplateStyles.annotation + " mb-0"
                               }
-                            >
-                              {value}
-                            </p>
+                              dangerouslySetInnerHTML={{ __html: value }}
+                            />
                           </div>
                         </React.Fragment>
                       )
@@ -843,19 +893,19 @@ const Blog = props => {
                       return (
                         <React.Fragment className="relative">
                           <div
-                            className={blogTemplateStyles.rightLine}
+                            className={blogTemplateStyles.rightLine + " z-20"}
                             style={{
                               top: `${top_line}%`,
                               right: `${width + 5 - 2 * width}%`,
                               width: `${width}%`,
-                              borderColor: "#85cbcf",
+                              borderColor: primary_colour,
                               borderBottomWidth: "2px",
                             }}
                           />
                           <div
                             className="p-3 rounded-lg absolute text-white"
                             style={{
-                              backgroundColor: "#85cbcf",
+                              backgroundColor: primary_colour,
                               top: `${top_quote}%`,
                             }}
                             key={index}
@@ -864,21 +914,24 @@ const Blog = props => {
                               className={
                                 blogTemplateStyles.annotation + " mb-0"
                               }
-                            >
-                              {value}
-                            </p>
+                              dangerouslySetInnerHTML={{ __html: value }}
+                            />
                           </div>
                         </React.Fragment>
                       )
                     })}
                   </div>
-                  <img
-                    src={
-                      node.data.target.fields.content["en-US"].content[
-                        num_of_indexes - 2
-                      ].data.target.fields.file["en-US"].url
-                    }
-                    className="w-1/4 px-1"
+                  <ProgressiveImage
+                    preview={`${url2}?w=800&fm=webp&q=1`}
+                    src={`${url2}?w=800&fm=webp&q=80`}
+                    render={(src, style) => (
+                      <img
+                        src={src}
+                        style={style}
+                        className={`${mockup2_width_class} px-1 object-contain`}
+                        // alt={`${alt}`}
+                      />
+                    )}
                   />
                 </div>
               </div>
@@ -889,14 +942,9 @@ const Blog = props => {
           node.data.target.sys.contentType.sys.id === "verticalProcess"
         ) {
           num_of_indexes = `${node.data.target.fields.content["en-US"].content.length}`
-          let user_quotes = []
-          let improvements = []
           hr_count = 0
           hr_locations = [-1]
           let num_of_sections = []
-
-          // let right_var = "50%"
-          // let right_var = "auto"
 
           for (i = 0; i < num_of_indexes; i++) {
             if (
@@ -986,7 +1034,6 @@ const Blog = props => {
                 .url
             )
           }
-
           return (
             <div className="flex justify-between mx-4 mb-6">
               {image_urls.map((value, index) => {
@@ -1005,6 +1052,131 @@ const Blog = props => {
                   />
                 )
               })}
+            </div>
+          )
+        } else if (
+          node.data.target.sys.contentType.sys.id === "halfLargeImageHalfPoints"
+        ) {
+          num_of_indexes = `${node.data.target.fields.points["en-US"].content.length}`
+          hr_count = 0
+          hr_locations = [-1]
+          let num_of_sections = []
+          let section_content = ["", "", ""]
+          let image_urls = []
+          let large_image_url = `${node.data.target.fields.largeImage["en-US"].fields.file["en-US"].url}`
+          let j = 0
+
+          for (i = 0; i < num_of_indexes - 1; i++) {
+            console.log(`${i}`)
+            if (
+              node.data.target.fields.points["en-US"].content[i].nodeType ===
+              "hr"
+            ) {
+              hr_count++
+              num_of_sections.push(i)
+              hr_locations.push(i)
+              j++
+              console.log("HR")
+            } else if (
+              node.data.target.fields.points["en-US"].content[i].nodeType ===
+              "embedded-asset-block"
+            ) {
+              image_urls.push(
+                `${node.data.target.fields.points["en-US"].content[i].data.target.fields.file["en-US"].url}`
+              )
+            } else {
+              section_content[j] += documentToHtmlString(
+                node.data.target.fields.points["en-US"].content[i],
+                processInfographicOptions
+              )
+            }
+          }
+
+          console.log(image_urls)
+
+          return (
+            <div className="flex items-center">
+              <div className="w-1/2 pr-2">
+                <ProgressiveImage
+                  preview={`${large_image_url}?w=800&fm=webp&q=1`}
+                  src={`${large_image_url}?w=800&fm=webp&q=100`}
+                  render={(src, style) => (
+                    <img
+                      src={src}
+                      style={style}
+                      // alt={`${alt}`}
+                    />
+                  )}
+                />
+              </div>
+              <div className="w-1/2 flex flex-col pl-2">
+                {section_content.map((value, index) => {
+                  console.log(`${image_urls[index]}`)
+                  return (
+                    <div className="flex flex-row pb-4 last:pb-0 items-center">
+                      <ProgressiveImage
+                        preview={`${image_urls[index]}?w=800&fm=webp&q=1`}
+                        src={`${image_urls[index]}?w=800&fm=webp&q=100`}
+                        render={(src, style) => (
+                          <img
+                            src={src}
+                            style={style}
+                            className="w-1/4 pr-4 h-auto object-contain"
+                          />
+                        )}
+                      />
+                      <p className="mb-0">{value}</p>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        } else if (node.data.target.sys.contentType.sys.id === "slider") {
+          let Before =
+            node.data.target.fields.images["en-US"][0].fields.file["en-US"].url
+          let After =
+            node.data.target.fields.images["en-US"][1].fields.file["en-US"].url
+          return (
+            <img-comparison-slider>
+              <img slot="before" src={Before} />
+              <img slot="after" src={After} />
+            </img-comparison-slider>
+          )
+        } else if (node.data.target.sys.contentType.sys.id === "lesson") {
+          lesson_num++
+          let title = documentToHtmlString(
+            node.data.target.fields.content["en-US"].content[0],
+            options
+          )
+          let description = documentToHtmlString(
+            node.data.target.fields.content["en-US"].content[1],
+            options
+          )
+          return (
+            <div className="flex flex-col text-center pb-4">
+              <div
+                className="rounded-full w-20 h-20 flex flex-col items-center text-center justify-center mx-auto mb-2"
+                style={{ backgroundColor: primary_colour }}
+              >
+                <span
+                  className={
+                    "my-auto text-white text-5xl " +
+                    blogTemplateStyles.lessonNumber
+                  }
+                >
+                  0{lesson_num}
+                </span>
+              </div>
+              <h3
+                className="whitespace-no-wrap"
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+              <p
+                className="w-3/4 mx-auto"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+              {lesson_num !== 3 ? <hr className="mt-4" /> : null}
             </div>
           )
         }
