@@ -10,11 +10,8 @@ import "aos/dist/aos.css"
 
 import { window, document, exists } from "browser-monads"
 
-import { defineCustomElements as defineImgComparisonSlider } from "img-comparison-slider/loader"
-
 if (exists(window) && exists(document)) {
   AOS.init()
-  defineImgComparisonSlider(window)
   // console.log("animate on scroll is successful!")
 }
 

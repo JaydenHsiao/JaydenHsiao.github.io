@@ -1132,18 +1132,20 @@ const Blog = props => {
               </div>
             </div>
           )
-        } else if (node.data.target.sys.contentType.sys.id === "slider") {
-          let Before =
-            node.data.target.fields.images["en-US"][0].fields.file["en-US"].url
-          let After =
-            node.data.target.fields.images["en-US"][1].fields.file["en-US"].url
-          return (
-            <img-comparison-slider>
-              <img slot="before" src={Before} />
-              <img slot="after" src={After} />
-            </img-comparison-slider>
-          )
-        } else if (node.data.target.sys.contentType.sys.id === "lesson") {
+        }
+        // else if (node.data.target.sys.contentType.sys.id === "slider") {
+        //   let Before =
+        //     node.data.target.fields.images["en-US"][0].fields.file["en-US"].url
+        //   let After =
+        //     node.data.target.fields.images["en-US"][1].fields.file["en-US"].url
+        //   return (
+        //     <img-comparison-slider>
+        //       <img slot="before" src={Before} />
+        //       <img slot="after" src={After} />
+        //     </img-comparison-slider>
+        //   )
+        // }
+        else if (node.data.target.sys.contentType.sys.id === "lesson") {
           lesson_num++
           let title = documentToHtmlString(
             node.data.target.fields.content["en-US"].content[0],
