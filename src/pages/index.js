@@ -12,10 +12,6 @@ import Chat from "../components/chat"
 
 import indexStyles from "./index.module.scss"
 
-import { defineCustomElements as defineImgComparisonSlider } from "img-comparison-slider/loader"
-
-defineImgComparisonSlider(window)
-
 var letters = 0
 var word = 0
 
