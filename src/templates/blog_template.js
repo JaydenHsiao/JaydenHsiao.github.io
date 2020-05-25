@@ -1095,7 +1095,7 @@ const Blog = props => {
           console.log(image_urls)
 
           return (
-            <div className="flex items-center">
+            <div className="flex items-center mb-4">
               <div className="w-1/2 pr-2">
                 <ProgressiveImage
                   preview={`${large_image_url}?w=800&fm=webp&q=1`}
