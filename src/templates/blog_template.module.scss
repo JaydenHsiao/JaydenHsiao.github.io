@@ -12,6 +12,21 @@
   display: block;
 }
 
+.resp-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+
+  .resp-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
@@ -124,6 +139,7 @@
   //rest of the text
   p {
     font-size: 1rem;
+    line-height: 140%;
   }
 
   .annotation {
@@ -143,7 +159,6 @@
     position: relative;
     max-width: 90%;
     display: block;
-    margin: 5% auto 10% auto;
   }
 
   .mb-style-2 {

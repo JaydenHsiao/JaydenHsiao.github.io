@@ -51,7 +51,7 @@ const Blog = props => {
           return (
             <ProgressiveImage
               preview={`${url}?w=800&fm=webp&q=1`}
-              src={`${url}?w=800&fm=webp&q=80`}
+              src={`${url}?w=800&fm=webp&q=20`}
               render={(src, style) => (
                 <img
                   className={blogTemplateStyles.icon}
@@ -134,27 +134,13 @@ const Blog = props => {
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
           return (
-            <React.Fragment>
-              <div className={blogTemplateStyles.imageContainer}>
-                {/* <Zoom>
-                  <img alt={alt} src={`${url}?w=800&fm=webp&q=80`} />
-                </Zoom> */}
-                <ProgressiveImage
-                  preview={`${url}?w=800&fm=webp&q=1`}
-                  src={`${url}?w=800&fm=webp&q=80`}
-                  render={(src, style) => (
-                    <img src={src} style={style} alt={`${alt}`} />
-                  )}
-                />
-                {/* <div className={blogTemplateStyles.captionContainer}>
-                  {" "}
-                  <p className={blogTemplateStyles.caption}>
-                    {node.data.target.fields.description["en-US"]}
-                  </p>
-                </div> */}
-              </div>
-              <br />
-            </React.Fragment>
+            <ProgressiveImage
+              preview={`${url}?w=800&fm=webp&q=1`}
+              src={`${url}?w=1600&fm=webp&q=100`}
+              render={(src, style) => (
+                <img src={src} style={style} alt={`${alt}`} className="mb-2" />
+              )}
+            />
           )
         }
       },
@@ -822,7 +808,6 @@ const Blog = props => {
                   </div>
                   <h3 className="mb-0">{title}</h3>
                 </div>
-
                 <div className="flex overflow-visible">
                   <div className="w-1/4 px-1 overflow-visible">
                     <ProgressiveImage
@@ -1001,7 +986,7 @@ const Blog = props => {
                     </div>
                     <div className="mx-3"></div>
                     <div className="w-1/3">
-                      <h3 className={`w-3/4`}>
+                      <h3 className={`w-3/4 mb-1`}>
                         {documentToHtmlString(
                           node.data.target.fields.content["en-US"].content[
                             hr_locations[index] + 2
@@ -1099,7 +1084,7 @@ const Blog = props => {
               <div className="w-1/2 pr-2">
                 <ProgressiveImage
                   preview={`${large_image_url}?w=800&fm=webp&q=1`}
-                  src={`${large_image_url}?w=800&fm=webp&q=100`}
+                  src={`${large_image_url}?w=800&fm=webp&q=50`}
                   render={(src, style) => (
                     <img
                       src={src}
@@ -1109,19 +1094,19 @@ const Blog = props => {
                   )}
                 />
               </div>
-              <div className="w-1/2 flex flex-col pl-2">
+              <div className="w-1/2 flex flex-col pl-3">
                 {section_content.map((value, index) => {
                   console.log(`${image_urls[index]}`)
                   return (
                     <div className="flex flex-row pb-4 last:pb-0 items-center">
                       <ProgressiveImage
                         preview={`${image_urls[index]}?w=800&fm=webp&q=1`}
-                        src={`${image_urls[index]}?w=800&fm=webp&q=100`}
+                        src={`${image_urls[index]}?w=800&fm=webp&q=20`}
                         render={(src, style) => (
                           <img
                             src={src}
                             style={style}
-                            className="w-1/4 pr-4 h-auto object-contain"
+                            className="w-1/5 pr-4 h-auto object-contain"
                           />
                         )}
                       />
@@ -1200,7 +1185,7 @@ const Blog = props => {
       },
       [BLOCKS.QUOTE]: (node, children) => {
         return (
-          <div className={blogTemplateStyles.quoteDiv}>
+          <div className={blogTemplateStyles.quoteDiv + " my-2 mx-auto"}>
             {" "}
             <div class={blogTemplateStyles.mbStyle2}>
               <blockquote>{children}</blockquote>
@@ -1241,6 +1226,12 @@ const Blog = props => {
   return (
     <div className={blogTemplateStyles.postLayout}>
       <Head title={props.data.contentfulBlogPost.title} />
+      {/* <div className={blogTemplateStyles.respContainer}>
+        <iframe
+          src="https://sorenewals.firebaseapp.com/"
+          className={blogTemplateStyles.respIframe}
+        ></iframe>
+      </div> */}
       <div className={blogTemplateStyles.post}>
         {documentToReactComponents(
           props.data.contentfulBlogPost.body.json,
