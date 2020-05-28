@@ -113,7 +113,7 @@ const TooltipImg = ({
 
   return (
     <React.Fragment>
-      <a href="!#" data-tip={`${src}`} data-for={`${src}`}>
+      <a data-tip={`${src}`} data-for={`${src}`}>
         <span className={aboutStyles.tooltipSpan}>
           <img
             alt={`${img_alt}`}
@@ -216,7 +216,7 @@ const DualTooltipImg = ({
 
   return (
     <React.Fragment>
-      <a href="!#" data-tip={`${src1}`} data-for={`${src1}`}>
+      <a data-tip={`${src1}`} data-for={`${src1}`}>
         <span className={aboutStyles.tooltipSpan}>
           <img
             alt={`${title1}`}
