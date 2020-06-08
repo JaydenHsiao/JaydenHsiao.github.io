@@ -122,13 +122,22 @@ const Blog = props => {
           const alt = node.data.target.fields.description["en-US"]
           const url = node.data.target.fields.file["en-US"].url
           return (
-            <Zoom>
-              <img
-                alt={alt}
-                src={`${url}?w=800&fm=webp&q=80`}
-                className={blogTemplateStyles.photography}
-              />
-            </Zoom>
+            <div className="mt-2 text-center" style={{ display: "block" }}>
+              <Zoom>
+                <ProgressiveImage
+                  alt={alt}
+                  src={`${url}?w=1600&fm=webp&q=100`}
+                  render={(src, style) => (
+                    <img
+                      src={src}
+                      style={style}
+                      alt={`${alt}`}
+                      className={blogTemplateStyles.photography}
+                    />
+                  )}
+                />
+              </Zoom>
+            </div>
           )
         } else {
           const alt = node.data.target.fields.description["en-US"]
@@ -1180,6 +1189,29 @@ const Blog = props => {
             }`}
           >
             {node.content[0].value}
+          </a>
+        )
+      },
+      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        let destination = `/${node.data.target.fields.slug["en-US"]}`
+        let link_text = `${node.data.target.fields.description["en-US"]}`
+        return (
+          // <Link to={destination}>
+          //   <a>
+          //     <p>{link_text}</p>
+          //   </a>
+          // </Link>
+
+          <a
+            href={destination}
+            target={`${
+              destination.startsWith(website_url) ? "_self" : "_blank"
+            }`}
+            rel={`${
+              destination.startsWith(website_url) ? "" : "noopener noreferrer"
+            }`}
+          >
+            {link_text}
           </a>
         )
       },

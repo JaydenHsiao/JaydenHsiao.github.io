@@ -10,6 +10,35 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
+
+  //TEXT UNDERLINE from https://codepen.io/lhorak/pen/bEavyg
+
+  $color-accent: #85cbcf;
+  $color-text-body: rgb(0, 0, 0);
+
+  a {
+    color: $color-accent;
+    text-decoration: none;
+    text-shadow: 0px -2px 0 white, 0px -1px 0 white, 0px 0px 0 white,
+      2px -2px 0 white, 2px -1px 0 white, 2px 0px 0 white, -2px -2px 0 white,
+      -2px -1px 0 white, -2px 0px 0 white, 1px -2px 0 white, 1px -1px 0 white,
+      1px 0px 0 white, -1px -2px 0 white, -1px -1px 0 white, -1px 0px 0 white,
+      0px -2px 0 white, 0px -1px 0 white, 0px 0px 0 white;
+    box-shadow: 0 -1px 0 0 white inset, 0 -2px 0 0 transparent inset;
+
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      transition: all 0.3s ease-out;
+      box-shadow: 0 0px 0 0 white inset, 0 -2px 0 0 $color-accent inset;
+    }
+
+    &::selection {
+      color: white;
+      background: $color-accent;
+      text-shadow: none;
+    }
+  }
 }
 
 .resp-container {
@@ -101,9 +130,8 @@
 }
 
 .photography {
-  max-height: 700px;
-  display: block;
-  margin: 1rem auto 1rem auto;
+  max-height: 90vh;
+  // display: block;
 }
 
 .post {
