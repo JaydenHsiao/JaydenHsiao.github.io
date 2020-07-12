@@ -3,6 +3,7 @@ require("dotenv").config({
 })
 
 module.exports = {
+  pathPrefix: "/reponame",
   siteMetadata: {
     title: "Jayden Hsiao",
     author: "Jayden Hsiao",
